@@ -1,0 +1,93 @@
+<title>The Song of Zink</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+  /* Layout: one centered column. Game screen on top, controls card below. Single dark look on purpose (night cave). */
+  :root {
+    --bg: #0b0d1a;
+    --panel: #151a2e;
+    --line: #2b2f45;
+    --fg: #e8e6f2;
+    --muted: #9a9cb8;
+    --gold: #f0c75e;
+    --hood: #3fae5a;
+    --cloak: #c8443a;
+    --display: "Pixelify Sans", ui-monospace, "Courier New", monospace;
+    --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+    color-scheme: dark;
+  }
+  [hidden] { display: none !important; }
+  html, body { background: var(--bg); color: var(--fg); }
+  body {
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.5;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 20px 32px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; display: grid; gap: 16px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 5vw, 40px); line-height: 1.1; margin: 0; letter-spacing: 0.02em; text-wrap: balance; }
+  h1 .z { color: var(--hood); }
+  .tag { color: var(--muted); margin: 0; max-width: 60ch; }
+  #game-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; background: #000; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  #game-frame canvas { display: block; }
+  #focus-hint { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(11, 13, 26, 0.72); color: var(--gold); font-family: var(--display); font-size: clamp(16px, 3vw, 24px); border: 0; cursor: pointer; width: 100%; }
+  #focus-hint:focus-visible { outline: 2px solid var(--gold); outline-offset: -4px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 16px; display: grid; gap: 12px; }
+  .panel h2 { font-family: var(--display); font-weight: 400; font-size: 18px; margin: 0; color: var(--gold); letter-spacing: 0.04em; }
+  .keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px 20px; margin: 0; }
+  .keys div { display: flex; gap: 10px; align-items: baseline; min-width: 0; }
+  .keys dt { flex: 0 0 auto; }
+  .keys dd { margin: 0; color: var(--muted); }
+  kbd { font-family: var(--display); font-size: 13px; background: var(--bg); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 3px; padding: 1px 7px; color: var(--fg); }
+  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+  .note { color: var(--muted); margin: 0; font-size: 13px; }
+  button.secondary { font: 600 14px var(--body); color: var(--fg); background: transparent; border: 1px solid var(--cloak); border-radius: 3px; padding: 6px 14px; cursor: pointer; }
+  button.secondary:hover { background: rgba(200, 68, 58, 0.15); }
+  button.secondary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  #world-errors { white-space: pre-wrap; color: var(--cloak); font-family: ui-monospace, monospace; font-size: 13px; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>The Song of <span class="z">Zink</span></h1>
+    <p class="tag">Wake in the shrine, find the hookshot and the bombs, and silence the Warden of the Bell.</p>
+  </header>
+
+  <div id="game-frame">
+    <button id="focus-hint" type="button">Click to play</button>
+  </div>
+  <pre id="world-errors" hidden></pre>
+
+  <section class="panel" aria-labelledby="controls-title">
+    <div class="row">
+      <h2 id="controls-title">Controls</h2>
+      <button id="new-game" class="secondary" type="button">New game</button>
+    </div>
+    <dl class="keys">
+      <div><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Move</dd></div>
+      <div><dt><kbd>Z</kbd> / <kbd>Space</kbd></dt><dd>Jump, hold for higher. Against a wall: wall jump</dd></div>
+      <div><dt><kbd>X</kbd></dt><dd>Needle. Hold <kbd>↑</kbd> to aim up, <kbd>↓</kbd> in the air to pogo</dd></div>
+      <div><dt><kbd>C</kbd></dt><dd>Dash (one in the air)</dd></div>
+      <div><dt><kbd>A</kbd></dt><dd>Hookshot (once found)</dd></div>
+      <div><dt><kbd>S</kbd></dt><dd>Bomb (once found)</dd></div>
+      <div><dt><kbd>D</kbd> hold</dt><dd>Song heal: 3 notes for 1 heart</dd></div>
+      <div><dt><kbd>↑</kbd></dt><dd>Rest at a bench (heals and saves)</dd></div>
+    </dl>
+    <p class="note">Needs a keyboard. Progress saves in this browser at benches and when you pick up items.</p>
+  </section>
+</div>
+
+<script>
+  (function () {
+    var hint = document.getElementById('focus-hint');
+    function go() { hint.hidden = true; window.focus(); }
+    hint.addEventListener('click', go);
+    window.addEventListener('keydown', function () { if (!hint.hidden) go(); }, { once: true });
+  })();
+</script>
+<!--GAME_SCRIPT-->

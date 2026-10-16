@@ -1,0 +1,27 @@
+{
+  "name": "song-of-zink",
+  "version": "1.0.0",
+  "description": "A Zelda + Silksong inspired browser metroidvania",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test tests/rooms.test.mjs",
+    "smoke": "node tests/smoke.mjs",
+    "check": "npm test && npm run build && npm run smoke"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "playwright": "^1.64.1"
+  },
+  "type": "module",
+  "private": true
+}
