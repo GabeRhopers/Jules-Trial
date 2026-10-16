@@ -5,6 +5,7 @@ import { WORLD, WORLD_ERRORS } from './world.js';
 import { BootScene } from './boot-scene.js';
 import { GameScene } from './game-scene.js';
 import { UIScene } from './ui-scene.js';
+import { setupTouch } from './touch.js';
 
 function start() {
   if (WORLD_ERRORS.length) {
@@ -12,6 +13,11 @@ function start() {
     if (box) { box.hidden = false; box.textContent = `Room problems:\n${WORLD_ERRORS.join('\n')}`; }
     return;
   }
+  // Touch controls first: they change the page layout the game scales into.
+  const setTouch = setupTouch(document.getElementById('game-frame'), () => state);
+  const hint = document.getElementById('focus-hint');
+  if (hint && document.body.classList.contains('touch')) hint.textContent = 'Tap to play';
+
   const game = new Phaser.Game({
     type: Phaser.AUTO,
     parent: 'game-frame',
@@ -41,6 +47,13 @@ function start() {
     warp(room, door) { gameScene().scene.restart({ room, door }); },
     give(flag) { state[flag] = true; },
   };
+
+  const touchToggle = document.getElementById('touch-toggle');
+  if (touchToggle) {
+    const sync = () => { touchToggle.textContent = document.body.classList.contains('touch') ? 'Hide touch buttons' : 'Show touch buttons'; };
+    sync();
+    touchToggle.addEventListener('click', () => { setTouch(!document.body.classList.contains('touch'), true); sync(); touchToggle.blur(); requestAnimationFrame(() => game.scale.refresh()); });
+  }
 
   const newGameBtn = document.getElementById('new-game');
   if (newGameBtn) newGameBtn.addEventListener('click', () => { window.__zink.newGame(); newGameBtn.blur(); });

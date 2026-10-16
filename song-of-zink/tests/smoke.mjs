@@ -257,6 +257,69 @@ await check('Warden fight starts, shell blocks the needle, bombs finish it', asy
   await page.screenshot({ path: join(outDir, '04-victory.png') });
 });
 
+// ---------- Phone ----------
+const phone = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
+const mobile = await phone.newPage();
+mobile.on('pageerror', (e) => errors.push(`phone pageerror: ${e.message}`));
+await mobile.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
+await mobile.goto(url);
+await mobile.waitForFunction(() => window.__zink && window.__zink.ready, null, { timeout: 15000 });
+const mz = (fn, arg) => mobile.evaluate(fn, arg);
+// Holds a touch on an element (offset from its center as a fraction of its size).
+async function touchHold(selector, ms, fx = 0, fy = 0) {
+  let during = null;
+  await mz(([sel, fx, fy]) => {
+    const el = document.querySelector(sel);
+    const r = el.getBoundingClientRect();
+    const o = { pointerId: 7, pointerType: 'touch', isPrimary: true, bubbles: true, clientX: r.left + r.width * (0.5 + fx / 2), clientY: r.top + r.height * (0.5 + fy / 2) };
+    el.dispatchEvent(new PointerEvent('pointerdown', o));
+    window.__held = { el, o };
+  }, [selector, fx, fy]);
+  await mobile.waitForTimeout(ms);
+  during = await mz(() => ({ vx: window.__zink.scene.player.body.velocity.x }));
+  await mz(() => { const { el, o } = window.__held; el.dispatchEvent(new PointerEvent('pointerup', o)); });
+  return during;
+}
+
+await check('phone: touch controls show and the game fits the screen', async () => {
+  const layout = await mz(() => {
+    const f = document.getElementById('game-frame').getBoundingClientRect();
+    return { touch: document.body.classList.contains('touch'), pad: !document.getElementById('touch').hidden, frameBottom: f.bottom, frameH: f.height, scrollW: document.documentElement.scrollWidth, w: window.innerWidth };
+  });
+  assert(layout.touch && layout.pad, 'touch controls not enabled');
+  assert(layout.frameH <= 390, `game is ${Math.round(layout.frameH)}px tall on a 390px screen`);
+  assert(layout.scrollW <= layout.w, 'page scrolls sideways');
+  await mobile.locator('#focus-hint').tap();
+  await mobile.waitForTimeout(300);
+  await mobile.screenshot({ path: join(outDir, '05-phone.png') });
+});
+
+await check('phone: d-pad moves and JUMP jumps', async () => {
+  const p0 = await mz(() => window.__zink.scene.player.x);
+  const held = await touchHold('#dpad', 600, 0.9, 0);
+  const p1 = await mz(() => window.__zink.scene.player.x);
+  assert(held.vx > 100, `running speed while holding the pad: ${held.vx}`);
+  assert(p1 > p0, 'did not move');
+  await mobile.waitForTimeout(150);
+  const stopped = await mz(() => window.__zink.scene.player.body.velocity.x);
+  assert(stopped === 0, `still moving after release (${stopped})`);
+  await mobile.waitForTimeout(300);
+  const y0 = await mz(() => window.__zink.scene.player.y);
+  await mz(() => { window.__minY = 1e9; window.__t = setInterval(() => { window.__minY = Math.min(window.__minY, window.__zink.scene.player.y); }, 16); });
+  await touchHold('.a-jump', 250);
+  await mobile.waitForTimeout(150);
+  const minY = await mz(() => { clearInterval(window.__t); return window.__minY; });
+  assert(y0 - minY > 15, `jump rose ${Math.round(y0 - minY)}px`);
+});
+
+await check('phone: portrait shows the turn-sideways notice', async () => {
+  await mobile.setViewportSize({ width: 390, height: 844 });
+  await mobile.waitForTimeout(200);
+  const shown = await mz(() => getComputedStyle(document.getElementById('rotate')).display !== 'none');
+  assert(shown, 'rotate notice hidden in portrait');
+});
+await phone.close();
+
 await check('no errors in the console', async () => {
   assert(errors.length === 0, errors.slice(0, 5).join(' | '));
 });

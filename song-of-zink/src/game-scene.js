@@ -6,10 +6,11 @@ import { cellsOf, doorRects, SOLID_CHARS } from './rooms.js';
 import { Player } from './player.js';
 import { Crawler, Flyer } from './enemies.js';
 import { Warden } from './boss.js';
+import { virtual, keyName, clearVirtualPresses } from './touch.js';
 
 const ITEMS = {
-  K: { key: 'item_hook', flag: 'hasHook', title: 'HOOKSHOT', text: 'Press A to pull yourself to glowing rings. With no ring nearby, the chain stuns enemies.' },
-  O: { key: 'item_bomb', flag: 'hasBombs', title: 'BOMBS', text: 'Press S to throw a bomb. Blasts break cracked walls.' },
+  K: { key: 'item_hook', flag: 'hasHook', title: 'HOOKSHOT', text: () => `Press ${keyName('hook')} to pull yourself to glowing rings. With no ring nearby, the chain stuns enemies.` },
+  O: { key: 'item_bomb', flag: 'hasBombs', title: 'BOMBS', text: () => `Press ${keyName('bomb')} to throw a bomb. Blasts break cracked walls.` },
   k: { key: 'item_key', flag: 'hasKey', title: 'VAULT KEY', text: 'It fits the sealed door in the Cracked Vault.' },
   '+': { key: 'item_heart', flag: null, title: 'HEART VESSEL', text: 'Your maximum health grows by one.' },
 };
@@ -25,6 +26,7 @@ export class GameScene extends Phaser.Scene {
     if (!state.visited.includes(this.roomId)) state.visited.push(this.roomId);
     this.transitioning = false;
     this.barredNoticeAt = 0;
+    clearVirtualPresses();
 
     const W = this.room.w * TILE;
     const H = this.room.h * TILE;
@@ -156,7 +158,7 @@ export class GameScene extends Phaser.Scene {
 
     const hints = (WORLD.hints && WORLD.hints[this.roomId]) || [];
     for (const h of hints) {
-      this.add.text(h.x * TILE, h.y * TILE, h.text, {
+      this.add.text(h.x * TILE, h.y * TILE, virtual.enabled && h.touch ? h.touch : h.text, {
         fontFamily: '"Pixelify Sans", monospace', fontSize: '8px', color: '#9a9cb8',
       }).setResolution(4).setDepth(1);
     }
@@ -447,7 +449,7 @@ export class GameScene extends Phaser.Scene {
     item.destroy();
     this.items = this.items.filter((i) => i !== item);
     saveState();
-    this.ui.banner(def.title, def.text);
+    this.ui.banner(def.title, typeof def.text === 'function' ? def.text() : def.text);
   }
 
   rest() {

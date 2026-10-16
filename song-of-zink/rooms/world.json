@@ -1,14 +1,14 @@
 {
   "start": "r1",
   "rooms": {
-    "r1": { "name": "Awakening Cave", "map": [0, 3, 1, 1] },
-    "r2": { "name": "Root Corridor", "map": [1, 3, 1.2, 1] },
-    "r3": { "name": "Hookshot Chamber", "map": [2.2, 3, 1.2, 1] },
-    "r4": { "name": "Chasm Garden", "map": [3.4, 2, 1.4, 2] },
-    "r5": { "name": "Bell Bench", "map": [3.4, 1, 1, 1] },
-    "r6": { "name": "Bomb Forge", "map": [4.4, 1, 1.2, 1] },
-    "r7": { "name": "Cracked Vault", "map": [5.6, 0.8, 1.2, 1.2] },
-    "r8": { "name": "Warden Arena", "map": [6.8, 1, 1, 1] }
+    "r1": {"name": "Awakening Cave", "map": [0, 3, 1, 1]},
+    "r2": {"name": "Root Corridor", "map": [1, 3, 1.2, 1]},
+    "r3": {"name": "Hookshot Chamber", "map": [2.2, 3, 1.2, 1]},
+    "r4": {"name": "Chasm Garden", "map": [3.4, 2, 1.4, 2]},
+    "r5": {"name": "Bell Bench", "map": [3.4, 1, 1, 1]},
+    "r6": {"name": "Bomb Forge", "map": [4.4, 1, 1.2, 1]},
+    "r7": {"name": "Cracked Vault", "map": [5.6, 0.8, 1.2, 1.2]},
+    "r8": {"name": "Warden Arena", "map": [6.8, 1, 1, 1]}
   },
   "links": [
     ["r1:1", "r2:1"],
@@ -22,29 +22,29 @@
   ],
   "hints": {
     "r1": [
-      { "x": 3, "y": 10, "text": "Arrows move. Z jumps (hold for higher)." },
-      { "x": 7, "y": 12, "text": "Press UP at a bench to rest and save." },
-      { "x": 17, "y": 9, "text": "C dashes. X attacks." },
-      { "x": 31, "y": 9, "text": "Hold DOWN + X in the air to pogo off enemies." }
+      {"x": 3, "y": 10, "text": "Arrows move. Z jumps (hold for higher).", "touch": "The pad moves. JUMP jumps (hold for higher)."},
+      {"x": 7, "y": 12, "text": "Press UP at a bench to rest and save.", "touch": "Push the pad up at a bench to rest and save."},
+      {"x": 17, "y": 9, "text": "C dashes. X attacks.", "touch": "DASH dashes. ATK attacks."},
+      {"x": 31, "y": 9, "text": "Hold DOWN + X in the air to pogo off enemies.", "touch": "Pad down + ATK in the air to pogo off enemies."}
     ],
     "r2": [
-      { "x": 3, "y": 6, "text": "That wall looks cracked..." }
+      {"x": 3, "y": 6, "text": "That wall looks cracked..."}
     ],
     "r3": [
-      { "x": 2, "y": 8, "text": "Glowing rings can be grabbed." }
+      {"x": 2, "y": 8, "text": "Glowing rings can be grabbed."}
     ],
     "r4": [
-      { "x": 36, "y": 19, "text": "Push into a wall and press Z to wall jump." }
+      {"x": 36, "y": 19, "text": "Push into a wall and press Z to wall jump.", "touch": "Push into a wall and press JUMP to wall jump."}
     ],
     "r5": [
-      { "x": 20, "y": 12, "text": "Hold D to heal with your song." },
-      { "x": 1, "y": 2, "text": "Strike the lever." }
+      {"x": 20, "y": 12, "text": "Hold D to heal with your song.", "touch": "Hold HEAL to heal with your song."},
+      {"x": 1, "y": 2, "text": "Strike the lever."}
     ],
     "r6": [
-      { "x": 36, "y": 11, "text": "Cracked stone. Something explosive might help." }
+      {"x": 36, "y": 11, "text": "Cracked stone. Something explosive might help."}
     ],
     "r7": [
-      { "x": 39, "y": 15, "text": "A sealed door. It needs a key." }
+      {"x": 39, "y": 15, "text": "A sealed door. It needs a key."}
     ]
   }
 }

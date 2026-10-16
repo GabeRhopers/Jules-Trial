@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import { CONFIG } from './config.js';
 import { state } from './save.js';
+import { vHeld, vPressed, vReleased } from './touch.js';
 
 const { JustDown, JustUp } = Phaser.Input.Keyboard;
 const NEVER = -1e9;
@@ -62,16 +63,17 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     const body = this.body;
     const onGround = this.onGround;
 
-    // Read every "just pressed" once per frame.
-    const jumpPressed = JustDown(k.Z) | JustDown(k.SPACE);
-    const jumpReleased = JustUp(k.Z) | JustUp(k.SPACE);
-    const attackPressed = JustDown(k.X);
-    const dashPressed = JustDown(k.C);
-    const hookPressed = JustDown(k.A);
-    const bombPressed = JustDown(k.S);
-    this.upPressed = JustDown(k.UP);
+    // Read every "just pressed" once per frame, from keyboard and touch buttons.
+    // `|` (not `||`) so every source is read and cleared each frame.
+    const jumpPressed = JustDown(k.Z) | JustDown(k.SPACE) | vPressed('jump');
+    const jumpReleased = JustUp(k.Z) | JustUp(k.SPACE) | vReleased('jump');
+    const attackPressed = JustDown(k.X) | vPressed('attack');
+    const dashPressed = JustDown(k.C) | vPressed('dash');
+    const hookPressed = JustDown(k.A) | vPressed('hook');
+    const bombPressed = JustDown(k.S) | vPressed('bomb');
+    this.upPressed = !!(JustDown(k.UP) | vPressed('up'));
 
-    const dir = (k.RIGHT.isDown ? 1 : 0) - (k.LEFT.isDown ? 1 : 0);
+    const dir = (k.RIGHT.isDown || vHeld('right') ? 1 : 0) - (k.LEFT.isDown || vHeld('left') ? 1 : 0);
     if (onGround) { this.lastGround = time; this.airDash = true; }
     if (jumpPressed) this.jumpBuffered = time;
 
@@ -89,7 +91,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     // Song heal: hold D on the ground.
     const S = CONFIG.song;
-    if (k.D.isDown && onGround && state.song >= S.healCost && state.hearts < state.maxHearts) {
+    if ((k.D.isDown || vHeld('heal')) && onGround && state.song >= S.healCost && state.hearts < state.maxHearts) {
       this.healTime += delta;
       body.setVelocityX(0);
       const p = Math.min(1, this.healTime / S.healHoldMs);
@@ -177,8 +179,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     const A = CONFIG.attack;
     this.attackReady = time + A.cooldownMs;
     let aim = 'side';
-    if (this.keys.UP.isDown) aim = 'up';
-    else if (this.keys.DOWN.isDown && !onGround) aim = 'down';
+    if (this.keys.UP.isDown || vHeld('up')) aim = 'up';
+    else if ((this.keys.DOWN.isDown || vHeld('down')) && !onGround) aim = 'down';
     const b = this.body;
     let rect;
     if (aim === 'side') rect = new Phaser.Geom.Rectangle(this.facing > 0 ? b.right : b.left - A.range, b.center.y - 11, A.range, 22);

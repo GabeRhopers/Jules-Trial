@@ -3,6 +3,7 @@ import { CONFIG } from './config.js';
 import { state } from './save.js';
 import { WORLD, linkTarget, ROOMS } from './world.js';
 import { doorRects } from './rooms.js';
+import { virtual, keyName } from './touch.js';
 
 const FONT = '"Pixelify Sans", monospace';
 const MAX_HEARTS_SHOWN = 10;
@@ -46,11 +47,12 @@ export class UIScene extends Phaser.Scene {
     const shade = this.add.rectangle(W / 2, CONFIG.view.height / 2, W, CONFIG.view.height, 0x0b0d1a, 0.86);
     const t1 = this.add.text(W / 2, 200, 'THE SONG IS RESTORED', { fontFamily: FONT, fontSize: '40px', color: '#f0c75e' }).setOrigin(0.5);
     this.victoryStats = this.add.text(W / 2, 264, '', { fontFamily: FONT, fontSize: '18px', color: '#e8e6f2', align: 'center' }).setOrigin(0.5);
-    const t3 = this.add.text(W / 2, 330, 'Press ENTER to keep exploring', { fontFamily: FONT, fontSize: '16px', color: '#9a9cb8' }).setOrigin(0.5);
+    const t3 = this.add.text(W / 2, 330, 'Tap or press ENTER to keep exploring', { fontFamily: FONT, fontSize: '16px', color: '#9a9cb8' }).setOrigin(0.5);
     this.victory.add([shade, t1, this.victoryStats, t3]);
     this.enterKey = this.input.keyboard.addKey('ENTER');
 
     this.game.events.on('room-enter', (name) => this.toast(name), this);
+    this.input.on('pointerdown', () => { if (this.victory.visible) this.victory.setVisible(false); });
   }
 
   banner(title, text, ms = 3600) {
@@ -89,7 +91,7 @@ export class UIScene extends Phaser.Scene {
       n.setTexture(i < state.song ? 'note_full' : 'note_empty');
       n.setAlpha(i < state.song && state.song >= CONFIG.song.healCost ? 1 : 0.8);
     });
-    for (const it of this.itemIcons) { it.img.setVisible(!!state[it.flag]); it.txt.setVisible(!!state[it.flag]); }
+    for (const it of this.itemIcons) { it.img.setVisible(!!state[it.flag]); it.txt.setVisible(!!state[it.flag] && !virtual.enabled); }
 
     if (this.bossRef) {
       const b = this.bossRef;
@@ -105,7 +107,7 @@ export class UIScene extends Phaser.Scene {
       const cam = game.cameras.main;
       const x = (game.nearBench.x - cam.worldView.x) * cam.zoom;
       const y = (game.nearBench.y - 26 - cam.worldView.y) * cam.zoom;
-      this.prompt.setText('UP  rest').setPosition(x, y).setVisible(true);
+      this.prompt.setText(`${keyName('up')}  rest`).setPosition(x, y).setVisible(true);
     } else this.prompt.setVisible(false);
 
     this.drawMinimap(game);

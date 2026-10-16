@@ -49,6 +49,38 @@
   button.secondary:hover { background: rgba(200, 68, 58, 0.15); }
   button.secondary:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
   #world-errors { white-space: pre-wrap; color: var(--cloak); font-family: ui-monospace, monospace; font-size: 13px; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* Touch mode: game fits the screen height, controls float over the game's lower corners. */
+  #game-frame, #touch, #touch * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  body.touch #game-frame { touch-action: none; width: min(100%, calc((100dvh - 24px) * 16 / 9)); margin: 0 auto; }
+  body.touch { padding-block: 12px 24px; }
+  body.touch header .tag { display: none; }
+  #touch { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+  #touch .dpad, #touch .tbtn { pointer-events: auto; touch-action: none; }
+  .dpad { position: absolute; left: max(10px, env(safe-area-inset-left, 0px)); bottom: 10px; width: clamp(104px, 22%, 150px); aspect-ratio: 1; border-radius: 50%; background: rgba(232, 230, 242, 0.08); border: 1px solid rgba(232, 230, 242, 0.25); }
+  .dpad .arrow { position: absolute; color: rgba(232, 230, 242, 0.55); font-size: 14px; line-height: 1; }
+  .dpad .up { top: 8%; left: 50%; transform: translateX(-50%); }
+  .dpad .down { bottom: 8%; left: 50%; transform: translateX(-50%); }
+  .dpad .left { left: 8%; top: 50%; transform: translateY(-50%); }
+  .dpad .right { right: 8%; top: 50%; transform: translateY(-50%); }
+  .dpad .knob { position: absolute; left: 50%; top: 50%; width: 38%; height: 38%; margin: -19% 0 0 -19%; border-radius: 50%; background: rgba(240, 199, 94, 0.35); border: 1px solid rgba(240, 199, 94, 0.7); }
+  .actions { position: absolute; right: max(10px, env(safe-area-inset-right, 0px)); bottom: 10px; width: clamp(150px, 30%, 210px); aspect-ratio: 1.15; }
+  .tbtn { position: absolute; display: grid; place-items: center; border-radius: 50%; font: 600 11px var(--display); letter-spacing: 0.04em; color: var(--fg); background: rgba(11, 13, 26, 0.45); border: 1.5px solid rgba(232, 230, 242, 0.45); padding: 0; cursor: pointer; }
+  .tbtn.down { background: rgba(240, 199, 94, 0.45); border-color: var(--gold); }
+  .tbtn { width: 30%; aspect-ratio: 1; }
+  .tbtn.big { width: 37%; border-color: rgba(63, 174, 90, 0.9); }
+  .tbtn.small { width: 23%; font-size: 10px; }
+  .a-jump { right: 0; bottom: 0; }
+  .a-attack { right: 40%; bottom: 2%; border-color: rgba(200, 68, 58, 0.9); }
+  .a-dash { right: 6%; bottom: 40%; }
+  .a-hook { right: 52%; bottom: 46%; }
+  .a-bomb { right: 76%; bottom: 30%; }
+  .a-heal { right: 78%; bottom: 2%; }
+  #rotate { display: none; }
+  @media (orientation: portrait) {
+    body.touch #rotate { display: grid; place-items: center; text-align: center; position: absolute; inset: 0; z-index: 3; background: rgba(11, 13, 26, 0.9); color: var(--gold); font: 400 18px var(--display); padding: 16px; }
+  }
   @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto; } }
 </style>
 
@@ -60,13 +92,17 @@
 
   <div id="game-frame">
     <button id="focus-hint" type="button">Click to play</button>
+    <div id="rotate">Turn your phone sideways to play</div>
   </div>
   <pre id="world-errors" hidden></pre>
 
   <section class="panel" aria-labelledby="controls-title">
     <div class="row">
       <h2 id="controls-title">Controls</h2>
-      <button id="new-game" class="secondary" type="button">New game</button>
+      <div class="buttons">
+        <button id="touch-toggle" class="secondary" type="button">Show touch buttons</button>
+        <button id="new-game" class="secondary" type="button">New game</button>
+      </div>
     </div>
     <dl class="keys">
       <div><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Move</dd></div>
@@ -78,7 +114,7 @@
       <div><dt><kbd>D</kbd> hold</dt><dd>Song heal: 3 notes for 1 heart</dd></div>
       <div><dt><kbd>↑</kbd></dt><dd>Rest at a bench (heals and saves)</dd></div>
     </dl>
-    <p class="note">Needs a keyboard. Progress saves in this browser at benches and when you pick up items.</p>
+    <p class="note">On a phone, turn it sideways: the pad moves Zink (push up to rest or aim, down in the air to pogo) and the buttons on the right act. Hook and Bomb buttons appear once you find those items. Progress saves in this browser at benches and when you pick up items.</p>
   </section>
 </div>
 
@@ -87,6 +123,7 @@
     var hint = document.getElementById('focus-hint');
     function go() { hint.hidden = true; window.focus(); }
     hint.addEventListener('click', go);
+    hint.addEventListener('touchstart', go, { passive: true });
     window.addEventListener('keydown', function () { if (!hint.hidden) go(); }, { once: true });
   })();
 </script>

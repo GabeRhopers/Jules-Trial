@@ -17,7 +17,7 @@ Levels and tuning are plain text files, so you can change them without touching 
 | Levels | One text file per room (`rooms/*.txt`) + `rooms/world.json` | Edit a room by editing characters |
 | Tuning | `src/config.js` | All numbers (speed, jump, damage, boss HP) in one place |
 | Save | Browser storage, at benches and on pickups | Progress survives a reload |
-| Controls | Keyboard | Gamepad is out of MVP scope |
+| Controls | Keyboard, plus touch buttons on phones (added after the MVP) | Gamepad is out of scope |
 | Repo | `jules-trial`, branch `claude/song-of-zink`, folder `song-of-zink/` | No new repo needed |
 
 ### Controls
@@ -83,7 +83,7 @@ Each step ends with a check that must pass before moving on.
 
 ## Not in the MVP
 
-Story or dialog, sound and music, shops, more areas, a visual level editor, gamepad and touch controls.
+Story or dialog, sound and music, shops, more areas, a visual level editor, gamepad support.
 
 ## Next steps after the MVP
 
