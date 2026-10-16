@@ -22,10 +22,10 @@
   ],
   "hints": {
     "r1": [
-      {"x": 3, "y": 10, "text": "Arrows move. Z jumps (hold for higher).", "touch": "The pad moves. JUMP jumps (hold for higher)."},
-      {"x": 7, "y": 12, "text": "Press UP at a bench to rest and save.", "touch": "Push the pad up at a bench to rest and save."},
-      {"x": 17, "y": 9, "text": "C dashes. X attacks.", "touch": "DASH dashes. ATK attacks."},
-      {"x": 31, "y": 9, "text": "Hold DOWN + X in the air to pogo off enemies.", "touch": "Pad down + ATK in the air to pogo off enemies."}
+      {"x": 3, "y": 10, "text": "Arrows move. Z jumps (hold for higher).", "touch": "The pad moves. JUMP jumps (hold for higher).", "pad": "Stick moves. A jumps (hold for higher)."},
+      {"x": 7, "y": 12, "text": "Press UP at a bench to rest and save.", "touch": "Push the pad up at a bench to rest and save.", "pad": "Push up at a bench to rest and save."},
+      {"x": 17, "y": 9, "text": "C dashes. X attacks.", "touch": "DASH dashes. ATK attacks.", "pad": "B dashes. X attacks."},
+      {"x": 31, "y": 9, "text": "Hold DOWN + X in the air to pogo off enemies.", "touch": "Pad down + ATK in the air to pogo off enemies.", "pad": "Down + X in the air to pogo off enemies."}
     ],
     "r2": [
       {"x": 3, "y": 6, "text": "That wall looks cracked..."}
@@ -34,10 +34,10 @@
       {"x": 2, "y": 8, "text": "Glowing rings can be grabbed."}
     ],
     "r4": [
-      {"x": 36, "y": 19, "text": "Push into a wall and press Z to wall jump.", "touch": "Push into a wall and press JUMP to wall jump."}
+      {"x": 36, "y": 19, "text": "Push into a wall and press Z to wall jump.", "touch": "Push into a wall and press JUMP to wall jump.", "pad": "Push into a wall and press A to wall jump."}
     ],
     "r5": [
-      {"x": 20, "y": 12, "text": "Hold D to heal with your song.", "touch": "Hold HEAL to heal with your song."},
+      {"x": 20, "y": 12, "text": "Hold D to heal with your song.", "touch": "Hold HEAL to heal with your song.", "pad": "Hold LB to heal with your song."},
       {"x": 1, "y": 2, "text": "Strike the lever."}
     ],
     "r6": [

@@ -257,6 +257,49 @@ await check('Warden fight starts, shell blocks the needle, bombs finish it', asy
   await page.screenshot({ path: join(outDir, '04-victory.png') });
 });
 
+// ---------- Game controller (simulated through the standard Gamepad API) ----------
+await z(() => {
+  window.__pad = { id: 'Test controller', index: 0, connected: true, mapping: 'standard', axes: [0, 0, 0, 0], buttons: Array.from({ length: 17 }, () => ({ pressed: false, value: 0 })) };
+  navigator.getGamepads = () => [window.__pad];
+});
+const padButton = (i, on) => z(([i, on]) => { window.__pad.buttons[i] = { pressed: on, value: on ? 1 : 0 }; }, [i, on]);
+const padStick = (x) => z((x) => { window.__pad.axes[0] = x; }, x);
+async function padTap(i, ms = 80) { await padButton(i, true); await wait(ms); await padButton(i, false); }
+
+await check('controller: START closes the victory screen', async () => {
+  const before = await z(() => window.__zink.game.scene.getScene('UI').victory.visible);
+  assert(before, 'victory screen was not open');
+  await padTap(9);
+  await wait(150);
+  assert(!(await z(() => window.__zink.game.scene.getScene('UI').victory.visible)), 'victory screen still open');
+});
+
+await check('controller: stick runs, A jumps, Y fires the hookshot', async () => {
+  await warp('r3', '1');
+  await z(() => window.__zink.give('hasHook'));
+  await teleport(4 * T, 15 * T + 4, 1);
+  await padStick(1);
+  await wait(400);
+  const vx = await z(() => window.__zink.scene.player.body.velocity.x);
+  await padStick(0);
+  await wait(150);
+  assert(vx > 100, `stick run speed ${vx}`);
+  const y0 = (await player()).y;
+  await z(() => { window.__minY = 1e9; window.__t = setInterval(() => { window.__minY = Math.min(window.__minY, window.__zink.scene.player.y); }, 16); });
+  await padTap(0, 200);
+  await wait(250);
+  const minY = await z(() => { clearInterval(window.__t); return window.__minY; });
+  assert(y0 - minY > 15, `A jump rose ${Math.round(y0 - minY)}px`);
+  await wait(500);
+  await teleport(3 * T, 15 * T + 4, 1); // under the practice ring
+  await padTap(3);
+  const hooked = await waitFor(() => window.__zink.scene.player.mode === 'hook', 500);
+  assert(hooked, 'Y did not fire the hookshot');
+  const label = await z(() => window.__zink.game.scene.getScene('UI').itemIcons[0].txt.text);
+  assert(label === 'Y', `HUD shows "${label}" for the hookshot button`);
+});
+await z(() => { delete navigator.getGamepads; });
+
 // ---------- Phone ----------
 const phone = await browser.newContext({ viewport: { width: 844, height: 390 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
 const mobile = await phone.newPage();

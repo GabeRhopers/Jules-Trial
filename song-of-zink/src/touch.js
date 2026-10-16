@@ -1,42 +1,9 @@
-// On-screen touch controls. They feed a "virtual pad" that the player reads alongside the keyboard.
+// On-screen touch controls. They feed the shared virtual input in input.js.
+import { press as pressSource, release as releaseSource, clearSource, inputInfo } from './input.js';
+
 const PREF_KEY = 'song-of-zink.touch';
-
-export const virtual = { enabled: false, held: {}, pressed: {}, released: {} };
-
-export const vHeld = (a) => !!virtual.held[a];
-
-// "Just pressed" / "just released": true once, then cleared (like Phaser's JustDown).
-export function vPressed(a) {
-  if (!virtual.pressed[a]) return false;
-  virtual.pressed[a] = false;
-  return true;
-}
-export function vReleased(a) {
-  if (!virtual.released[a]) return false;
-  virtual.released[a] = false;
-  return true;
-}
-export function clearVirtualPresses() {
-  virtual.pressed = {};
-  virtual.released = {};
-}
-
-function press(a) {
-  if (!virtual.held[a]) virtual.pressed[a] = true;
-  virtual.held[a] = true;
-}
-function release(a) {
-  if (virtual.held[a]) virtual.released[a] = true;
-  virtual.held[a] = false;
-}
-
-const KEY_NAMES = {
-  keyboard: { jump: 'Z', attack: 'X', dash: 'C', hook: 'A', bomb: 'S', heal: 'D', up: 'UP' },
-  touch: { jump: 'JUMP', attack: 'ATK', dash: 'DASH', hook: 'HOOK', bomb: 'BOMB', heal: 'HEAL', up: '▲' },
-};
-export function keyName(action) {
-  return KEY_NAMES[virtual.enabled ? 'touch' : 'keyboard'][action];
-}
+const press = (a) => pressSource('touch', a);
+const release = (a) => releaseSource('touch', a);
 
 const BUTTONS = [
   { action: 'jump', label: 'JUMP', cls: 'big' },
@@ -128,10 +95,10 @@ export function setupTouch(frame, getState) {
   }, 400);
 
   const setEnabled = (on, remember) => {
-    virtual.enabled = on;
+    inputInfo.touchEnabled = on;
     document.body.classList.toggle('touch', on);
     root.hidden = !on;
-    if (!on) { virtual.held = {}; clearVirtualPresses(); }
+    if (!on) clearSource('touch');
     if (remember) savePref(on);
   };
   setEnabled(prefersTouch(), false);

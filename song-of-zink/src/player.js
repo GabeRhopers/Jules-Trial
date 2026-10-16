@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import { CONFIG } from './config.js';
 import { state } from './save.js';
-import { vHeld, vPressed, vReleased } from './touch.js';
+import { vHeld, vPressed, vReleased } from './input.js';
 
 const { JustDown, JustUp } = Phaser.Input.Keyboard;
 const NEVER = -1e9;

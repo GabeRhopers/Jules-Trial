@@ -6,7 +6,7 @@ import { cellsOf, doorRects, SOLID_CHARS } from './rooms.js';
 import { Player } from './player.js';
 import { Crawler, Flyer } from './enemies.js';
 import { Warden } from './boss.js';
-import { virtual, keyName, clearVirtualPresses } from './touch.js';
+import { keyName, clearVirtualPresses, pollGamepads, inputMode } from './input.js';
 
 const ITEMS = {
   K: { key: 'item_hook', flag: 'hasHook', title: 'HOOKSHOT', text: () => `Press ${keyName('hook')} to pull yourself to glowing rings. With no ring nearby, the chain stuns enemies.` },
@@ -158,7 +158,7 @@ export class GameScene extends Phaser.Scene {
 
     const hints = (WORLD.hints && WORLD.hints[this.roomId]) || [];
     for (const h of hints) {
-      this.add.text(h.x * TILE, h.y * TILE, virtual.enabled && h.touch ? h.touch : h.text, {
+      this.add.text(h.x * TILE, h.y * TILE, h[inputMode()] || h.text, {
         fontFamily: '"Pixelify Sans", monospace', fontSize: '8px', color: '#9a9cb8',
       }).setResolution(4).setDepth(1);
     }
@@ -229,6 +229,7 @@ export class GameScene extends Phaser.Scene {
   // ---------- Main loop ----------
 
   update(time, delta) {
+    pollGamepads();
     if (this.transitioning) return;
     state.playTimeMs += delta;
     const p = this.player;

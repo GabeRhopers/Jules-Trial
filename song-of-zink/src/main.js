@@ -6,6 +6,7 @@ import { BootScene } from './boot-scene.js';
 import { GameScene } from './game-scene.js';
 import { UIScene } from './ui-scene.js';
 import { setupTouch } from './touch.js';
+import { onPadActive } from './input.js';
 
 function start() {
   if (WORLD_ERRORS.length) {
@@ -54,6 +55,16 @@ function start() {
     sync();
     touchToggle.addEventListener('click', () => { setTouch(!document.body.classList.contains('touch'), true); sync(); touchToggle.blur(); requestAnimationFrame(() => game.scale.refresh()); });
   }
+
+  // A controller takes over: hide touch buttons (without changing the saved preference).
+  onPadActive(() => {
+    if (document.body.classList.contains('touch')) { setTouch(false, false); requestAnimationFrame(() => game.scale.refresh()); }
+    const hintEl = document.getElementById('focus-hint');
+    if (hintEl) hintEl.hidden = true;
+    const ui = game.scene.getScene('UI');
+    if (ui && ui.toast) ui.toast('Controller connected');
+    if (touchToggle) touchToggle.textContent = 'Show touch buttons';
+  });
 
   const newGameBtn = document.getElementById('new-game');
   if (newGameBtn) newGameBtn.addEventListener('click', () => { window.__zink.newGame(); newGameBtn.blur(); });
