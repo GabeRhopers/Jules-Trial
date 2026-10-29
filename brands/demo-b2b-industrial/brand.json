@@ -16,7 +16,10 @@
   "fonts": {
     "heading": {
       "family": "IBM Plex Sans Condensed",
-      "weights": ["600", "700"],
+      "weights": [
+        "600",
+        "700"
+      ],
       "files": {
         "600": "fonts/IBMPlexSansCondensed-600.woff2",
         "700": "fonts/IBMPlexSansCondensed-700.woff2"
@@ -24,7 +27,11 @@
     },
     "body": {
       "family": "IBM Plex Sans",
-      "weights": ["400", "500", "600"],
+      "weights": [
+        "400",
+        "500",
+        "600"
+      ],
       "files": {
         "100 700": "fonts/IBMPlexSans-Variable.woff2"
       }
@@ -40,24 +47,51 @@
   ],
   "voice": {
     "provider": "elevenlabs",
-    "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
-    "modelId": "eleven_multilingual_v2",
-    "settings": {
-      "stability": 0.6,
-      "similarity_boost": 0.75,
-      "style": 0.15,
-      "use_speaker_boost": true,
-      "speed": 0.98
+    "kokoro": {
+      "voice": "am_michael",
+      "lang": "a",
+      "speed": 0.98,
+      "_note": "Free, local. 'a' = American English. af_heart is listed in Kokoro's README; check other voice names in VOICES.md on huggingface.co/hexgrad/Kokoro-82M."
     },
-    "_note": "NOT VERIFIED AGAINST CURRENT DOCS: model id and voice settings names must be checked against elevenlabs.io/docs."
+    "elevenlabs": {
+      "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+      "modelId": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.6,
+        "similarity_boost": 0.75,
+        "style": 0.15,
+        "use_speaker_boost": true,
+        "speed": 0.98
+      },
+      "_note": "NOT VERIFIED AGAINST CURRENT DOCS: model id and voice settings names must be checked against elevenlabs.io/docs."
+    }
   },
   "pronunciations": [
-    { "term": "AAMA 611", "say": "A-A-M-A six eleven", "_note": "Confirm with the client how their team says AAMA." },
-    { "term": "MIL-A-8625", "say": "mil A eighty-six twenty-five" },
-    { "term": "ASTM B680", "say": "A-S-T-M B six eighty" },
-    { "term": "6063-T5", "say": "sixty sixty-three T five" },
-    { "term": "µm", "say": " microns" },
-    { "term": "mg/dm²", "say": " milligrams per square decimeter" }
+    {
+      "term": "AAMA 611",
+      "say": "A-A-M-A six eleven",
+      "_note": "Confirm with the client how their team says AAMA."
+    },
+    {
+      "term": "MIL-A-8625",
+      "say": "mil A eighty-six twenty-five"
+    },
+    {
+      "term": "ASTM B680",
+      "say": "A-S-T-M B six eighty"
+    },
+    {
+      "term": "6063-T5",
+      "say": "sixty sixty-three T five"
+    },
+    {
+      "term": "µm",
+      "say": " microns"
+    },
+    {
+      "term": "mg/dm²",
+      "say": " milligrams per square decimeter"
+    }
   ],
   "style": {
     "cornerRadius": 6,

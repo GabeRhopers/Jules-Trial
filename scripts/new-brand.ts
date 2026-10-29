@@ -28,7 +28,7 @@ const brand: Brand = JSON.parse(readFileSync(file, "utf8"));
 brand.id = id;
 brand.displayName = name ?? id;
 brand.description = `TODO: one line about ${brand.displayName}, who they sell to, and the tone.`;
-brand.voice.voiceId = "REPLACE_WITH_ELEVENLABS_VOICE_ID";
+if (brand.voice.elevenlabs) brand.voice.elevenlabs.voiceId = "REPLACE_WITH_ELEVENLABS_VOICE_ID";
 writeFileSync(file, JSON.stringify(brand, null, 2) + "\n");
 
 console.log(`Created ${target}/ from ${from}. Next:

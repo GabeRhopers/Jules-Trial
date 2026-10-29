@@ -16,7 +16,7 @@
 
 **spec-1:** One. Coating thickness. Class one architectural work needs at least 18 microns.
 
-**spec-2:** Two. Seal quality. Ask for an acid dissolution test result on every lot.
+**spec-2:** Two. Seal quality. Ask for an ASTM B680 acid dissolution result on every lot.
 
 **spec-3:** Three. Color match. Hold every batch to a Delta E of 1.5 or less against your approved sample.
 

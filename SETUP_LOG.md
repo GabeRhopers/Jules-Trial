@@ -176,3 +176,76 @@ Also approved: real client footage first, Higgsfield B-roll optional; per-brand 
 
 ### Manual steps for the user
 - None for this slice.
+
+## Slice 3: Narration with Kokoro (free) + ElevenLabs (2026-10-29)
+
+### Docs checked
+- **Kokoro** (GitHub `hexgrad/kokoro`, PyPI `kokoro`): Apache 2.0 license (code and weights). Version 0.9.4 needs **Python >=3.10, <3.13**. The English pipeline returns per-token `start_ts` / `end_ts` (read in `kokoro/pipeline.py`, `join_timestamps`). Model and voices download from huggingface.co on first run (about 330 MB, NOT VERIFIED; blocked here). Voice `af_heart` is confirmed in the README; `am_michael` (industrial brand) is NOT VERIFIED, so check VOICES.md on huggingface.co/hexgrad/Kokoro-82M.
+- **ElevenLabs:** elevenlabs.io is blocked here. Endpoint and fields were taken from a localized copy of the API reference found by web search. **Everything below is NOT VERIFIED AGAINST CURRENT DOCS:**
+  - `POST https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps?output_format=mp3_44100_128`
+  - header `xi-api-key`; body `text`, `model_id`, `voice_settings` (`stability`, `similarity_boost`, `style`, `use_speaker_boost`, `speed`)
+  - response `audio_base64`, `alignment.characters`, `alignment.character_start_times_seconds`, `alignment.character_end_times_seconds`
+  - model id `eleven_multilingual_v2`; credit rate 1 per character (0.5 for flash/turbo models)
+
+### How narration works (`scripts/narrate.ts`)
+1. Reads `videos/<id>/config.json` (one narration paragraph per scene) and the brand's `voice` settings. `voice.provider` picks `kokoro` or `elevenlabs`; `--provider=` overrides it per run.
+2. Applies the brand's `pronunciations` to what the voice says. Captions keep the original words (`scripts/lib/align.ts` maps spoken characters back to caption words).
+3. **Cache:** each scene's hash = provider + voice settings + spoken text. Unchanged scenes are reused (0 credits). `--force` regenerates everything.
+4. **ElevenLabs:** prints characters and estimated credits for the scenes that will be generated, then asks `[y/N]`. `--yes` skips the prompt (only with the user's OK; see CLAUDE.md).
+5. Writes `public/audio/<id>/<scene>.mp3` + `manifest.json` (durations measured with ffprobe, word timestamps).
+
+### Tests run here (no real key, no credits)
+| Test | Result |
+|---|---|
+| `npm test` (alignment unit tests: pronunciations, whole-word matching, gaps, Kokoro tokens) | 4 / 4 pass |
+| ElevenLabs path against a **local mock server** imitating the documented response shape (scratchpad only) | Cost prompt: "n" cancels with nothing generated; "y" generates 5 scenes; re-run: all cached, 0 credits |
+| Edited one scene's text | Render refused ("Narration is out of date for scenes: spec-2"); narrate regenerated only that scene (88 of 409 chars) |
+| Pronunciation | Voice text "A-S-T-M B six eighty"; captions "ASTM", "B680" with their own timings |
+| QC on the reel using the ElevenLabs-format manifest | PASS (60 sync checks) |
+| Errors | Clear messages for empty key, placeholder voice ID, Kokoro not installed |
+| Kokoro path with a **stand-in `kokoro` module** (same interface; scratchpad only) | Works, including timing offsets across Kokoro's internal text chunks |
+| Real Kokoro / real ElevenLabs | **Not run** (Python 3.13 here, huggingface.co and elevenlabs.io blocked, no key) |
+
+### Decisions
+- demo-home-services uses **Kokoro** by default (free). demo-b2b-industrial uses **ElevenLabs** (premium B2B voice). Both brands carry settings for both providers.
+- No ElevenLabs "request stitching" (previous/next text) for now: it would make cached scenes depend on their neighbors and cost credits on unrelated edits.
+- B2B script: spec-2 now names the standard ("an ASTM B680 acid dissolution result"), which is more specific for engineers.
+- `narrationSource` removed from video configs; the manifest's `source` records the provider used.
+- `.env.example` committed; `.env`, `.venv/` git-ignored.
+
+### Kokoro setup (on your computer, once)
+Installs only inside the project folder (a `.venv`), nothing global:
+```bash
+python3 --version          # needs 3.10, 3.11 or 3.12. On a Mac with 3.13 only: brew install python@3.12 (global install, your call)
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements-kokoro.txt
+npm run narrate -- ac-signs-before-summer    # first run downloads the Kokoro model from huggingface.co
+```
+Optional (better handling of unusual words): `brew install espeak-ng` (Mac, global install, your call).
+
+### ElevenLabs setup (on your computer)
+1. Copy `.env.example` to `.env` and paste your API key after `ELEVENLABS_API_KEY=` (elevenlabs.io: Profile, API Keys).
+2. Pick a voice in the ElevenLabs Voice Library, copy its voice ID, paste it into `voice.elevenlabs.voiceId` in the brand's `brand.json`.
+3. `npm run narrate -- anodizing-spec-checklist` shows the credit estimate and asks before spending.
+4. Note: the ElevenLabs free plan does not include commercial rights (third-party sources); client videos need a paid plan.
+
+### Higgsfield MCP setup (on your computer). NOT VERIFIED AGAINST CURRENT DOCS
+higgsfield.ai and mcp.higgsfield.ai are blocked here, so the official setup page could not be checked. The command from third-party guides:
+```bash
+claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp
+```
+Then sign in: start `claude` in the project folder, type `/mcp`, select `higgsfield` and choose to authenticate. A browser window opens for the Higgsfield login (OAuth). Verify with `claude mcp list` (it should show higgsfield as connected).
+Cost rules for Higgsfield are in `CLAUDE.md`.
+
+### To verify in a new session (with the domains allowed)
+- [ ] ElevenLabs endpoint, query parameter, request and response fields, model ids, credit rates, voice settings names
+- [ ] Kokoro voice list (VOICES.md), model download size
+- [ ] Higgsfield official MCP setup method and URL
+- [ ] remotion.dev pages read via GitHub copies so far (should match)
+
+### npm scripts added
+`narrate`, `test`
+
+### Manual steps for the user
+- Kokoro setup and ElevenLabs setup above, on your computer.
+- Higgsfield MCP sign-in on your computer.

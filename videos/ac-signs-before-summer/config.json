@@ -6,7 +6,6 @@
   "pointLabel": "Sign",
   "audience": "Homeowners 30-60 in the service area, AC is 5+ years old",
   "goal": "lead",
-  "narrationSource": "placeholder",
   "scenes": [
     {
       "id": "hook",

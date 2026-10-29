@@ -1,6 +1,8 @@
 // Shared types for brands, video configs and narration manifests.
 // Used by Remotion compositions (src/) and by Node scripts (scripts/).
 
+export type VoiceProvider = "elevenlabs" | "kokoro";
+
 export type BrandFont = {
   family: string;
   weights: string[];
@@ -31,12 +33,13 @@ export type Brand = {
   /** File name inside brands/<id>/ */
   logo: string;
   toneOfVoice: string[];
+  /** Narration voice. `provider` picks which of the two configs below is used. */
   voice: {
-    provider: "elevenlabs";
-    voiceId: string;
-    modelId: string;
-    settings: Record<string, number | boolean>;
+    provider: VoiceProvider;
+    elevenlabs?: { voiceId: string; modelId: string; settings: Record<string, number | boolean> };
+    kokoro?: { voice: string; lang: string; speed: number };
   };
+  /** Words the voice should say differently. Captions still show `term`; the voice says `say`. */
   pronunciations: { term: string; say: string }[];
   /** Look and feel beyond colors and fonts. Switching brand swaps all of this. */
   style: {
@@ -86,7 +89,6 @@ export type VideoConfig = {
   pointLabel?: string;
   audience?: string;
   goal?: "lead" | "sale" | "awareness";
-  narrationSource: "placeholder" | "elevenlabs";
   scenes: SceneConfig[];
 };
 
@@ -108,7 +110,7 @@ export type SceneNarration = {
 /** Written to public/audio/<video-id>/manifest.json by scripts/narrate.ts or scripts/placeholder-narration.ts */
 export type NarrationManifest = {
   video: string;
-  source: "placeholder" | "elevenlabs";
+  source: "placeholder" | VoiceProvider;
   generatedAt: string;
   scenes: SceneNarration[];
 };

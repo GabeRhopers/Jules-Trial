@@ -81,7 +81,14 @@ export const validateBrand = (id: string): { errors: string[]; warnings: string[
   }
 
   if (cs.fontSizePx < 64) warnings.push(`captionStyle.fontSizePx ${cs.fontSizePx} is small for phones (64+ recommended)`);
-  if (brand.voice.voiceId.startsWith("REPLACE")) warnings.push("voice.voiceId is still a placeholder (needed before real narration)");
+  const voice = brand.voice;
+  if (voice.provider !== "elevenlabs" && voice.provider !== "kokoro") errors.push(`voice.provider must be "elevenlabs" or "kokoro"`);
+  if (!voice[voice.provider]) errors.push(`voice.provider is "${voice.provider}" but voice.${voice.provider} settings are missing`);
+  if (voice.elevenlabs?.voiceId.startsWith("REPLACE")) {
+    warnings.push(
+      `voice.elevenlabs.voiceId is still a placeholder${voice.provider === "elevenlabs" ? " (required before narration with ElevenLabs)" : ""}`,
+    );
+  }
   if (brand.music && !existsSync(path.join("public", "music", brand.music))) errors.push(`music file public/music/${brand.music} not found`);
   if (brand.pronunciations.length === 0) warnings.push("no pronunciations listed: add product names, standards and technical terms");
   return { errors, warnings };

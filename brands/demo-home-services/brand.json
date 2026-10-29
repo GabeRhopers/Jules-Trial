@@ -45,17 +45,25 @@
     "One clear call to action per video."
   ],
   "voice": {
-    "provider": "elevenlabs",
-    "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
-    "modelId": "eleven_multilingual_v2",
-    "settings": {
-      "stability": 0.45,
-      "similarity_boost": 0.75,
-      "style": 0.35,
-      "use_speaker_boost": true,
-      "speed": 1.05
+    "provider": "kokoro",
+    "kokoro": {
+      "voice": "af_heart",
+      "lang": "a",
+      "speed": 1.05,
+      "_note": "Free, local. 'a' = American English. af_heart is listed in Kokoro's README; check other voice names in VOICES.md on huggingface.co/hexgrad/Kokoro-82M."
     },
-    "_note": "NOT VERIFIED AGAINST CURRENT DOCS: model id and voice settings names must be checked against elevenlabs.io/docs."
+    "elevenlabs": {
+      "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+      "modelId": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.75,
+        "style": 0.35,
+        "use_speaker_boost": true,
+        "speed": 1.05
+      },
+      "_note": "NOT VERIFIED AGAINST CURRENT DOCS: model id and voice settings names must be checked against elevenlabs.io/docs."
+    }
   },
   "pronunciations": [
     {

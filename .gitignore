@@ -17,3 +17,7 @@ public/broll/
 *.wav
 *.mp3
 !public/music/**
+
+# Local Python environment for Kokoro
+.venv/
+__pycache__/

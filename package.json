@@ -41,7 +41,9 @@
     "render:video": "node scripts/render.ts",
     "srt": "node scripts/make-srt.ts",
     "brand:new": "node scripts/new-brand.ts",
-    "brand:check": "node scripts/validate-brand.ts"
+    "brand:check": "node scripts/validate-brand.ts",
+    "narrate": "node scripts/narrate.ts",
+    "test": "node --test scripts/lib/*.test.ts"
   },
   "allowScripts": {
     "esbuild": false
