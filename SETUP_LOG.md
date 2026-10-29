@@ -180,7 +180,7 @@ Also approved: real client footage first, Higgsfield B-roll optional; per-brand 
 ## Slice 3: Narration with Kokoro (free) + ElevenLabs (2026-10-29)
 
 ### Docs checked
-- **Kokoro** (GitHub `hexgrad/kokoro`, PyPI `kokoro`): Apache 2.0 license (code and weights). Version 0.9.4 needs **Python >=3.10, <3.13**. The English pipeline returns per-token `start_ts` / `end_ts` (read in `kokoro/pipeline.py`, `join_timestamps`). Model and voices download from huggingface.co on first run (about 330 MB, NOT VERIFIED; blocked here). Voice `af_heart` is confirmed in the README; `am_michael` (industrial brand) is NOT VERIFIED, so check VOICES.md on huggingface.co/hexgrad/Kokoro-82M.
+- **Kokoro** (GitHub `hexgrad/kokoro`, PyPI `kokoro`): Apache 2.0 license (code and weights). Version 0.9.4 needs **Python >=3.10, <3.13**. The English pipeline returns per-token `start_ts` / `end_ts` (read in `kokoro/pipeline.py`, `join_timestamps`). Model and voices download from huggingface.co on first run (about 330 MB; verified 2026-10-29, see Verification session). Voice `af_heart` is confirmed in the README; `am_michael` (industrial brand) was not verified here (later verified in VOICES.md, see Verification session).
 - **ElevenLabs:** elevenlabs.io is blocked here. Endpoint and fields were taken from a localized copy of the API reference found by web search. **Everything below is NOT VERIFIED AGAINST CURRENT DOCS:**
   - `POST https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps?output_format=mp3_44100_128`
   - header `xi-api-key`; body `text`, `model_id`, `voice_settings` (`stability`, `similarity_boost`, `style`, `use_speaker_boost`, `speed`)
@@ -318,8 +318,65 @@ Cost rules for Higgsfield are in `CLAUDE.md`.
 ## Next session: verify with network access (Option 1)
 Allow in the environment's Network access settings: `huggingface.co`, `cdn-lfs.hf.co`, `cas-bridge.xethub.hf.co`,
 `elevenlabs.io`, `api.elevenlabs.io`, `higgsfield.ai`, `mcp.higgsfield.ai`, `remotion.dev`. Then, in a new session on `claude/video-workspace`:
-- [ ] Install Kokoro in `.venv` with `/usr/bin/python3.12`, run `npm run narrate -- ac-signs-before-summer` and the other examples with `--provider=kokoro`, render, send MP4s
-- [ ] Verify the Kokoro voice list (VOICES.md) and model size; fix `am_michael` if needed
-- [ ] Verify the ElevenLabs endpoint, fields, model ids, voice settings and credit rates; update `scripts/lib/providers.ts` and remove the "NOT VERIFIED" markers that check out
-- [ ] Verify Higgsfield's official MCP setup; update README, CLAUDE.md and this log
-- [ ] Re-read remotion.dev pages used so far (they were read from the GitHub copies)
+- [ ] Install Kokoro in `.venv` with `/usr/bin/python3.12`, run `npm run narrate -- ac-signs-before-summer` and the other examples with `--provider=kokoro`, render, send MP4s (**blocked**, see below)
+- [x] Verify the Kokoro voice list (VOICES.md) and model size; fix `am_michael` if needed
+- [x] Verify the ElevenLabs endpoint, fields, model ids, voice settings and credit rates; update `scripts/lib/providers.ts` and remove the "NOT VERIFIED" markers that check out
+- [x] Verify Higgsfield's official MCP setup; update README, CLAUDE.md and this log
+- [ ] Re-read remotion.dev pages used so far (they were read from the GitHub copies) (**blocked**, see below)
+
+## Verification session (2026-10-29)
+
+### Kokoro
+| Step | Result |
+|---|---|
+| `/usr/bin/python3.12 -m venv .venv && .venv/bin/pip install -r requirements-kokoro.txt` | OK: kokoro 0.9.4, torch 2.15.0 |
+| `npm run narrate -- ac-signs-before-summer --provider=kokoro` | **Failed**: model download blocked by the network policy |
+| VOICES.md (huggingface.co/hexgrad/Kokoro-82M) | `am_michael` **exists** (US male, grade C+; `am_fenrir` and `am_puck` are also C+, no US male voice grades higher). `af_heart` is grade A. Kept both. Also available: 2 British male voices, 3 Brazilian Portuguese voices (`lang_code='p'`). |
+| Model size (Hugging Face file API) | `kokoro-v1_0.pth` 327 MB; each voice file about 0.5 MB (54 voices, 28 MB in all). First run downloads about 330 MB: the old estimate was right. |
+
+**Why the download failed:** Hugging Face now redirects file downloads to `us.aws.cdn.hf.co`, and the
+`huggingface_hub` Xet client uses `cas-server.xethub.hf.co`. Neither is on the allowlist, so the proxy refused both
+(`HF_HUB_DISABLE_XET=1` was tried too). To finish this item in a cloud session, also allow
+`us.aws.cdn.hf.co` and `cas-server.xethub.hf.co` (or `*.hf.co`). On your own computer no change is needed.
+
+### ElevenLabs (all checked on elevenlabs.io, 2026-10-29)
+| Item | Docs say | Code | Status |
+|---|---|---|---|
+| Endpoint | `POST https://api.elevenlabs.io/v1/text-to-speech/{voice_id}/with-timestamps` | same | Verified |
+| `output_format` | `mp3_44100_128` is the default and works on every plan (192 kbps needs Creator; PCM/WAV 44.1 kHz needs Pro) | `mp3_44100_128` | Verified |
+| Auth header | `xi-api-key` (api-reference/authentication) | same | Verified |
+| Body | `text`, `model_id` (default `eleven_multilingual_v2`), `voice_settings` | same | Verified |
+| Voice settings | `stability` 0.5, `similarity_boost` 0.75, `style` 0, `use_speaker_boost` true, `speed` 1 (defaults) | same names | Verified |
+| Response | `audio_base64`, `alignment.characters`, `character_start_times_seconds`, `character_end_times_seconds` (plus `normalized_alignment`) | same | Verified |
+| Model ids | `eleven_multilingual_v2` is current (10,000 characters per request). Newer: `eleven_v4`, `eleven_v4_turbo`, `eleven_v3`, `eleven_flash_v2_5` | `eleven_multilingual_v2` | Verified; kept (most stable on long-form, per the models page) |
+| Credit rate | Multilingual v2: 1 credit per character. Flash/Turbo via API: "between 0.5 and 1" | was 0.5 for Flash/Turbo | **Changed**: estimate now always uses 1 (upper bound), so it never under-quotes |
+| Plans | Free 10k credits (no commercial license), Starter $6 / 30k (commercial license), Creator $22 / 121k, Pro $99 / 600k | README said Starter $5, Creator ~100k | **Fixed** in README |
+| Real API call | Not run: no API key in this session (no credits spent) | | Still to test on your computer |
+
+Not used yet but worth knowing: `previous_text` / `next_text` / `previous_request_ids` improve flow between scenes
+(we skip them on purpose, see Slice 3 decisions); `seed` makes retakes more repeatable; `pronunciation_dictionary_locators`
+could replace our text pronunciations later.
+
+### Higgsfield (checked on higgsfield.ai/mcp and mcp.higgsfield.ai, 2026-10-29)
+- Official MCP URL: `https://mcp.higgsfield.ai/mcp` (shown on higgsfield.ai/mcp, "Other agents" tab). Verified.
+- `mcp.higgsfield.ai/.well-known/oauth-protected-resource`: OAuth (authorization code + PKCE) through `clerk.higgsfield.ai`; `claude-code` is listed as a supported client. So `/mcp` then authenticate is the right sign-in.
+- `claude mcp add --transport http --scope user <name> <url>` matches Claude Code's MCP docs (code.claude.com/docs/en/mcp). The README command is correct.
+- **New:** Higgsfield's "Claude Code" tab now recommends a CLI route instead: `npm i -g @higgsfield/cli` (npm: `@higgsfield/cli` 1.2.2, MIT), `higgsfield auth login`, then `npx skills add higgsfield-ai/skills`. Not adopted: CLAUDE.md cost rules and `/new-video` are written for the MCP. Noted in the README as an alternative; your call if you want to switch.
+- Pricing (higgsfield.ai/pricing) still not checked; README ranges stay third-party estimates.
+
+### remotion.dev
+`remotion.dev` answers with a 308 redirect to `www.remotion.dev`, which the network policy blocks. Not re-read.
+To finish this item, also allow `www.remotion.dev`. The GitHub copies used so far come from the same source repo.
+
+### Files changed
+- `scripts/lib/providers.ts`: verified comment, credit estimate upper bound, NOT VERIFIED markers removed.
+- `scripts/narrate.ts`: cost message updated.
+- `brands/*/brand.json`: Kokoro and ElevenLabs notes updated.
+- `README.md`: ElevenLabs plans and commercial license, Higgsfield section.
+- `CLAUDE.md`: verification note.
+
+### Still open
+- Real Kokoro narration + renders + MP4s (needs `us.aws.cdn.hf.co` and `cas-server.xethub.hf.co` allowed, or run on your computer).
+- Real ElevenLabs call (needs your API key and voice ID; on your computer).
+- Higgsfield sign-in and pricing check (on your computer).
+- Re-read remotion.dev (needs `www.remotion.dev` allowed).

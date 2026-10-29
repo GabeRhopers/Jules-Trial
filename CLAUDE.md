@@ -72,5 +72,5 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 
 ## Known limits
 - `npx remotion compositions` (list all) fails if any video has no narration yet; rendering a single video by id works.
-- Anything marked "NOT VERIFIED AGAINST CURRENT DOCS" (ElevenLabs endpoint/models/credit rates, Kokoro voice names other than af_heart, Higgsfield MCP setup) must be checked against official docs before relying on it. See SETUP_LOG.md.
+- ElevenLabs endpoint/models/credit rates, Kokoro voice names and the Higgsfield MCP URL were verified against official docs on 2026-10-29 (see SETUP_LOG.md). Anything still marked "NOT VERIFIED" must be checked before relying on it.
 - Remotion license: free for teams of up to 3; see `LICENSE_NOTES.md` before each new client.

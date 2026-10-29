@@ -38,15 +38,16 @@ npm run narrate -- ac-signs-before-summer        # first run downloads the Kokor
    Get the key at elevenlabs.io (profile menu, API Keys). `.env` is never committed. **Never paste keys into a chat.**
 2. Pick a voice in the ElevenLabs Voice Library, copy its **voice ID**, and paste it into
    `voice.elevenlabs.voiceId` in the brand's `brands/<brand>/brand.json`.
-3. Client videos need a paid ElevenLabs plan (the free plan has no commercial rights, per third-party pricing summaries).
+3. Client videos need a paid ElevenLabs plan: the commercial license starts at Starter (elevenlabs.io/pricing, checked 2026-10-29).
 
 ### 4. AI footage: Higgsfield (optional)
-Not verified against Higgsfield's current docs (see SETUP_LOG.md). The command from third-party guides:
+Higgsfield's official MCP URL is `https://mcp.higgsfield.ai/mcp` (higgsfield.ai/mcp, checked 2026-10-29; sign-in is OAuth and lists Claude Code as a supported client). Add it with Claude Code's standard command:
 ```bash
 claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp
 ```
 Then start `claude`, type `/mcp`, select **higgsfield**, choose authenticate, and log in in the browser window.
-Check with `claude mcp list`. Claude must always show you a shot list with estimated credits and wait for your OK before generating.
+Check with `claude mcp list` (it should show `✔ Connected`).
+Note: Higgsfield's own "Claude Code" tab now suggests a CLI route instead (`npm i -g @higgsfield/cli`, `higgsfield auth login`, `npx skills add higgsfield-ai/skills`). This workspace's rules are written for the MCP; use one route, not both. Claude must always show you a shot list with estimated credits and wait for your OK before generating.
 
 ### 5. Start Claude Code and make a video
 ```bash
@@ -100,8 +101,8 @@ Or just ask Claude: "Create a brand for Acme Aluminum from their website colors 
 | **Your time** once templates exist | 20 to 30 min | 45 to 60 min | 20 to 30 min |
 
 Notes:
-- ElevenLabs dollar figures assume the Starter ($5 for 30,000 credits) to Creator ($22 for about 100,000 credits) plans.
-  Prices and credit rates come from third-party summaries, are NOT VERIFIED AGAINST CURRENT DOCS, and must be checked on elevenlabs.io/pricing.
+- ElevenLabs dollar figures assume the Starter ($6 for 30,000 credits) to Creator ($22 for 121,000 credits) plans, and
+  1 credit per character for Multilingual v2 (elevenlabs.io/pricing, checked 2026-10-29). Prices change; re-check before quoting a client.
 - Higgsfield costs vary about 10x by model; ranges are third-party estimates. Check higgsfield.ai/pricing.
 - Remotion: teams of 4+ people need a Company License (for example $25 per month per person who writes Remotion code). See [LICENSE_NOTES.md](LICENSE_NOTES.md).
 - Cached narration is free: editing one scene only regenerates that scene.

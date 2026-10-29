@@ -50,7 +50,7 @@
       "voice": "af_heart",
       "lang": "a",
       "speed": 1.05,
-      "_note": "Free, local. 'a' = American English. af_heart is listed in Kokoro's README; check other voice names in VOICES.md on huggingface.co/hexgrad/Kokoro-82M."
+      "_note": "Free, local. 'a' = American English. Voice names and quality grades: VOICES.md on huggingface.co/hexgrad/Kokoro-82M (checked 2026-10-29: af_heart A, af_bella A-, am_michael/am_fenrir/am_puck C+)."
     },
     "elevenlabs": {
       "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
@@ -62,7 +62,7 @@
         "use_speaker_boost": true,
         "speed": 1.05
       },
-      "_note": "NOT VERIFIED AGAINST CURRENT DOCS: model id and voice settings names must be checked against elevenlabs.io/docs."
+      "_note": "Model id and voice settings names verified 2026-10-29 against elevenlabs.io/docs (convert-with-timestamps, models). Newer model: eleven_v4."
     }
   },
   "pronunciations": [

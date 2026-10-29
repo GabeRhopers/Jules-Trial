@@ -16,21 +16,24 @@ export const audioDurationMs = (file: string): number => {
 
 // ---------------------------------------------------------------------------------------------
 // ElevenLabs
-// NOT VERIFIED AGAINST CURRENT DOCS: endpoint path, query parameter, request fields, response
-// fields and model ids below come from ElevenLabs' API reference as found on 2026-10-29 via a
-// localized copy of elevenlabs.io/docs/api-reference/text-to-speech/convert-with-timestamps.
-// Verify in a session where elevenlabs.io is reachable.
+// Verified 2026-10-29 against elevenlabs.io/docs/api-reference/text-to-speech/convert-with-timestamps
+// (endpoint, output_format, xi-api-key header, text/model_id/voice_settings, audio_base64 + alignment)
+// and elevenlabs.io/docs/overview/models (eleven_multilingual_v2 is current; 10,000 characters per request).
 // ---------------------------------------------------------------------------------------------
 const ELEVENLABS_BASE = process.env.ELEVENLABS_BASE_URL ?? "https://api.elevenlabs.io"; // override only for tests
-const ELEVENLABS_OUTPUT_FORMAT = "mp3_44100_128"; // NOT VERIFIED AGAINST CURRENT DOCS
+const ELEVENLABS_OUTPUT_FORMAT = "mp3_44100_128"; // API default; available on every plan
 
 type ElevenLabsResponse = {
   audio_base64: string;
   alignment: { characters: string[]; character_start_times_seconds: number[]; character_end_times_seconds: number[] } | null;
 };
 
-/** Credits per character by model family. NOT VERIFIED AGAINST CURRENT DOCS (third-party pricing summaries, 2026). */
-export const elevenLabsCreditsPerChar = (modelId: string) => (/flash|turbo/.test(modelId) ? 0.5 : 1);
+/**
+ * Credits per character (elevenlabs.io/pricing FAQ, checked 2026-10-29): Multilingual v2 = 1 credit per
+ * character. Flash/Turbo API calls cost "between 0.5 and 1", depending on the plan, so the estimate uses
+ * the upper bound and never under-quotes.
+ */
+export const elevenLabsCreditsPerChar = (_modelId: string) => 1;
 
 export const synthesizeElevenLabs = async (brand: Brand, text: string, outMp3: string): Promise<Synthesis> => {
   const cfg = brand.voice.elevenlabs;

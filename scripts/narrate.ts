@@ -70,7 +70,7 @@ const main = async () => {
     const modelId = brand.voice.elevenlabs!.modelId;
     const credits = Math.ceil(chars * elevenLabsCreditsPerChar(modelId));
     console.log(`\nEstimated cost: ${chars} characters ≈ ${credits} ElevenLabs credits (model ${modelId}).`);
-    console.log("(Credit rate per character is NOT VERIFIED AGAINST CURRENT DOCS; check your ElevenLabs usage page.)");
+    console.log("(Upper bound: 1 credit per character. Flash/Turbo models can cost less; your ElevenLabs usage page shows the real figure.)");
     if (!flag("yes")) {
       const rl = createInterface({ input: process.stdin, output: process.stdout });
       const answer = (await rl.question(`Generate ${pending.length} scene(s) now? [y/N] `)).trim().toLowerCase();
