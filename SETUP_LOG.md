@@ -318,11 +318,11 @@ Cost rules for Higgsfield are in `CLAUDE.md`.
 ## Next session: verify with network access (Option 1)
 Allow in the environment's Network access settings: `huggingface.co`, `cdn-lfs.hf.co`, `cas-bridge.xethub.hf.co`,
 `elevenlabs.io`, `api.elevenlabs.io`, `higgsfield.ai`, `mcp.higgsfield.ai`, `remotion.dev`. Then, in a new session on `claude/video-workspace`:
-- [ ] Install Kokoro in `.venv` with `/usr/bin/python3.12`, run `npm run narrate -- ac-signs-before-summer` and the other examples with `--provider=kokoro`, render, send MP4s (**blocked**, see below)
+- [x] Install Kokoro in `.venv` with `/usr/bin/python3.12`, run `npm run narrate -- ac-signs-before-summer` and the other examples with `--provider=kokoro`, render, send MP4s (done after the extra hosts were allowed)
 - [x] Verify the Kokoro voice list (VOICES.md) and model size; fix `am_michael` if needed
 - [x] Verify the ElevenLabs endpoint, fields, model ids, voice settings and credit rates; update `scripts/lib/providers.ts` and remove the "NOT VERIFIED" markers that check out
 - [x] Verify Higgsfield's official MCP setup; update README, CLAUDE.md and this log
-- [ ] Re-read remotion.dev pages used so far (they were read from the GitHub copies) (**blocked**, see below)
+- [x] Re-read remotion.dev pages used so far (they were read from the GitHub copies) (done after `www.remotion.dev` was allowed)
 
 ## Verification session (2026-10-29)
 
@@ -375,8 +375,25 @@ To finish this item, also allow `www.remotion.dev`. The GitHub copies used so fa
 - `README.md`: ElevenLabs plans and commercial license, Higgsfield section.
 - `CLAUDE.md`: verification note.
 
+### Follow-up: after allowing `us.aws.cdn.hf.co`, `cas-server.xethub.hf.co`, `www.remotion.dev`
+**Kokoro, real voice (no stand-in):**
+| Video | Narration | QC | Render |
+|---|---|---|---|
+| `ac-signs-before-summer` (af_heart) | 27.6 s, first run 67 s incl. model download | PASS (144 sync checks) | 1080x1920, 30.3 s, 6.6 MB |
+| `anodizing-spec-checklist` (am_michael) | 35.7 s; "ASTM B680" spoken as "A-S-T-M B six eighty" | PASS (185) | 1080x1920, 38.3 s, 10.1 MB, 2 min 39 s |
+| `anodizing-rework-explainer` (am_michael) | 50.4 s (Slice 4 guessed about 50 s) | PASS (261) | 1920x1080, 53.6 s, 11.1 MB, 3 min 35 s |
+| `spring-tuneup-promo` (af_heart) | 16.2 s | PASS with `--allow-placeholders` (both B-roll files absent in a fresh clone) | 1080x1080, 18.2 s, 3.6 MB |
+All four MP4s: H.264 + AAC, mean audio level -27 to -29 dB (voice present). MP4s were sent in chat; `out/` stays git-ignored.
+`--provider=kokoro` was used for the industrial brand too (its default is ElevenLabs, which still needs your key).
+Sandbox only: QC and render need `REMOTION_BROWSER_EXECUTABLE=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell` (`remotion.media` is still blocked).
+
+**remotion.dev re-read (2026-10-29), all match the GitHub copies:**
+- `/docs/`: `npx create-video@latest --yes --blank my-video`, then `npx remotion skills add`.
+- `/docs/ai/skills`: `npx skills add remotion-dev/skills` or `gh skill install remotion-dev/skills`.
+- `/docs/ai/claude-code-plugin`: official plugin `remotion-dev/claude-code-plugin`.
+- `/docs/license/faq`: Free License up to 3 people; 4 or more need a Company License; Creators seat $25 per month.
+- `/docs/encoding`, `/docs/quality`: H.264 CRF 1 to 51, default 18; export in bt709 for accurate colors.
+
 ### Still open
-- Real Kokoro narration + renders + MP4s (needs `us.aws.cdn.hf.co` and `cas-server.xethub.hf.co` allowed, or run on your computer).
 - Real ElevenLabs call (needs your API key and voice ID; on your computer).
 - Higgsfield sign-in and pricing check (on your computer).
-- Re-read remotion.dev (needs `www.remotion.dev` allowed).
