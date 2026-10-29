@@ -11,3 +11,9 @@ Config.setRspack(true);
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
 Config.setDefaultPremountInSeconds(2);
+
+// Optional: use an already-installed Chrome Headless Shell instead of downloading one
+// (needed in the Claude Code cloud sandbox). On your own computer, leave it unset.
+if (process.env.REMOTION_BROWSER_EXECUTABLE) {
+  Config.setBrowserExecutable(process.env.REMOTION_BROWSER_EXECUTABLE);
+}
