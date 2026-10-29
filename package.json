@@ -43,7 +43,8 @@
     "brand:new": "node scripts/new-brand.ts",
     "brand:check": "node scripts/validate-brand.ts",
     "narrate": "node scripts/narrate.ts",
-    "test": "node --test scripts/lib/*.test.ts"
+    "test": "node --test scripts/lib/*.test.ts",
+    "video:new": "node scripts/new-video.ts"
   },
   "allowScripts": {
     "esbuild": false

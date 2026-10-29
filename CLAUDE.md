@@ -1,23 +1,76 @@
 # Video production workspace
 
-Remotion + narration (Kokoro or ElevenLabs) + optional Higgsfield B-roll, for brand-consistent marketing videos.
-Full documentation of folders, workflow and checklists comes in Slice 5; this file starts with the rules that matter most.
+Brand-consistent marketing videos with animated text, narration and captions, built with Remotion
+(React). Narration: Kokoro (free, local) or ElevenLabs (paid). Optional AI B-roll: Higgsfield (paid, MCP).
+Main users: a marketing specialist (B2B tech and industrial clients, B2C home services) and an
+operations/IT project manager.
+
+**To make a video, use `/new-video`.** It walks through brief, script, narration, B-roll, preview and render.
 
 ## Cost rules (always follow)
-- **ElevenLabs costs credits.** Never run `scripts/narrate.ts` with `--yes` or `--provider=elevenlabs` without the user's explicit OK in this conversation. Show the script's character and credit estimate first and wait for approval.
-- **Kokoro is free** (runs locally). It is fine for drafts and previews without asking.
-- **Higgsfield costs credits on every generation.** Before any Higgsfield image or video generation: propose the shot list (prompt, model, length, aspect ratio) and the expected credit cost, and wait for the user's explicit approval. Never retry a failed or unsatisfying generation without asking again.
-- Save downloaded Higgsfield clips to `public/broll/<video-id>/` (git-ignored) and note each clip's prompt in `videos/<video-id>/broll.md` so it is reproducible.
-- Never ask the user to paste API keys into the chat. Keys go in `.env` (git-ignored); see `.env.example`.
+- **ElevenLabs costs credits.** Never run `scripts/narrate.ts` with the ElevenLabs provider unless the user approved that run in this conversation. Show the script's character and credit estimate first. Never pass `--yes` without that approval.
+- **Kokoro is free** (local). Use it for drafts and previews without asking.
+- **Higgsfield costs credits on every generation.** Before generating: show the shot list (prompt, model, duration, aspect ratio, estimated credits) and wait for explicit approval. Never retry or regenerate without asking again.
+- Save Higgsfield downloads to `public/broll/<video-id>/` and log every prompt in `videos/<video-id>/broll.md`.
+- Never ask for API keys in chat. Keys live in `.env` (git-ignored); see `.env.example`.
 
-## Where things are
-- `brands/<brand-id>/brand.json`: colors, fonts, logo, voice, pronunciations, style, captions, CTA. Check with `npm run brand:check -- <brand-id>`.
-- `videos/<video-id>/config.json` + `script.md`: one folder per video (scenes, narration text, visuals).
-- `scripts/`: `narrate.ts` (voice), `qc.ts` (quality check), `render.ts` (MP4 + SRT), `new-brand.ts`, `validate-brand.ts`.
-- Narration drives timing: never hardcode scene durations. Scene length = its audio length (see `src/lib/timeline.ts`).
+## Folder structure
+```
+brands/<brand-id>/           brand.json, logo.svg, fonts/ (one folder per client)
+videos/<video-id>/           config.json (scenes: narration + visuals), script.md, broll.md
+public/audio/<video-id>/     generated narration + manifest.json (git-ignored, reproducible)
+public/broll/<video-id>/     footage and AI clips (git-ignored)
+public/music/                music beds + README.md with each track's license
+out/<brand-id>/              rendered MP4 + SRT (git-ignored)
+src/compositions/            SocialReel9x16, Explainer16x9, PromoSquare1x1, VideoShell (shared frame), scenes/
+src/components/              AnimatedTitle, KineticCaptions, LowerThird, StatCounter, NumberBadge, LogoReveal,
+                             CtaEndCard, BRollSlot, MusicBed (ducking), ProgressBar, BrandBackground, QcProbe
+src/lib/                     types, timeline (narration-driven timing), registry (auto-discovery), fonts, motion, safe zones
+scripts/                     narrate, qc, render, make-srt, new-video, new-brand, validate-brand, placeholder-narration
+.claude/skills/new-video/    the /new-video workflow and script rules
+```
+Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatically. The composition id is the video id.
 
-## Before delivering any video
-Run `node scripts/qc.ts <video-id>` and fix every issue it reports. Confirm every number and claim in the script with the client.
+## How a video is built
+1. `npm run video:new -- <id> --brand=<brand> --format=<format>` creates the folder; fill in `config.json`.
+2. `npm run narrate -- <id>` makes per-scene MP3s + word timestamps (cached by text and voice settings).
+3. Scene length = its narration length + 0.25 s; the last scene holds 1.5 s; transitions 0.4 s (`src/lib/timeline.ts`). **Never hardcode scene durations.** Editing narration text without regenerating makes rendering stop with "Narration is out of date".
+4. `npm run dev` opens Remotion Studio. `brandId` prop previews any video in any brand; `showSafeZones` shows platform UI areas.
+5. `node scripts/qc.ts <id>` then `npm run render:video -- <id>`.
 
-## Unverified details
-Anything marked "NOT VERIFIED AGAINST CURRENT DOCS" (ElevenLabs endpoint, model ids, credit rates; Higgsfield MCP setup) must be checked against the official docs before relying on it. See SETUP_LOG.md.
+## Brand rules
+- Components never contain brand-specific code. Everything comes from `brand.json` via `useBrand()`: colors, fonts, logo, `style` (cornerRadius, headlineCase, motion bold/calm, background glow/grid, transition), `captionStyle` (highlight box/color), voice, pronunciations, default CTA.
+- New brand: `npm run brand:new -- <id> --name="Client"`, edit `brand.json`, replace the logo, then `npm run brand:check -- <id>` (fields, fonts, logo, contrast).
+- Fonts: a Google Font listed in `src/lib/font-map.ts` (add one line for a new one), or licensed WOFF2 files in `brands/<id>/fonts/` (only if the font license allows video embedding).
+- Logos: SVG with text converted to outlines, or with the font embedded.
+- Add product names, standards and technical terms to `pronunciations` (the voice says `say`, captions show `term`).
+
+## Quality checklist (before any delivery)
+- [ ] `node scripts/qc.ts <id>` passes: text inside safe zones, no overflow, captions never overlap other text, captions in sync with narration, caption size readable on a phone, contrast OK, no empty B-roll slots.
+- [ ] Hook lands in the first 3 seconds; one clear CTA at the end.
+- [ ] Every number and claim confirmed by the client (demo placeholders removed).
+- [ ] Pronunciations checked by listening (brand names, standards, numbers).
+- [ ] Music is licensed and logged in `public/music/README.md`; it ducks under the voice.
+- [ ] Watched once in full with sound, and once muted (captions alone must carry the message).
+
+## Render settings
+- `npm run render:video -- <id>`: H.264, CRF 16, yuv420p, BT.709 color, PNG frames, AAC audio, 30 fps, plus an SRT file. Output: `out/<brand>/<id>.mp4` and `.srt`.
+- Sizes: SocialReel9x16 1080x1920, Explainer16x9 1920x1080, PromoSquare1x1 1080x1080.
+- Use `--brand=<id>` to render a video in another brand.
+
+## Commands
+| Task | Command |
+|---|---|
+| New video folder | `npm run video:new -- <id> --brand=<brand> --format=<format>` |
+| Narration | `npm run narrate -- <id> [--provider=kokoro\|elevenlabs] [--force]` |
+| Silent test narration | `npm run narrate:placeholder -- <id>` |
+| Preview | `npm run dev` |
+| Quality check | `npm run qc -- <id> [--allow-placeholders] [--brand=<id>]` |
+| Render MP4 + SRT | `npm run render:video -- <id> [--brand=<id>]` |
+| New brand / check brand | `npm run brand:new -- <id> --name="..."` / `npm run brand:check -- <id>` |
+| Unit tests | `npm test` |
+
+## Known limits
+- `npx remotion compositions` (list all) fails if any video has no narration yet; rendering a single video by id works.
+- Anything marked "NOT VERIFIED AGAINST CURRENT DOCS" (ElevenLabs endpoint/models/credit rates, Kokoro voice names other than af_heart, Higgsfield MCP setup) must be checked against official docs before relying on it. See SETUP_LOG.md.
+- Remotion license: free for teams of up to 3; see `LICENSE_NOTES.md` before each new client.

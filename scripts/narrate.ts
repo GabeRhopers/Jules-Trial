@@ -37,6 +37,9 @@ const main = async () => {
   const voiceSettings = brand.voice[provider];
   if (!voiceSettings) throw new Error(`Brand ${brand.id} has no voice.${provider} settings in brand.json`);
 
+  const todo = video.scenes.filter((s) => /\bTODO\b/.test(s.text));
+  if (todo.length > 0) throw new Error(`Scenes still contain TODO text: ${todo.map((s) => s.id).join(", ")}. Finish the script before narrating.`);
+
   const outDir = path.join("public", "audio", videoId);
   mkdirSync(outDir, { recursive: true });
   const manifestPath = path.join(outDir, "manifest.json");
@@ -50,19 +53,19 @@ const main = async () => {
     const reuse = !flag("force") && cached && existsSync(path.join("public", cached.audio));
     return { scene, spoken, hash, cached: reuse ? cached : null };
   });
-  const todo = plan.filter((p) => !p.cached);
+  const pending = plan.filter((p) => !p.cached);
 
   console.log(`Narration for "${videoId}" with ${provider} (brand ${brand.id})`);
   for (const p of plan) {
     const changed = p.spoken.text !== p.scene.text ? `  [says: "${p.spoken.text}"]` : "";
     console.log(`  ${p.cached ? "cached  " : "generate"} ${p.scene.id.padEnd(12)} ${p.spoken.text.length} chars${changed}`);
   }
-  if (todo.length === 0) {
+  if (pending.length === 0) {
     console.log("Nothing changed. All scenes reused from the last run (0 credits).");
     return;
   }
 
-  const chars = todo.reduce((sum, p) => sum + p.spoken.text.length, 0);
+  const chars = pending.reduce((sum, p) => sum + p.spoken.text.length, 0);
   if (provider === "elevenlabs") {
     const modelId = brand.voice.elevenlabs!.modelId;
     const credits = Math.ceil(chars * elevenLabsCreditsPerChar(modelId));
@@ -70,7 +73,7 @@ const main = async () => {
     console.log("(Credit rate per character is NOT VERIFIED AGAINST CURRENT DOCS; check your ElevenLabs usage page.)");
     if (!flag("yes")) {
       const rl = createInterface({ input: process.stdin, output: process.stdout });
-      const answer = (await rl.question(`Generate ${todo.length} scene(s) now? [y/N] `)).trim().toLowerCase();
+      const answer = (await rl.question(`Generate ${pending.length} scene(s) now? [y/N] `)).trim().toLowerCase();
       rl.close();
       if (answer !== "y" && answer !== "yes") {
         console.log("Cancelled. Nothing was generated.");

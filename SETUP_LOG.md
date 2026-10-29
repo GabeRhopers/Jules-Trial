@@ -287,3 +287,39 @@ Cost rules for Higgsfield are in `CLAUDE.md`.
 
 ### Manual steps for the user
 - Replace `public/music/demo-pad.mp3` with licensed music for client work, and record the license in `public/music/README.md`.
+
+## Slice 5: Workflow automation, CLAUDE.md, README (2026-10-29)
+
+### Docs checked
+- Claude Code skills (code.claude.com/docs/en/skills): project skills live in `.claude/skills/<name>/SKILL.md` and become `/<name>`; `.claude/commands/` still works, but skills are recommended (they support extra files). Frontmatter used: `name`, `description`, `argument-hint`, `disable-model-invocation: true` (so Claude never starts a video workflow on its own). `$ARGUMENTS` passes what you type after the command.
+
+### Created
+| Path | Purpose |
+|---|---|
+| `.claude/skills/new-video/SKILL.md` | `/new-video`: brief, script (approval), folder, narration (Kokoro draft; ElevenLabs only after cost approval), B-roll (approval before any Higgsfield spend), QC + stills + Studio preview, final render + report |
+| `.claude/skills/new-video/script-rules.md` | Conversion-first script rules: hook in 3 s, benefits with numbers, proof per claim, one CTA, B2B vs B2C language, on-screen text limits |
+| `scripts/new-video.ts` (`npm run video:new`) | Creates `videos/<id>/config.json` + `script.md` skeleton per format |
+| `CLAUDE.md` (full) | Cost rules, folder structure, how a video is built, brand rules, quality checklist, render settings, commands, known limits |
+| `README.md` | Quick Start: install, Kokoro, ElevenLabs key, Higgsfield, Claude Code + `/new-video`, preview/render, new brand, cost per video |
+
+### Changed
+- `scripts/narrate.ts` refuses to run while any scene text still contains `TODO` (no credits spent on unfinished scripts).
+
+### Tests
+| Test | Result |
+|---|---|
+| `video:new` for all 3 formats, then deleted | Folders created; narrate refused with "Scenes still contain TODO text" |
+| Skill frontmatter parsed as YAML | Valid |
+| `npm test`, `tsc`, `eslint src`, `brand:check` | Pass |
+
+### Known limit found
+- `npx remotion compositions` (list all) fails while any video has no narration yet. Rendering one video by id works. Documented in CLAUDE.md.
+
+## Next session: verify with network access (Option 1)
+Allow in the environment's Network access settings: `huggingface.co`, `cdn-lfs.hf.co`, `cas-bridge.xethub.hf.co`,
+`elevenlabs.io`, `api.elevenlabs.io`, `higgsfield.ai`, `mcp.higgsfield.ai`, `remotion.dev`. Then, in a new session on `claude/video-workspace`:
+- [ ] Install Kokoro in `.venv` with `/usr/bin/python3.12`, run `npm run narrate -- ac-signs-before-summer` and the other examples with `--provider=kokoro`, render, send MP4s
+- [ ] Verify the Kokoro voice list (VOICES.md) and model size; fix `am_michael` if needed
+- [ ] Verify the ElevenLabs endpoint, fields, model ids, voice settings and credit rates; update `scripts/lib/providers.ts` and remove the "NOT VERIFIED" markers that check out
+- [ ] Verify Higgsfield's official MCP setup; update README, CLAUDE.md and this log
+- [ ] Re-read remotion.dev pages used so far (they were read from the GitHub copies)
