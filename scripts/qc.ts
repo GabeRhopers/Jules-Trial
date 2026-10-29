@@ -4,7 +4,8 @@
 //  - the highlighted caption word matches the narration timestamps at that moment
 //  - caption size is readable on a phone, and caption colors have enough contrast
 //
-// Usage: node scripts/qc.ts <video-id> [--every=<frames>] [--brand=<brand-id>]
+// Usage: node scripts/qc.ts <video-id> [--every=<frames>] [--brand=<brand-id>] [--allow-placeholders]
+//  - no B-roll slot is still an empty placeholder (unless --allow-placeholders, for drafts)
 import { bundle } from "@remotion/bundler";
 import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
@@ -13,12 +14,15 @@ import path from "node:path";
 import { buildTimeline } from "../src/lib/timeline.ts";
 import type { Brand, NarrationManifest, VideoConfig } from "../src/lib/types.ts";
 
-/** Smallest caption size that stays readable when a 1080 px wide video is shown on a ~390 pt phone screen. */
-const MIN_CAPTION_PX = 64;
+/**
+ * Smallest readable caption size per format, for viewing on a phone: a 1080 px wide reel shown on a
+ * ~390 pt screen needs about 64 px; square feed posts about 52 px; 16:9 played full-width needs about 44 px.
+ */
+const minCaptionPx = (width: number, height: number) => (height > width ? 64 : height === width ? 52 : 44);
 /** WCAG AA contrast for large text */
 const MIN_CONTRAST = 3;
 
-type QcLine = { frame: number; issues: string[]; page: string | null; active: string | null; captionFontPx: number | null };
+type QcLine = { frame: number; issues: string[]; page: string | null; active: string | null; captionFontPx: number | null; placeholders: string[] };
 
 const luminance = (hex: string) => {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
@@ -32,6 +36,7 @@ const clean = (w: string) => w.replace(/[.,;:!?]+$/, "");
 
 const main = async () => {
   const videoId = process.argv[2];
+  const allowPlaceholders = process.argv.includes("--allow-placeholders");
   const every = Number(process.argv.find((a) => a.startsWith("--every="))?.split("=")[1] ?? 6);
   if (!videoId) {
     console.error("Usage: node scripts/qc.ts <video-id> [--every=<frames>]");
@@ -73,6 +78,7 @@ const main = async () => {
   rmSync(tmp, { recursive: true, force: true });
 
   const problems: string[] = [];
+  const emptySlots = new Set<string>();
   let syncChecked = 0;
   for (const line of lines) {
     for (const issue of line.issues) problems.push(`frame ${line.frame}: ${issue}`);
@@ -86,9 +92,11 @@ const main = async () => {
         problems.push(`frame ${line.frame}: caption shows "${line.active}" but narration says "${words[idx].text}"`);
       }
     }
-    if (line.captionFontPx !== null && line.captionFontPx < MIN_CAPTION_PX) {
-      problems.push(`frame ${line.frame}: caption font ${line.captionFontPx}px is below ${MIN_CAPTION_PX}px`);
+    const minPx = minCaptionPx(composition.width, composition.height);
+    if (line.captionFontPx !== null && line.captionFontPx < minPx) {
+      problems.push(`frame ${line.frame}: caption font ${line.captionFontPx}px is below ${minPx}px`);
     }
+    for (const p of line.placeholders) emptySlots.add(p);
   }
   const cs = brand.captionStyle;
   const pairs: [string, string, string][] = [
@@ -106,6 +114,11 @@ const main = async () => {
   console.log(`Frames checked: ${lines.length} of ${composition.durationInFrames} (${(composition.durationInFrames / composition.fps).toFixed(1)} s)`);
   console.log(`Caption sync checks: ${syncChecked}`);
   console.log(`Contrast: ${contrasts.join(", ")}`);
+  if (emptySlots.size > 0) {
+    const msg = `empty B-roll slot(s): ${[...emptySlots].join(", ")}`;
+    if (allowPlaceholders) console.log(`Note: ${msg} (allowed with --allow-placeholders)`);
+    else problems.push(`${msg}. Add the clips to public/broll/${videoId}/, or re-run with --allow-placeholders for drafts`);
+  }
   if (problems.length === 0) {
     console.log("PASS: no issues found");
   } else {

@@ -249,3 +249,41 @@ Cost rules for Higgsfield are in `CLAUDE.md`.
 ### Manual steps for the user
 - Kokoro setup and ElevenLabs setup above, on your computer.
 - Higgsfield MCP sign-in on your computer.
+
+## Slice 4: Explainer16x9, PromoSquare1x1, shared shell, music ducking (2026-10-29)
+
+### What changed
+- **`VideoShell`** (`src/compositions/VideoShell.tsx`): one shared frame for every format (brand + fonts, background, narration-timed scenes with brand transitions, voice tracks, ducked music, kinetic captions, progress bar, safe-zone guides, QC probe). Each format is now only a layout (safe area, scene area, caption box, progress bar) plus type sizes.
+- **Shared scene renderer** (`src/compositions/scenes/Scenes.tsx`): `hook`, `statement` (problem / solution), `point` (benefit with stat and proof line; stacked on tall formats, split left/right on 16:9), `broll` (full-bleed footage + headline + lower third), `cta`.
+- **New components:** `LowerThird` (slides in, holds, slides out before the scene ends), `BRollSlot` (video or image with slow push-in and readability gradient; missing file = labeled placeholder showing the shot prompt).
+- **Music:** per video (`music` in config.json) or per brand. `public/music/demo-pad.mp3` is an original pad generated with ffmpeg, for testing only.
+- **QC:** minimum caption size per format (9:16 64 px, 1:1 52 px, 16:9 44 px); empty B-roll slots fail QC unless `--allow-placeholders` (drafts).
+
+### Formats
+| Format | Size | Safe area | Captions |
+|---|---|---|---|
+| SocialReel9x16 | 1080x1920 | Meta-derived (270 top, 670 bottom, 65 sides, right rail) | 100 %, 3 words per page |
+| Explainer16x9 | 1920x1080 | Title-safe 90 % (5 % margins) | 62 %, 7 words per page |
+| PromoSquare1x1 | 1080x1080 | 60 px margin | 80 %, 4 words per page |
+
+### New test videos
+- `videos/anodizing-rework-explainer/` (Explainer16x9, demo-b2b-industrial): hook, problem, solution, 3 benefits with proof, CTA. 44.8 s with the fast preview voice; a real voice should land around 50 s.
+- `videos/spring-tuneup-promo/` (PromoSquare1x1, demo-home-services): 2 B-roll shots with lower thirds, CTA. 18.2 s. Shot 1 uses a generated gradient test clip (git-ignored); shot 2 is intentionally missing to test the placeholder.
+
+### Commands run
+| Command | Result |
+|---|---|
+| QC on both existing reels after the refactor | PASS |
+| `node scripts/qc.ts anodizing-rework-explainer` | PASS (132 sync checks) |
+| `node scripts/qc.ts spring-tuneup-promo` | FAIL as intended (empty slot); PASS with `--allow-placeholders` (52 sync checks) |
+| Music ducking: promo rendered to WAV with silent narration, loudness measured | Music −42 dB during speech, −29.8 dB after the last word (+12 dB; design value 11.5 dB), fades out at the end |
+| `node scripts/render.ts spring-tuneup-promo` | 9.4 MB, 18.2 s, 80 s render |
+| `node scripts/render.ts anodizing-rework-explainer` | 9.4 MB, 44.8 s, 217 s render |
+
+### Decisions
+- Templates share one scene vocabulary, so any scene type works in any format; a format only sets layout and sizes.
+- Lower thirds sit above the caption band; QC's caption-overlap check covers them.
+- Explainer statement scenes are text-only for now; pairing them with B-roll or product images is the main upgrade path for richer explainers.
+
+### Manual steps for the user
+- Replace `public/music/demo-pad.mp3` with licensed music for client work, and record the license in `public/music/README.md`.

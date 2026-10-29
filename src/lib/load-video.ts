@@ -15,7 +15,7 @@ export type InputProps = {
 };
 
 export type ResolvedProps = InputProps & {
-  resolved?: { video: VideoConfig; brand: Brand; logoSrc: string; timeline: Timeline };
+  resolved?: { video: VideoConfig; brand: Brand; logoSrc: string; timeline: Timeline; music: string | null; brollAvailable: string[] };
 };
 
 /**
@@ -41,5 +41,15 @@ export const resolveVideo = async (props: InputProps, fps: number, abortSignal?:
   }
 
   const timeline = buildTimeline(manifest, fps);
-  return { video, brand, logoSrc: getBrandAsset(brand.id, brand.logo), timeline };
+
+  // B-roll files that actually exist (missing ones render as labeled placeholders)
+  const brollSrcs = video.scenes.flatMap((s) => (s.visual.kind === "broll" && s.visual.src ? [s.visual.src] : []));
+  const brollAvailable: string[] = [];
+  for (const src of brollSrcs) {
+    const head = await fetch(staticFile(src), { method: "HEAD", signal: abortSignal }).catch(() => null);
+    if (head?.ok) brollAvailable.push(src);
+  }
+
+  const music = video.music !== undefined ? video.music : brand.music;
+  return { video, brand, logoSrc: getBrandAsset(brand.id, brand.logo), timeline, music, brollAvailable };
 };

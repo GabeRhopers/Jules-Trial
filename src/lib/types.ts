@@ -71,9 +71,19 @@ export type Brand = {
 
 export type Stat = { prefix: string; value: number; suffix: string; label: string };
 
+export type LowerThirdContent = { title: string; subtitle?: string };
+
 export type SceneVisual =
   | { kind: "hook"; kicker: string; headline: string }
-  | { kind: "point"; number: number; headline: string; stat?: Stat }
+  /** Problem / solution style scene: a kicker ("The problem"), a headline, optional supporting line */
+  | { kind: "statement"; kicker?: string; headline: string; body?: string }
+  /** Numbered point or benefit, with an optional stat and a short proof line ("Based on 1,200 lots in 2025") */
+  | { kind: "point"; number: number; headline: string; stat?: Stat; proof?: string }
+  /**
+   * Footage slot. `src` is a file in public/ (e.g. "broll/<video-id>/shot-1.mp4", or an image).
+   * Without `src` (or if the file is missing) a labeled placeholder shows the `prompt`, so gaps are obvious.
+   */
+  | { kind: "broll"; src?: string; prompt?: string; headline?: string; lowerThird?: LowerThirdContent }
   | { kind: "cta"; headline?: string; button?: string; subline?: string };
 
 export type SceneConfig = { id: string; text: string; visual: SceneVisual };
@@ -87,6 +97,8 @@ export type VideoConfig = {
   title: string;
   /** Word shown on numbered points, e.g. "Sign" -> "Sign 1 of 3". Defaults to "Point". */
   pointLabel?: string;
+  /** Music file in public/music/ for this video. Overrides brand.music; null = no music. */
+  music?: string | null;
   audience?: string;
   goal?: "lead" | "sale" | "awareness";
   scenes: SceneConfig[];

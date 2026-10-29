@@ -71,6 +71,7 @@ export const QcProbe: React.FC<Props> = ({ safe, keepClear, ready }) => {
               page: captions?.dataset.qcPage ?? null,
               active: active?.dataset.qcActive ?? null,
               captionFontPx: captions ? parseFloat(getComputedStyle(captions).fontSize) : null,
+              placeholders: [...document.querySelectorAll<HTMLElement>("[data-qc-placeholder]")].map((el) => el.dataset.qcPlaceholder),
             }),
         );
         continueRender(h);

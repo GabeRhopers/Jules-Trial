@@ -7,6 +7,10 @@ import type { Word } from "../lib/types";
 type Props = {
   /** Every narrated word, times on the global timeline (ms) */
   words: Word[];
+  /** Multiplier on the brand caption size (formats differ: 1 for 9:16, smaller for 16:9) */
+  scale?: number;
+  /** Override the brand's words per page (wider formats fit more) */
+  maxWordsPerPage?: number;
   style?: CSSProperties;
 };
 
@@ -15,13 +19,14 @@ type Props = {
  * Each page shows up to `captionStyle.maxWordsPerPage` words; every word appears when it is
  * spoken and the word being spoken right now is highlighted (box or color, per brand).
  */
-export const KineticCaptions: React.FC<Props> = ({ words, style }) => {
+export const KineticCaptions: React.FC<Props> = ({ words, scale = 1, maxWordsPerPage, style }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const { brand, fonts, motion } = useBrand();
-  const cs = brand.captionStyle;
+  const cs = { ...brand.captionStyle, fontSizePx: Math.round(brand.captionStyle.fontSizePx * scale) };
+  const maxWords = maxWordsPerPage ?? cs.maxWordsPerPage;
   const nowMs = (frame / fps) * 1000;
-  const pages = useMemo(() => paginateWords(words, cs.maxWordsPerPage), [words, cs.maxWordsPerPage]);
+  const pages = useMemo(() => paginateWords(words, maxWords), [words, maxWords]);
   const page = pages.find((p) => nowMs >= p.startMs && nowMs < p.endMs);
   if (!page) return null;
   const boxed = cs.highlight === "box";
