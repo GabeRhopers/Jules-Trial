@@ -4,6 +4,7 @@ import { videos } from "./lib/registry";
 
 // One composition per folder in videos/. The composition id is the video id,
 // so rendering is: npx remotion render <video-id> out/<brand>/<video-id>.mp4
+// In Studio, change the brandId prop to preview the same video in another brand.
 export const RemotionRoot: React.FC = () => {
   const reels = videos.filter((v) => v.format === "SocialReel9x16");
   return (
@@ -17,7 +18,7 @@ export const RemotionRoot: React.FC = () => {
           height={REEL.height}
           fps={REEL.fps}
           durationInFrames={REEL.fps * 30}
-          defaultProps={{ videoId: video.id, showSafeZones: false }}
+          defaultProps={{ videoId: video.id, brandId: video.brand, showSafeZones: false }}
           calculateMetadata={calculateReelMetadata}
         />
       ))}

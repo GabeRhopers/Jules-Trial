@@ -1,9 +1,11 @@
 import { Img, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { useBrand } from "../lib/brand-context";
 
-/** Logo that scales up and wipes in from the left. */
-export const LogoReveal: React.FC<{ src: string; width: number; delay?: number }> = ({ src, width, delay = 0 }) => {
+/** Brand logo that scales up and wipes in from the left. */
+export const LogoReveal: React.FC<{ width: number; delay?: number }> = ({ width, delay = 0 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const { logoSrc } = useBrand();
   const progress = spring({ frame: frame - delay, fps, config: { damping: 200 }, durationInFrames: Math.round(fps * 0.7) });
   return (
     <div
@@ -15,7 +17,7 @@ export const LogoReveal: React.FC<{ src: string; width: number; delay?: number }
         transformOrigin: "left center",
       }}
     >
-      <Img src={src} style={{ width: "100%", display: "block" }} />
+      <Img src={logoSrc} style={{ width: "100%", display: "block" }} />
     </div>
   );
 };

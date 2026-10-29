@@ -39,7 +39,9 @@
     "narrate:placeholder": "node scripts/placeholder-narration.ts",
     "qc": "node scripts/qc.ts",
     "render:video": "node scripts/render.ts",
-    "srt": "node scripts/make-srt.ts"
+    "srt": "node scripts/make-srt.ts",
+    "brand:new": "node scripts/new-brand.ts",
+    "brand:check": "node scripts/validate-brand.ts"
   },
   "allowScripts": {
     "esbuild": false

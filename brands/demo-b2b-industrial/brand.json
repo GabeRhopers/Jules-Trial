@@ -1,0 +1,87 @@
+{
+  "id": "demo-b2b-industrial",
+  "displayName": "Demo Anodizing Co.",
+  "description": "Fictional anodized aluminum manufacturer selling to procurement and engineering buyers. Clean, technical, trustworthy. Example brand for the template system.",
+  "colors": {
+    "primary": "#2F6FDB",
+    "secondary": "#9DB4C8",
+    "accent": "#D4A657",
+    "background": "#0D1B2A",
+    "backgroundAlt": "#1B263B",
+    "text": "#F4F7FA",
+    "textMuted": "#A9B8C9",
+    "textOnPrimary": "#FFFFFF",
+    "textOnAccent": "#0D1B2A"
+  },
+  "fonts": {
+    "heading": {
+      "family": "IBM Plex Sans Condensed",
+      "weights": ["600", "700"],
+      "files": {
+        "600": "fonts/IBMPlexSansCondensed-600.woff2",
+        "700": "fonts/IBMPlexSansCondensed-700.woff2"
+      }
+    },
+    "body": {
+      "family": "IBM Plex Sans",
+      "weights": ["400", "500", "600"],
+      "files": {
+        "100 700": "fonts/IBMPlexSans-Variable.woff2"
+      }
+    }
+  },
+  "logo": "logo.svg",
+  "toneOfVoice": [
+    "Precise and calm, like a senior applications engineer. No hype words (revolutionary, best-in-class, world-class).",
+    "Lead with the buyer's risk: failed inspections, color mismatch between lots, missed lead times, rework cost.",
+    "Use specs and standards by name: AAMA 611, MIL-A-8625 Type II and III, ASTM B680, coating thickness in microns, lead time in days.",
+    "Proof over promises: certifications (ISO 9001), test reports per lot, on-time delivery rate.",
+    "CTAs that fit a B2B buying process: request samples, send a drawing for a quote, download the spec sheet."
+  ],
+  "voice": {
+    "provider": "elevenlabs",
+    "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+    "modelId": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.6,
+      "similarity_boost": 0.75,
+      "style": 0.15,
+      "use_speaker_boost": true,
+      "speed": 0.98
+    },
+    "_note": "NOT VERIFIED AGAINST CURRENT DOCS: model id and voice settings names must be checked against elevenlabs.io/docs."
+  },
+  "pronunciations": [
+    { "term": "AAMA 611", "say": "A-A-M-A six eleven", "_note": "Confirm with the client how their team says AAMA." },
+    { "term": "MIL-A-8625", "say": "mil A eighty-six twenty-five" },
+    { "term": "ASTM B680", "say": "A-S-T-M B six eighty" },
+    { "term": "6063-T5", "say": "sixty sixty-three T five" },
+    { "term": "µm", "say": " microns" },
+    { "term": "mg/dm²", "say": " milligrams per square decimeter" }
+  ],
+  "style": {
+    "cornerRadius": 6,
+    "headlineCase": "sentence",
+    "motion": "calm",
+    "background": "grid",
+    "transition": "slide"
+  },
+  "captionStyle": {
+    "fontFamily": "heading",
+    "highlight": "color",
+    "fontWeight": 700,
+    "fontSizePx": 84,
+    "textTransform": "none",
+    "baseColor": "#F4F7FA",
+    "activeColor": "#0D1B2A",
+    "activeBackground": "#D4A657",
+    "strokeColor": "#0D1B2A",
+    "maxWordsPerPage": 4
+  },
+  "cta": {
+    "headline": "Quote in 24 hours. Sample panels in 5 days.",
+    "button": "Send your drawing",
+    "subline": "ISO 9001 certified · Test report with every lot"
+  },
+  "music": null
+}

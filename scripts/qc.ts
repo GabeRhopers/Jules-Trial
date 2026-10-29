@@ -4,7 +4,7 @@
 //  - the highlighted caption word matches the narration timestamps at that moment
 //  - caption size is readable on a phone, and caption colors have enough contrast
 //
-// Usage: node scripts/qc.ts <video-id> [--every=<frames>]
+// Usage: node scripts/qc.ts <video-id> [--every=<frames>] [--brand=<brand-id>]
 import { bundle } from "@remotion/bundler";
 import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
@@ -38,7 +38,8 @@ const main = async () => {
     process.exit(1);
   }
   const video: VideoConfig = JSON.parse(readFileSync(path.join("videos", videoId, "config.json"), "utf8"));
-  const brand: Brand = JSON.parse(readFileSync(path.join("brands", video.brand, "brand.json"), "utf8"));
+  const brandId = process.argv.find((a) => a.startsWith("--brand="))?.split("=")[1] ?? video.brand;
+  const brand: Brand = JSON.parse(readFileSync(path.join("brands", brandId, "brand.json"), "utf8"));
   const manifest: NarrationManifest = JSON.parse(readFileSync(path.join("public", "audio", videoId, "manifest.json"), "utf8"));
 
   console.log(`QC for "${videoId}" (brand ${brand.id}), checking every ${every} frames...`);
@@ -46,7 +47,7 @@ const main = async () => {
   const browserExecutable = process.env.REMOTION_BROWSER_EXECUTABLE ?? null;
   const logLevel = "error" as const;
   const browser = await openBrowser("chrome", { browserExecutable, logLevel });
-  const inputProps = { videoId, qc: true };
+  const inputProps = { videoId, brandId, qc: true };
   const composition = await selectComposition({ serveUrl, id: videoId, inputProps, puppeteerInstance: browser, browserExecutable, logLevel });
   const timeline = buildTimeline(manifest, composition.fps);
   const words = timeline.scenes.flatMap((s) => s.words);

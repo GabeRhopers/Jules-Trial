@@ -1,12 +1,9 @@
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { useBrand } from "../lib/brand-context";
 import { AnimatedTitle } from "./AnimatedTitle";
 import { LogoReveal } from "./LogoReveal";
-import type { Brand } from "../lib/types";
 
 type Props = {
-  brand: Brand;
-  logoSrc: string;
-  fonts: { heading: string; body: string };
   headline: string;
   button: string;
   subline: string;
@@ -14,27 +11,21 @@ type Props = {
   scale?: number;
 };
 
-/** End card: logo reveal, offer headline, pulsing CTA button and contact line. */
-export const CtaEndCard: React.FC<Props> = ({ brand, logoSrc, fonts, headline, button, subline, scale = 1 }) => {
+/** End card: logo reveal, offer headline, CTA button and contact line. */
+export const CtaEndCard: React.FC<Props> = ({ headline, button, subline, scale = 1 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const { brand, fonts, motion } = useBrand();
   const { colors } = brand;
-  const buttonIn = spring({ frame: frame - 18, fps, config: { damping: 12, mass: 0.6 } });
-  const pulse = 1 + 0.03 * Math.sin(((frame - 30) / fps) * Math.PI * 2 * 0.9) * (frame > 30 ? 1 : 0);
-  const sublineIn = spring({ frame: frame - 26, fps, config: { damping: 200 } });
+  const buttonIn = spring({ frame: frame - 18, fps, config: motion.pop.spring });
+  // Bold brands get a gentle pulse on the button; calm brands keep it still
+  const pulse = brand.style.motion === "bold" && frame > 30 ? 1 + 0.03 * Math.sin(((frame - 30) / fps) * Math.PI * 2 * 0.9) : 1;
+  const sublineIn = spring({ frame: frame - 26, fps, config: motion.enter.spring });
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 40 * scale }}>
-      <LogoReveal src={logoSrc} width={520 * scale} />
-      <AnimatedTitle
-        text={headline}
-        fontFamily={fonts.heading}
-        fontSize={104 * scale}
-        color={colors.text}
-        highlight={headline.match(/\$\d+/g) ?? []}
-        highlightColor={colors.accent}
-        delay={6}
-      />
+      <LogoReveal width={520 * scale} />
+      <AnimatedTitle text={headline} fontSize={100 * scale} highlight={headline.match(/\$\d+|\d+/g) ?? []} delay={6} />
       <div
         data-qc="cta-button"
         style={{
@@ -42,13 +33,14 @@ export const CtaEndCard: React.FC<Props> = ({ brand, logoSrc, fonts, headline, b
           backgroundColor: colors.primary,
           color: colors.textOnPrimary,
           fontFamily: fonts.heading,
-          fontWeight: 800,
+          fontWeight: 700,
           fontSize: 52 * scale,
-          padding: `${26 * scale}px ${48 * scale}px`,
-          borderRadius: 999,
-          transform: `scale(${buttonIn * pulse})`,
+          padding: `${24 * scale}px ${46 * scale}px`,
+          borderRadius: Math.min(brand.style.cornerRadius, 999),
+          opacity: Math.min(1, buttonIn * 1.5),
+          transform: `scale(${interpolate(buttonIn, [0, 1], [brand.style.motion === "bold" ? 0 : 0.92, 1]) * pulse})`,
           transformOrigin: "left center",
-          boxShadow: `0 ${14 * scale}px ${40 * scale}px ${colors.primary}66`,
+          boxShadow: `0 ${14 * scale}px ${40 * scale}px ${colors.primary}55`,
         }}
       >
         {button}
@@ -57,7 +49,7 @@ export const CtaEndCard: React.FC<Props> = ({ brand, logoSrc, fonts, headline, b
         data-qc="cta-subline"
         style={{
           fontFamily: fonts.body,
-          fontWeight: 700,
+          fontWeight: 600,
           fontSize: 44 * scale,
           color: colors.textMuted,
           opacity: sublineIn,

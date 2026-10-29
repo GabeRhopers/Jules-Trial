@@ -132,3 +132,47 @@ Also approved: real client footage first, Higgsfield B-roll optional; per-brand 
 
 ### Manual steps for the user
 - None for this slice.
+
+## Slice 1 extra: audible preview voice (2026-10-29, sandbox only)
+- No offline voice was installed. Voice-model hosts (huggingface.co, GitHub releases) are blocked; the Ubuntu package archive is reachable.
+- Downloaded the espeak-ng `.deb` packages and unpacked them into the session scratchpad (no system install). A small Python script (scratchpad only, not committed) calls the espeak-ng library and records exact word timestamps from its WORD events, writing the same `manifest.json` format.
+- Result: robotic voice, captions synced to real speech timing, QC pass. Not part of the workspace; ElevenLabs replaces it in Slice 3.
+
+## Slice 2: Brand system (2026-10-29)
+
+### What changed
+- **Brand style block** (`style` in brand.json): `cornerRadius`, `headlineCase` (upper/sentence), `motion` (bold/calm), `background` (glow/grid), `transition` (fade/slide/wipe). Plus `captionStyle.highlight` (box/color).
+- **BrandProvider** (`src/lib/brand-context.tsx`): the composition loads the brand once and every component reads colors, fonts, logo and motion preset from it (`useBrand()`). Components have no brand-specific code.
+- **Motion presets** (`src/lib/motion.ts`): `bold` (springy pops, overshoot, button pulse) and `calm` (smooth, no overshoot, smaller moves).
+- **Brand transitions** (`src/lib/transitions.tsx`): fade, a subtle 40 px slide + fade (stays inside safe zones), or wipe.
+- **Brand switch in Studio:** every composition has a `brandId` prop. Change it to preview any video in any brand. `scripts/render.ts` and `scripts/qc.ts` accept `--brand=<id>`.
+- **`pointLabel`** in video config ("Sign 1 of 3", "Spec 1 of 3").
+- **Logos** now embed their font inside the SVG, so text renders correctly (fixes the Slice 1 gap).
+
+### New files
+| Path | Purpose |
+|---|---|
+| `brands/demo-b2b-industrial/` | brand.json, logo.svg, fonts/ (IBM Plex Sans + Condensed, OFL) |
+| `videos/anodizing-spec-checklist/` | B2B test reel for procurement and engineering buyers |
+| `scripts/validate-brand.ts` | Checks fields, hex colors, fonts, logo, 6 contrast pairs, placeholders |
+| `scripts/new-brand.ts` | Copies an existing brand into a new client folder |
+| `src/lib/brand-context.tsx`, `motion.ts`, `transitions.tsx` | Brand system |
+
+### Commands run
+| Command | Result |
+|---|---|
+| `node scripts/qc.ts <video> --every=8` for 3 combinations (HVAC video in both brands, B2B video) | New check (captions overlapping other text) found real overlaps on the CTA card in all 3. Fixed by scaling the reel CTA card to 85 %. Re-run: all 3 PASS (114 to 115 sync checks each). |
+| `node scripts/validate-brand.ts --all` | Both OK; warning: voice IDs are placeholders |
+| `node scripts/new-brand.ts test-client --name="Test Client"` then validate, then deleted | Works |
+| `node scripts/render.ts anodizing-spec-checklist` | 8.1 MB MP4 + SRT (19 lines), 157 s |
+
+### Decisions
+- Industrial brand: navy/graphite background, engineering blue primary, champagne-gold accent (anodized finish), IBM Plex Condensed headings in sentence case, square 6 px corners, calm motion, technical grid background, color-only caption highlight.
+- Industrial brand avoids special glyphs (≤, Δ) that the Latin font subset doesn't include; it uses words ("max", "Delta E") instead.
+- B2B demo values (AAMA 611 Class I 18 µm minimum, ASTM B680 40 mg/dm² maximum, Delta E 1.5, quote in 24 h, samples in 5 days) are placeholders to confirm with a real client.
+
+### npm scripts added
+`brand:new`, `brand:check`
+
+### Manual steps for the user
+- None for this slice.

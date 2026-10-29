@@ -38,8 +38,20 @@ export type Brand = {
     settings: Record<string, number | boolean>;
   };
   pronunciations: { term: string; say: string }[];
+  /** Look and feel beyond colors and fonts. Switching brand swaps all of this. */
+  style: {
+    /** Corner radius in px for buttons, pills and tags. 999 = fully rounded pill. */
+    cornerRadius: number;
+    headlineCase: "upper" | "sentence";
+    /** "bold" = springy pops and overshoot (B2C, social). "calm" = smooth, restrained (B2B, technical). */
+    motion: "bold" | "calm";
+    background: "glow" | "grid";
+    transition: "fade" | "slide" | "wipe";
+  };
   captionStyle: {
     fontFamily: "heading" | "body";
+    /** "box" = highlighted word in a colored box. "color" = highlighted word changes color only. */
+    highlight: "box" | "color";
     fontWeight: number;
     fontSizePx: number;
     textTransform: "uppercase" | "none";
@@ -70,6 +82,8 @@ export type VideoConfig = {
   brand: string;
   format: VideoFormat;
   title: string;
+  /** Word shown on numbered points, e.g. "Sign" -> "Sign 1 of 3". Defaults to "Point". */
+  pointLabel?: string;
   audience?: string;
   goal?: "lead" | "sale" | "awareness";
   narrationSource: "placeholder" | "elevenlabs";

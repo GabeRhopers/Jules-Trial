@@ -71,8 +71,16 @@
       "say": " degrees"
     }
   ],
+  "style": {
+    "cornerRadius": 999,
+    "headlineCase": "upper",
+    "motion": "bold",
+    "background": "glow",
+    "transition": "fade"
+  },
   "captionStyle": {
     "fontFamily": "heading",
+    "highlight": "box",
     "fontWeight": 800,
     "fontSizePx": 88,
     "textTransform": "uppercase",

@@ -31,8 +31,10 @@ export const QcProbe: React.FC<Props> = ({ safe, keepClear, ready }) => {
           const name = el.dataset.qc!;
           const r = el.getBoundingClientRect();
           if (r.width === 0 || r.height === 0) return;
-          const opacity = Number(getComputedStyle(el).opacity);
-          if (opacity < 0.05) return;
+          // Effective opacity including parents: skip elements that are mostly faded out (mid-transition)
+          let opacity = 1;
+          for (let n: HTMLElement | null = el; n; n = n.parentElement) opacity *= Number(getComputedStyle(n).opacity);
+          if (opacity < 0.5) return;
           const out =
             r.left < safe.x - 1 ||
             r.top < safe.y - 1 ||
@@ -45,7 +47,21 @@ export const QcProbe: React.FC<Props> = ({ safe, keepClear, ready }) => {
           if (r.right > width || r.bottom > height || r.left < 0 || r.top < 0) issues.push(`${name} outside frame`);
           if (el.scrollWidth > el.clientWidth + 1) issues.push(`${name} text overflows its box`);
         });
-        const captions = document.querySelector<HTMLElement>("[data-qc=captions]");
+        // Captions must never overlap other text (headline, stat, CTA...)
+        const captionEl = document.querySelector<HTMLElement>("[data-qc=captions]");
+        if (captionEl) {
+          const c = captionEl.getBoundingClientRect();
+          document.querySelectorAll<HTMLElement>("[data-qc]:not([data-qc=captions]):not([data-qc=progress])").forEach((el) => {
+            const r = el.getBoundingClientRect();
+            let opacity = 1;
+            for (let n: HTMLElement | null = el; n; n = n.parentElement) opacity *= Number(getComputedStyle(n).opacity);
+            if (opacity < 0.5 || r.width === 0) return;
+            if (r.left < c.right && r.right > c.left && r.top < c.bottom && r.bottom > c.top) {
+              issues.push(`captions overlap ${el.dataset.qc}`);
+            }
+          });
+        }
+        const captions = captionEl;
         const active = document.querySelector<HTMLElement>("[data-qc-active]");
         console.log(
           "QC " +
