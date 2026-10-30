@@ -48,7 +48,7 @@ export type Brand = {
     headlineCase: "upper" | "sentence";
     /** "bold" = springy pops and overshoot (B2C, social). "calm" = smooth, restrained (B2B, technical). */
     motion: "bold" | "calm";
-    background: "glow" | "grid";
+    background: "glow" | "grid" | "hearts";
     transition: "fade" | "slide" | "wipe";
   };
   captionStyle: {

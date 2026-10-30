@@ -397,3 +397,9 @@ Sandbox only: QC and render need `REMOTION_BROWSER_EXECUTABLE=/opt/pw-browsers/c
 ### Still open
 - Real ElevenLabs call (needs your API key and voice ID; on your computer).
 - Higgsfield sign-in and pricing check (on your computer).
+
+## Personal video + Portuguese narration (2026-10-30)
+- `scripts/kokoro_tts.py`: non-English Kokoro pipelines (e.g. `lang: "p"`, Brazilian Portuguese) return no word timestamps, so they are now estimated: speech start/end found by amplitude, words spread by letter count with pauses for punctuation. English is unchanged.
+- New background style `hearts` (`src/components/BrandBackground.tsx`, type in `src/lib/types.ts`): glow plus 18 hearts rising with a sway, deterministic per frame.
+- New brand `para-maninha` (voice `pf_dora`, pink/plum palette, heart logo) and video `te-amo-maninha` (SocialReel9x16, 21.3 s). QC PASS (99 sync checks) after widening the logo SVG: a square logo pushed the end card down into the caption band.
+- Rendered `out/para-maninha/te-amo-maninha.mp4` (5.6 MB). Samples page with download buttons: https://claude.ai/artifact/V64A2i3xZ5PSF8aDNpdmXH (private until shared).

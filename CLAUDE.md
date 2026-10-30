@@ -41,6 +41,7 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 ## Brand rules
 - Components never contain brand-specific code. Everything comes from `brand.json` via `useBrand()`: colors, fonts, logo, `style` (cornerRadius, headlineCase, motion bold/calm, background glow/grid, transition), `captionStyle` (highlight box/color), voice, pronunciations, default CTA.
 - New brand: `npm run brand:new -- <id> --name="Client"`, edit `brand.json`, replace the logo, then `npm run brand:check -- <id>` (fields, fonts, logo, contrast).
+- `style.background`: `glow`, `grid` or `hearts` (glow plus floating hearts, for personal or celebration videos).
 - Fonts: a Google Font listed in `src/lib/font-map.ts` (add one line for a new one), or licensed WOFF2 files in `brands/<id>/fonts/` (only if the font license allows video embedding).
 - Logos: SVG with text converted to outlines, or with the font embedded.
 - Add product names, standards and technical terms to `pronunciations` (the voice says `say`, captions show `term`).
