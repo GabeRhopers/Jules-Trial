@@ -1,0 +1,313 @@
+{
+  "id": "essencialismo-analise-ptbr",
+  "brand": "book-notes-pt",
+  "format": "Explainer16x9",
+  "title": "Essencialismo: 3 ferramentas que funcionam",
+  "scenes": [
+    {
+      "id": "abertura",
+      "text": "Passou o dia ocupado, e nada importante andou? Um livro diz que a solução é fazer menos coisas, de propósito. Aqui estão três ferramentas com base em pesquisa, explicadas passo a passo, e mais três ganhos rápidos.",
+      "visual": {
+        "kind": "hook",
+        "kicker": "Análise de livro · Essencialismo",
+        "headline": "Faça menos. Quais dicas funcionam?"
+      }
+    },
+    {
+      "id": "problema",
+      "text": "O livro é Essencialismo, de Greg McKeown, publicado em 2014. O diagnóstico dele: espalhamos nosso esforço em coisas demais, então nada anda muito, e as prioridades dos outros enchem os nossos dias. A resposta dele: menos, porém melhor.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "O diagnóstico",
+        "items": [
+          {
+            "icon": "calendar",
+            "label": "Agenda cheia",
+            "at": "esforço"
+          },
+          {
+            "icon": "arrows-split-2",
+            "label": "Coisas demais",
+            "at": "demais"
+          },
+          {
+            "icon": "arrow-big-right",
+            "label": "Menos, porém melhor",
+            "at": "menos",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "mentalidade",
+      "text": "A primeira grande ideia é uma mentalidade. Você sempre tem uma escolha, mesmo quando não parece. Só poucas coisas são realmente vitais. E todo sim é uma troca. Por isso ele faz uma pergunta, sem parar: isto é a coisa mais importante que eu deveria estar fazendo agora?",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Ideia 1: a mentalidade",
+        "items": [
+          {
+            "icon": "hand-click",
+            "label": "Escolha",
+            "at": "escolha"
+          },
+          {
+            "icon": "filter",
+            "label": "Poucas são vitais",
+            "at": "vitais"
+          },
+          {
+            "icon": "scale",
+            "label": "Todo sim é uma troca",
+            "at": "troca",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "metodo",
+      "text": "A segunda ideia é um método em três passos. Explorar: abra espaço para pensar, proteja o seu sono e filtre as opções com critérios rígidos, como a regra dos 90 por cento: se uma opção tira nota abaixo de 90, a resposta é não. Eliminar: escolha um objetivo claro, diga não com elegância e corte suas perdas. Executar: crie folgas no prazo e rotinas.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Ideia 2: o método",
+        "items": [
+          {
+            "icon": "search",
+            "label": "Explorar",
+            "at": "explorar"
+          },
+          {
+            "icon": "scissors",
+            "label": "Eliminar",
+            "at": "eliminar"
+          },
+          {
+            "icon": "repeat",
+            "label": "Executar",
+            "at": "executar",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "como-checamos",
+      "text": "Nós checamos catorze afirmações do livro contra meta-análises e os estudos originais. Algumas se sustentam, outras não. Aqui estão três ferramentas confiáveis, e como usar cada uma.",
+      "visual": {
+        "kind": "statement",
+        "kicker": "Como checamos",
+        "headline": "14 afirmações checadas",
+        "body": "Meta-análises e estudos originais"
+      }
+    },
+    {
+      "id": "ferramenta-1",
+      "text": "Ferramenta um: estime pelo seu passado, não pelo seu plano. O livro acerta quando diz que subestimamos o tempo das tarefas. Estudantes previram terminar a monografia em 34 dias. Levaram 55. Até a previsão de pior cenário deles ficou curta.",
+      "visual": {
+        "kind": "point",
+        "number": 1,
+        "headline": "Estime pelo seu passado",
+        "stat": {
+          "prefix": "",
+          "value": 55,
+          "suffix": "",
+          "label": "dias reais (previstos: 34)"
+        },
+        "proof": "Buehler, Griffin e Ross, 1994"
+      }
+    },
+    {
+      "id": "ferramenta-1-como",
+      "text": "Por quê? Imaginamos o plano dando certo e esquecemos como foram os projetos anteriores. Na mesma pesquisa, quando as pessoas ligaram a estimativa a tarefas parecidas do passado, o otimismo desapareceu. Então, antes de fechar um prazo, veja quanto tempo seus dois ou três últimos projetos parecidos levaram de verdade, e comece daí. Se os três últimos relatórios levaram duas semanas cada, não prometa o próximo em cinco dias.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Como estimar",
+        "items": [
+          {
+            "icon": "calendar",
+            "label": "Plano otimista",
+            "at": "plano"
+          },
+          {
+            "icon": "folder",
+            "label": "Tarefas parecidas",
+            "at": "parecidas"
+          },
+          {
+            "icon": "calendar-due",
+            "label": "Prazo realista",
+            "at": "prazo",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ferramenta-2",
+      "text": "Ferramenta dois: escreva regras do tipo se, então. Não achamos estudo que teste a regra dos 90 por cento. Mas uma ideia parecida tem evidência forte: os planos se, então. Você define uma situação específica e a ação exata que vai tomar. Em 94 estudos, esses planos ajudaram as pessoas a começar, manter o rumo e até largar compromissos que estavam falhando.",
+      "visual": {
+        "kind": "point",
+        "number": 2,
+        "headline": "Escreva regras se, então",
+        "stat": {
+          "prefix": "",
+          "value": 94,
+          "suffix": "",
+          "label": "estudos apoiam"
+        },
+        "proof": "Meta-análise: Gollwitzer e Sheeran, 2006"
+      }
+    },
+    {
+      "id": "ferramenta-2-como",
+      "text": "O segredo é decidir antes da hora chegar. Por exemplo: se chegar um pedido novo, então pergunto o que ele substitui. Se ele não serve ao meu objetivo principal, então ofereço uma alternativa. Outro exemplo: se uma reunião chegar sem pauta, então peço a pauta antes de aceitar.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Regra se, então",
+        "layout": "diagram",
+        "diagram": "flowchart TD\n  N[Pedido novo] --> Q{Serve ao objetivo?}\n  Q -->|Sim| A[Aceitar]\n  Q -->|Não| O([Oferecer alternativa])",
+        "nodes": {
+          "N": {
+            "at": "pedido"
+          },
+          "Q": {
+            "at": "serve"
+          },
+          "A": {
+            "at": "objetivo"
+          },
+          "O": {
+            "at": "alternativa",
+            "highlight": true
+          }
+        }
+      }
+    },
+    {
+      "id": "ferramenta-3",
+      "text": "Ferramenta três: registre o seu progresso por escrito. O livro diz que pequenas vitórias são o maior motivador. Isso estica um único estudo. O que se sustenta é o registro. Em 138 experimentos, fazer as pessoas acompanharem o próprio progresso as ajudou a atingir mais metas, e o efeito foi maior quando o progresso era escrito ou compartilhado.",
+      "visual": {
+        "kind": "point",
+        "number": 3,
+        "headline": "Registre o progresso",
+        "stat": {
+          "prefix": "",
+          "value": 138,
+          "suffix": "",
+          "label": "experimentos apoiam"
+        },
+        "proof": "Meta-análise: Harkin e colegas, 2016"
+      }
+    },
+    {
+      "id": "ferramenta-3-como",
+      "text": "Registrar mostra a distância entre onde você está e onde queria estar. Experimente uma linha toda sexta-feira: o que andou na minha prioridade principal esta semana? Por exemplo: proposta do cliente pronta, falta a revisão. Depois, compartilhe com uma pessoa.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Na prática",
+        "items": [
+          {
+            "icon": "notebook",
+            "label": "Uma linha por semana",
+            "at": "linha"
+          },
+          {
+            "icon": "list-check",
+            "label": "Prioridade principal",
+            "at": "prioridade"
+          },
+          {
+            "icon": "share",
+            "label": "Compartilhe",
+            "at": "compartilhe",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "ganhos-rapidos",
+      "text": "Três ganhos rápidos. Um: corte suas perdas. Uma meta-análise confirma que continuamos alimentando projetos ruins por causa do que já gastamos. Pergunte: se eu ainda não estivesse nisso, eu entraria hoje? Dois: proteja o seu sono. Perder uma noite de sono prejudica claramente a atenção. Três: amarre uma rotina nova a um gatilho diário e dê a ela uns dois meses. No estudo mais conhecido, levou cerca de 66 dias, e perder um único dia quase não fez diferença.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Ganhos rápidos",
+        "items": [
+          {
+            "icon": "trending-down",
+            "label": "Corte perdas",
+            "at": "perdas"
+          },
+          {
+            "icon": "moon",
+            "label": "Proteja o sono",
+            "at": "sono"
+          },
+          {
+            "icon": "repeat",
+            "label": "Rotina: ~66 dias",
+            "at": "rotina",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "com-cautela",
+      "text": "O que levar com cautela: as grandes ideias do livro vêm da experiência do autor, não de pesquisa. A explicação de desamparo aprendido que ele usa foi revisada pelos próprios pesquisadores em 2016. E os números de sono de violinistas que ele cita estão corretos, mas a principal conclusão do mesmo estudo, sobre prática, falhou numa replicação em 2019.",
+      "visual": {
+        "kind": "statement",
+        "kicker": "Com cautela",
+        "headline": "Opinião não é pesquisa",
+        "body": "Teoria revisada em 2016 · achado sobre prática não replicado em 2019"
+      }
+    },
+    {
+      "id": "veredito",
+      "text": "Então, vale a leitura? Sim, pelas ferramentas, principalmente se os pedidos dos outros comandam a sua agenda. Pule se você já prioriza com rigor, ou se o seu cargo dá pouco espaço para dizer não.",
+      "visual": {
+        "kind": "statement",
+        "kicker": "O veredito",
+        "headline": "Leia pelas ferramentas",
+        "body": "Pule se você já prioriza com rigor"
+      }
+    },
+    {
+      "id": "sua-semana",
+      "text": "Nesta semana: veja quanto tempo seu último projeto parecido levou de verdade, escreva uma regra se, então, e anote uma linha na sexta sobre a sua prioridade.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Sua semana",
+        "items": [
+          {
+            "icon": "folder",
+            "label": "Projetos passados",
+            "at": "projeto"
+          },
+          {
+            "icon": "arrows-split-2",
+            "label": "Regra se, então",
+            "at": "regra"
+          },
+          {
+            "icon": "notebook",
+            "label": "Linha de sexta",
+            "at": "linha",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "fim",
+      "text": "Todas as fontes estão na descrição.",
+      "visual": {
+        "kind": "cta"
+      }
+    }
+  ],
+  "pointLabel": "Ferramenta",
+  "music": null,
+  "goal": "awareness",
+  "audience": "Profissionais e gestores sobrecarregados decidindo se Essencialismo vale a leitura (YouTube, LinkedIn)"
+}

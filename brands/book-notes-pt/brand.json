@@ -1,0 +1,94 @@
+{
+  "id": "book-notes-pt",
+  "displayName": "Book Notes PT",
+  "description": "Versão em português do Brasil da marca Book Notes (análises de livros do Source-to-Asset Engine).",
+  "colors": {
+    "primary": "#2F6FDB",
+    "secondary": "#9DB4C8",
+    "accent": "#E9B44C",
+    "background": "#0D1B2A",
+    "backgroundAlt": "#1B263B",
+    "text": "#F4F7FA",
+    "textMuted": "#A9B8C9",
+    "textOnPrimary": "#FFFFFF",
+    "textOnAccent": "#0D1B2A"
+  },
+  "fonts": {
+    "heading": {
+      "family": "IBM Plex Sans Condensed",
+      "weights": [
+        "600",
+        "700"
+      ],
+      "files": {
+        "600": "fonts/IBMPlexSansCondensed-600.woff2",
+        "700": "fonts/IBMPlexSansCondensed-700.woff2"
+      }
+    },
+    "body": {
+      "family": "IBM Plex Sans",
+      "weights": [
+        "400",
+        "500",
+        "600"
+      ],
+      "files": {
+        "100 700": "fonts/IBMPlexSans-Variable.woff2"
+      }
+    }
+  },
+  "logo": "logo.svg",
+  "toneOfVoice": [
+    "Profissional e descontraído, como um colega que leu o livro e explica com clareza. Sem exageros.",
+    "Atribua as ideias ao autor; citações curtas.",
+    "Cada fato vem da Claims Table do projeto; diga quando a evidência é fraca ou contestada.",
+    "Termine com um veredito justo: quem deve ler e quem pode pular."
+  ],
+  "voice": {
+    "provider": "kokoro",
+    "kokoro": {
+      "voice": "pf_dora",
+      "lang": "p",
+      "speed": 0.93,
+      "_note": "Português do Brasil (pf_dora). Sem timestamps nativos: tempo das palavras estimado (scripts/kokoro_tts.py)."
+    },
+    "elevenlabs": {
+      "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+      "modelId": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.6,
+        "similarity_boost": 0.75,
+        "style": 0.15,
+        "use_speaker_boost": true,
+        "speed": 0.98
+      },
+      "_note": "Model id and voice settings names verified 2026-10-29 against elevenlabs.io/docs (convert-with-timestamps, models). Newer model: eleven_v4."
+    }
+  },
+  "pronunciations": [],
+  "style": {
+    "cornerRadius": 6,
+    "headlineCase": "sentence",
+    "motion": "calm",
+    "background": "glow",
+    "transition": "slide"
+  },
+  "captionStyle": {
+    "fontFamily": "heading",
+    "highlight": "color",
+    "fontWeight": 700,
+    "fontSizePx": 84,
+    "textTransform": "none",
+    "baseColor": "#F4F7FA",
+    "activeColor": "#0D1B2A",
+    "activeBackground": "#E9B44C",
+    "strokeColor": "#0D1B2A",
+    "maxWordsPerPage": 4
+  },
+  "cta": {
+    "headline": "Menos, porém melhor. Confira as evidências.",
+    "button": "Fontes na descrição",
+    "subline": "14 afirmações checadas na pesquisa"
+  },
+  "music": null
+}
