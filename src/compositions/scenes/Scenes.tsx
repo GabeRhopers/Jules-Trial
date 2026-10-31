@@ -2,6 +2,7 @@ import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { AnimatedTitle } from "../../components/AnimatedTitle";
 import { BRollSlot } from "../../components/BRollSlot";
 import { CtaEndCard } from "../../components/CtaEndCard";
+import { LogoReveal } from "../../components/LogoReveal";
 import { LowerThird } from "../../components/LowerThird";
 import { NumberBadge } from "../../components/NumberBadge";
 import { StatCounter } from "../../components/StatCounter";
@@ -101,6 +102,7 @@ export const FormatScene: React.FC<SceneRenderArgs & { area: Rect; sizes: SceneS
       return (
         <SceneArea rect={area}>
           <div style={{ display: "flex", flexDirection: "column", gap: sizes.kicker }}>
+            {visual.logo ? <LogoReveal width={sizes.hook * 2.6} /> : null}
             <Kicker text={visual.kicker} size={sizes.kicker} />
             <AnimatedTitle text={visual.headline} fontSize={sizes.hook} highlight={visual.headline.split(" ").slice(0, 2)} stagger={2} />
           </div>

@@ -1,0 +1,59 @@
+{
+  "id": "btac-furnace-no-heat",
+  "brand": "btac",
+  "format": "SocialReel9x16",
+  "title": "Furnace on, but no heat? 2-minute check",
+  "audience": "Homeowners in Lubbock and the South Plains with a furnace, on Instagram or Facebook Reels during the first cold weeks of fall",
+  "goal": "lead",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Furnace running, but the house is still cold? Check this first.",
+      "visual": {
+        "kind": "hook",
+        "kicker": "Cold house?",
+        "headline": "Furnace on, but no heat?",
+        "logo": true
+      }
+    },
+    {
+      "id": "check",
+      "text": "Here is a two minute check. Start at the thermostat. Is it set to heat? If not, switch it. If it is, look at the filter. Dirty? Replace it. Clean, and still cold? Call BTAC.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Furnace check",
+        "layout": "diagram",
+        "diagram": "flowchart TD\n  T{Heat on?} -->|No| S[Set to heat]\n  T -->|Yes| F{Filter dirty?}\n  F -->|Yes| R([New filter])\n  F -->|No| P[Call BTAC]",
+        "nodes": {
+          "T": {
+            "at": "thermostat"
+          },
+          "S": {
+            "at": "switch"
+          },
+          "F": {
+            "at": "filter"
+          },
+          "R": {
+            "at": "replace"
+          },
+          "P": {
+            "at": "BTAC",
+            "icon": "phone-call",
+            "highlight": true
+          }
+        }
+      }
+    },
+    {
+      "id": "cta",
+      "text": "Still no heat? Call BTAC. We serve Lubbock and the South Plains.",
+      "visual": {
+        "kind": "cta",
+        "headline": "Still no heat?",
+        "button": "Call BTAC",
+        "subline": "Lubbock & the South Plains"
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "btac",
+  "displayName": "BTAC (Bruce Thornton Air Conditioning)",
+  "description": "Heating, cooling and plumbing in Lubbock and the South Plains, TX. Colors taken from the logo supplied by the client (red, white, blue).",
+  "colors": {
+    "primary": "#0033CD",
+    "secondary": "#FF3B3B",
+    "accent": "#E10600",
+    "background": "#071330",
+    "backgroundAlt": "#0D2152",
+    "text": "#FFFFFF",
+    "textMuted": "#C3CEEA",
+    "textOnPrimary": "#FFFFFF",
+    "textOnAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Poppins",
+      "weights": [
+        "700",
+        "800"
+      ],
+      "files": {
+        "700": "fonts/Poppins-700.woff2",
+        "800": "fonts/Poppins-800.woff2"
+      }
+    },
+    "body": {
+      "family": "Inter",
+      "weights": [
+        "500",
+        "700"
+      ],
+      "files": {
+        "100 900": "fonts/Inter-Variable.woff2"
+      }
+    }
+  },
+  "logo": "logo.png",
+  "toneOfVoice": [
+    "Friendly local experts. Plain words, short sentences.",
+    "Lead with the homeowner's problem (no heat, comfort, safety), then the fix.",
+    "Local: Lubbock and the South Plains.",
+    "Never invent prices, response times or guarantees: only use offers BTAC has confirmed.",
+    "One clear call to action per video: call BTAC."
+  ],
+  "voice": {
+    "provider": "kokoro",
+    "kokoro": {
+      "voice": "af_heart",
+      "lang": "a",
+      "speed": 1.05,
+      "_note": "Free, local. 'a' = American English. Voice names and quality grades: VOICES.md on huggingface.co/hexgrad/Kokoro-82M (checked 2026-10-29: af_heart A, af_bella A-, am_michael/am_fenrir/am_puck C+)."
+    },
+    "elevenlabs": {
+      "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+      "modelId": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.75,
+        "style": 0.35,
+        "use_speaker_boost": true,
+        "speed": 1.05
+      },
+      "_note": "Model id and voice settings names verified 2026-10-29 against elevenlabs.io/docs (convert-with-timestamps, models). Newer model: eleven_v4."
+    }
+  },
+  "pronunciations": [
+    {
+      "term": "BTAC",
+      "say": "B-T-A-C"
+    },
+    {
+      "term": "HVAC",
+      "say": "H-V-A-C"
+    },
+    {
+      "term": "\u00b0F",
+      "say": " degrees"
+    }
+  ],
+  "style": {
+    "cornerRadius": 999,
+    "headlineCase": "upper",
+    "motion": "bold",
+    "background": "glow",
+    "transition": "fade"
+  },
+  "captionStyle": {
+    "fontFamily": "heading",
+    "highlight": "box",
+    "fontWeight": 800,
+    "fontSizePx": 88,
+    "textTransform": "uppercase",
+    "baseColor": "#FFFFFF",
+    "activeColor": "#FFFFFF",
+    "activeBackground": "#E10600",
+    "strokeColor": "#071330",
+    "maxWordsPerPage": 3
+  },
+  "cta": {
+    "headline": "No heat? Call BTAC",
+    "button": "Call BTAC",
+    "subline": "Lubbock & the South Plains"
+  },
+  "music": null
+}

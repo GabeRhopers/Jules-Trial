@@ -122,7 +122,8 @@ export type Stat = { prefix: string; value: number; suffix: string; label: strin
 export type LowerThirdContent = { title: string; subtitle?: string };
 
 export type SceneVisual =
-  | { kind: "hook"; kicker: string; headline: string }
+  /** `logo: true` shows the brand logo above the kicker, so viewers who scroll early still see who it is */
+  | { kind: "hook"; kicker: string; headline: string; logo?: boolean }
   /** Problem / solution style scene: a kicker ("The problem"), a headline, optional supporting line */
   | { kind: "statement"; kicker?: string; headline: string; body?: string }
   /** Numbered point or benefit, with an optional stat and a short proof line ("Based on 1,200 lots in 2025") */

@@ -170,6 +170,7 @@ Notes:
 | `anodizing-process-whiteboard` | demo-b2b-industrial | Explainer16x9 with 2 whiteboard scenes |
 | `ac-freeze-whiteboard` | demo-home-services | SocialReel9x16 with 1 whiteboard scene |
 | `furnace-no-heat-whiteboard` | demo-home-services | SocialReel9x16 with a whiteboard decision flowchart |
+| `btac-furnace-no-heat` | btac (client) | Same video for BTAC: logo in the hook and end card, "Call BTAC" |
 
 Narration audio is not committed. Before previewing an example, run `npm run narrate -- <video-id>`
 (Kokoro, free; `--provider=kokoro` for the industrial brand, which defaults to ElevenLabs), or

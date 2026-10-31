@@ -471,3 +471,12 @@ ELK (EPL-2.0); bpmn-js (free, watermark must stay); Kroki (MIT, self-host). tldr
 Edge labels as layout rows doubled the diagram height (now drawn beside the line); curved connectors made hooks at
 arrowheads (now straight for simple links); loop-back arrows overlapped (paired edges keep separate routes);
 "24 h" left "h" alone on a line (orphan rule in word wrap).
+
+## First client video: BTAC furnace reel (2026-10-31)
+- Brand `btac` (Bruce Thornton Air Conditioning, Lubbock and the South Plains, TX), confirmed by the user.
+  Logo: the client's PNG (658x229, transparent). Colors from the logo: blue #0033CD (primary), red #E10600 (accent,
+  caption highlight), navy #071330 background. Voice says "B-T-A-C" (pronunciation, to confirm with BTAC).
+- Video `btac-furnace-no-heat` (copy of the furnace demo): logo in the hook (new `hook.logo` option) and on the end
+  card, flowchart ends in a highlighted "Call BTAC" node, CTA "Still no heat? Call BTAC" with "Lubbock & the South Plains".
+  Demo placeholders removed. No phone number on purpose: directories list two different numbers; add it once BTAC confirms.
+- QC PASS (104 sync checks; highlighted caption 5.0:1, whiteboard highlight 8.5:1). Render 1080x1920, 22.1 s, 3.7 MB.

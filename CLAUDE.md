@@ -48,6 +48,8 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 - Fonts: a Google Font listed in `src/lib/font-map.ts` (add one line for a new one), or licensed WOFF2 files in `brands/<id>/fonts/` (only if the font license allows video embedding).
 - Logos: SVG with text converted to outlines, or with the font embedded.
 - Add product names, standards and technical terms to `pronunciations` (the voice says `say`, captions show `term`).
+- Logos: SVG preferred; a PNG with a transparent background also works (`"logo": "logo.png"`). Check it on the brand background: a white outline or white areas keep a dark-blue logo readable on navy.
+- Hook scene option `"logo": true` shows the logo small above the kicker, so people who scroll away early still see the brand (keep the hook message as the main element; never open with a logo card).
 
 ## Whiteboard scenes (optional)
 - Scene kind `whiteboard`: `{ "kind": "whiteboard", "title": "...", "layout": "flow" | "free" | "diagram", "items": [{ "icon", "label", "at", "circle", "x", "y", "size" }] }`.
