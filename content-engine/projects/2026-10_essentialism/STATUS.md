@@ -5,19 +5,19 @@
 | Track | A (Analysis) |
 | Language | US English |
 | Access level | C (title only) |
-| Current stage | Stage 2: Source verification (blocked: network) |
+| Current stage | Stage 7 done; Stage 8 (delivery) pending your gate approvals |
 
 | Gate | State |
 |---|---|
 | Intake | DECIDED by Claude on request, 2026-10-31 |
-| Gate 1 (Source Card) | NOT READY: sources could not be opened in this session |
-| Gate 2A (Analysis Pack) | NOT STARTED |
-| Gate 3 (QA) | NOT STARTED |
+| Gate 1 (Source Card) | SELF-CHECKED by Claude, awaiting your approval |
+| Gate 2A (Analysis Pack) | SELF-CHECKED by Claude, awaiting your approval |
+| Gate 3 (QA) | SELF-CHECKED by Claude, awaiting your approval (4 open items in 04-qa/qa-report.md) |
 
-Only the user changes a gate to APPROVED.
+Only the user changes a gate to APPROVED. Gates were self-checked (not skipped) because the user asked
+Claude to proceed with the best approach for this first test.
 
-## Blocker
+## Outputs
 
-The session's network policy blocks the sites needed to open sources (tested: penguinrandomhouse.com,
-search.schlowlibrary.org). Web search works, but the engine rule is "a snippet is not a source," so the
-Source Card cannot be completed until those hosts are allowed.
+- Full 8-minute script: `03-outputs/explainer-video/script-full.md`
+- 68-second video: `videos/essentialism-explainer/` (render: `out/book-notes/essentialism-explainer.mp4`, git-ignored)

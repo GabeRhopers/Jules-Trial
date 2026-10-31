@@ -40,7 +40,7 @@ Here are the tools people remember most.
 
 The 90 Percent Rule. Score any new opportunity from 0 to 100 against your most important criterion. If it's under 90, treat it as a zero and say no. [C-08]
 
-The graceful no. The book gives you scripts: a soft no, a "let me check my calendar," a "yes, what should I deprioritize?" The point is to separate the decision from the relationship. [Ch. 11]
+The graceful no. The book gives you eight ready-made responses, starting with a soft "no, but." The point is to separate the decision from the relationship. [Ch. 11, secondhand]
 
 The ownership test. Instead of asking how much you value a commitment, ask: if I didn't already have this, what would I give to get it? [C-11]
 
