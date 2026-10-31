@@ -1,0 +1,91 @@
+{
+  "id": "para-maninha",
+  "displayName": "Para a maninha",
+  "description": "Marca pessoal para mensagens de carinho. Tom afetuoso, leve e direto.",
+  "colors": {
+    "primary": "#FF5C8A",
+    "secondary": "#B57BFF",
+    "accent": "#FFD166",
+    "background": "#2A0F2E",
+    "backgroundAlt": "#3D1A42",
+    "text": "#FFFFFF",
+    "textMuted": "#F2C9DA",
+    "textOnPrimary": "#2A0F2E",
+    "textOnAccent": "#2A0F2E"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Poppins",
+      "weights": [
+        "700",
+        "800"
+      ],
+      "files": {
+        "700": "fonts/Poppins-700.woff2",
+        "800": "fonts/Poppins-800.woff2"
+      }
+    },
+    "body": {
+      "family": "Inter",
+      "weights": [
+        "500",
+        "700"
+      ],
+      "files": {
+        "100 900": "fonts/Inter-Variable.woff2"
+      }
+    }
+  },
+  "logo": "logo.svg",
+  "toneOfVoice": [
+    "Carinhoso e informal, como uma conversa entre irmãos.",
+    "Frases curtas, sem exagero."
+  ],
+  "voice": {
+    "provider": "kokoro",
+    "kokoro": {
+      "voice": "pf_dora",
+      "lang": "p",
+      "speed": 0.95,
+      "_note": "Português do Brasil. Vozes: pf_dora (feminina), pm_alex (masculina). Sem timestamps nativos: o tempo das palavras é estimado (scripts/kokoro_tts.py)."
+    },
+    "elevenlabs": {
+      "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+      "modelId": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.75,
+        "style": 0.35,
+        "use_speaker_boost": true,
+        "speed": 1.05
+      },
+      "_note": "Model id and voice settings names verified 2026-10-29 against elevenlabs.io/docs (convert-with-timestamps, models). Newer model: eleven_v4."
+    }
+  },
+  "pronunciations": [],
+  "style": {
+    "cornerRadius": 999,
+    "headlineCase": "none",
+    "motion": "bold",
+    "background": "hearts",
+    "transition": "fade"
+  },
+  "captionStyle": {
+    "fontFamily": "heading",
+    "highlight": "box",
+    "fontWeight": 800,
+    "fontSizePx": 88,
+    "textTransform": "uppercase",
+    "baseColor": "#FFFFFF",
+    "activeColor": "#2A0F2E",
+    "activeBackground": "#FFD166",
+    "strokeColor": "#2A0F2E",
+    "maxWordsPerPage": 3
+  },
+  "cta": {
+    "headline": "Eu te amo, maninha!",
+    "button": "Pra sempre do seu lado",
+    "subline": "Com todo o meu carinho"
+  },
+  "music": null
+}

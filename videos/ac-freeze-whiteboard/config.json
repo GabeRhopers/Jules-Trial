@@ -1,0 +1,55 @@
+{
+  "id": "ac-freeze-whiteboard",
+  "brand": "demo-home-services",
+  "format": "SocialReel9x16",
+  "title": "Why your AC freezes in summer (whiteboard demo)",
+  "audience": "Homeowners with central AC, seeing this on Instagram or Facebook Reels in early summer",
+  "goal": "lead",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Ice on your AC in July? Here is why it happens.",
+      "visual": {
+        "kind": "hook",
+        "kicker": "AC blowing warm?",
+        "headline": "Ice on your AC in July?"
+      }
+    },
+    {
+      "id": "why",
+      "text": "It usually starts small. A dirty filter blocks the air, the coil gets too cold, and it freezes.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Why AC coils freeze",
+        "items": [
+          {
+            "icon": "filter",
+            "label": "Dirty filter",
+            "at": "filter"
+          },
+          {
+            "icon": "wind-off",
+            "label": "Less air",
+            "at": "air"
+          },
+          {
+            "icon": "snowflake",
+            "label": "Frozen coil",
+            "at": "freezes",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "cta",
+      "text": "Turn the system off and book a tune-up. We clean the coil and check the refrigerant this week.",
+      "visual": {
+        "kind": "cta",
+        "headline": "Book a tune-up",
+        "button": "Book now",
+        "subline": "Demo \u00b7 offer to confirm"
+      }
+    }
+  ]
+}

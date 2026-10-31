@@ -1,0 +1,47 @@
+{
+  "id": "anodizing-process-whiteboard",
+  "brand": "demo-b2b-industrial",
+  "format": "Explainer16x9",
+  "title": "Why anodized parts fail early (whiteboard demo)",
+  "audience": "Design engineers and buyers specifying anodized aluminum parts (website, LinkedIn, sales follow-up email)",
+  "goal": "lead",
+  "music": "demo-pad.mp3",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Why do some anodized parts fade or corrode within a year, while others last for decades?",
+      "visual": { "kind": "hook", "kicker": "For engineers and buyers", "headline": "Why anodized parts fail early" }
+    },
+    {
+      "id": "process",
+      "text": "A durable finish takes four steps. We clean the raw part, the tank grows a hard oxide layer, we dye it, and then we seal it.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "How anodizing protects your part",
+        "items": [
+          { "icon": "spray", "label": "Clean and etch", "at": "clean" },
+          { "icon": "bolt", "label": "Grow oxide layer", "at": "tank" },
+          { "icon": "droplet", "label": "Dye", "at": "dye" },
+          { "icon": "shield-check", "label": "Seal", "at": "seal", "circle": true }
+        ]
+      }
+    },
+    {
+      "id": "risk",
+      "text": "Skip or rush the seal, and the pores stay open. The color fades, and corrosion gets in.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "No seal = open pores",
+        "items": [
+          { "icon": "sun", "label": "Color fades", "at": "fades" },
+          { "icon": "alert-triangle", "label": "Corrosion gets in", "at": "corrosion", "circle": true }
+        ]
+      }
+    },
+    {
+      "id": "cta",
+      "text": "Send us your drawing. We confirm the coating class and seal test before production starts.",
+      "visual": { "kind": "cta", "headline": "Seal test confirmed before production", "button": "Send your drawing", "subline": "Demo video · claims to be confirmed by the client" }
+    }
+  ]
+}
