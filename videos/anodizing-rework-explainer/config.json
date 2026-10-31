@@ -1,0 +1,47 @@
+{
+  "id": "anodizing-rework-explainer",
+  "brand": "demo-b2b-industrial",
+  "format": "Explainer16x9",
+  "title": "Stop paying twice for rejected anodized parts",
+  "pointLabel": "Benefit",
+  "audience": "Procurement and quality managers buying anodized aluminum parts (website, LinkedIn, sales follow-up email)",
+  "goal": "lead",
+  "music": "demo-pad.mp3",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Every rejected lot of anodized parts costs you twice: once in rework, and again in missed ship dates.",
+      "visual": { "kind": "hook", "kicker": "For procurement and quality teams", "headline": "Stop paying twice for rejected anodized parts" }
+    },
+    {
+      "id": "problem",
+      "text": "Most rejects trace back to three specs nobody wrote on the drawing: coating class, seal test, and color tolerance.",
+      "visual": { "kind": "statement", "kicker": "The problem", "headline": "Drawings that leave room for guessing", "body": "Coating class, seal test and color tolerance are missing from most drawings we receive." }
+    },
+    {
+      "id": "solution",
+      "text": "So we review every drawing before production, and lock those three specs with you in writing.",
+      "visual": { "kind": "statement", "kicker": "Our process", "headline": "A spec review before the first part is racked", "body": "Coating class, seal test and color tolerance, confirmed in writing before production." }
+    },
+    {
+      "id": "benefit-1",
+      "text": "The result: first pass yield above 98 percent, across every lot we shipped last year.",
+      "visual": { "kind": "point", "number": 1, "headline": "Fewer rejected lots", "stat": { "prefix": "", "value": 98, "suffix": "%", "label": "first-pass yield" }, "proof": "Across all lots shipped in 2025 (demo figure)" }
+    },
+    {
+      "id": "benefit-2",
+      "text": "Lead times you can plan around: 10 working days, with 96 percent of orders on time.",
+      "visual": { "kind": "point", "number": 2, "headline": "Lead times you can plan around", "stat": { "prefix": "", "value": 10, "suffix": " days", "label": "standard lead time" }, "proof": "96% of orders delivered on time (demo figure)" }
+    },
+    {
+      "id": "benefit-3",
+      "text": "And a test report with every lot, so incoming inspection takes minutes, not hours.",
+      "visual": { "kind": "point", "number": 3, "headline": "Incoming inspection in minutes", "stat": { "prefix": "", "value": 100, "suffix": "%", "label": "of lots ship with a test report" }, "proof": "Thickness, seal and color data for every lot" }
+    },
+    {
+      "id": "cta",
+      "text": "Send us your next drawing. You get a spec review and a quote within 24 hours.",
+      "visual": { "kind": "cta", "headline": "Spec review and quote in 24 hours", "button": "Send your drawing", "subline": "ISO 9001 certified · Test report with every lot" }
+    }
+  ]
+}

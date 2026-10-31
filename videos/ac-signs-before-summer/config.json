@@ -1,0 +1,72 @@
+{
+  "id": "ac-signs-before-summer",
+  "brand": "demo-home-services",
+  "format": "SocialReel9x16",
+  "title": "3 signs your AC needs service before summer",
+  "pointLabel": "Sign",
+  "audience": "Homeowners 30-60 in the service area, AC is 5+ years old",
+  "goal": "lead",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Your AC can quit on the first 95 degree day. Here are 3 signs it needs service now.",
+      "visual": {
+        "kind": "hook",
+        "kicker": "Before summer hits",
+        "headline": "3 signs your AC needs service"
+      }
+    },
+    {
+      "id": "sign-1",
+      "text": "Sign one. The air from your vents feels less than 15 degrees cooler than the room.",
+      "visual": {
+        "kind": "point",
+        "number": 1,
+        "headline": "Weak, warm airflow",
+        "stat": {
+          "prefix": "<",
+          "value": 15,
+          "suffix": "°F",
+          "label": "cooler than the room"
+        }
+      }
+    },
+    {
+      "id": "sign-2",
+      "text": "Sign two. Your energy bill jumped 20 percent or more, and you didn't change a thing.",
+      "visual": {
+        "kind": "point",
+        "number": 2,
+        "headline": "Your bill jumped",
+        "stat": {
+          "prefix": "+",
+          "value": 20,
+          "suffix": "%",
+          "label": "same usage, bigger bill"
+        }
+      }
+    },
+    {
+      "id": "sign-3",
+      "text": "Sign three. It turns on and off every few minutes, or starts rattling and buzzing.",
+      "visual": {
+        "kind": "point",
+        "number": 3,
+        "headline": "Short cycling or new noises",
+        "stat": {
+          "prefix": "",
+          "value": 5,
+          "suffix": " min",
+          "label": "or less between cycles"
+        }
+      }
+    },
+    {
+      "id": "cta",
+      "text": "Skip the emergency call. Book a 29 dollar tune-up now. Tap the link to pick your time.",
+      "visual": {
+        "kind": "cta"
+      }
+    }
+  ]
+}

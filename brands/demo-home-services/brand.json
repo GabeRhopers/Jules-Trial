@@ -1,0 +1,107 @@
+{
+  "id": "demo-home-services",
+  "displayName": "Demo HVAC Co.",
+  "description": "Fictional HVAC and plumbing company. Friendly, bold, local. Example brand for the template system.",
+  "colors": {
+    "primary": "#E8541A",
+    "secondary": "#2EC4F1",
+    "accent": "#FFC93C",
+    "background": "#0B1E33",
+    "backgroundAlt": "#12304F",
+    "text": "#FFFFFF",
+    "textMuted": "#B8CBE0",
+    "textOnPrimary": "#FFFFFF",
+    "textOnAccent": "#0B1E33"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Poppins",
+      "weights": [
+        "700",
+        "800"
+      ],
+      "files": {
+        "700": "fonts/Poppins-700.woff2",
+        "800": "fonts/Poppins-800.woff2"
+      }
+    },
+    "body": {
+      "family": "Inter",
+      "weights": [
+        "500",
+        "700"
+      ],
+      "files": {
+        "100 900": "fonts/Inter-Variable.woff2"
+      }
+    }
+  },
+  "logo": "logo.svg",
+  "toneOfVoice": [
+    "Friendly neighbor who happens to be an expert. Plain words, short sentences.",
+    "Lead with the homeowner's problem (comfort, surprise bills, emergency calls), then the fix.",
+    "Use specific numbers: prices, minutes, degrees, percent. Never 'save money', say how much.",
+    "Local and fast: mention the service area and same-day or next-day availability.",
+    "One clear call to action per video."
+  ],
+  "voice": {
+    "provider": "kokoro",
+    "kokoro": {
+      "voice": "af_heart",
+      "lang": "a",
+      "speed": 1.05,
+      "_note": "Free, local. 'a' = American English. af_heart is listed in Kokoro's README; check other voice names in VOICES.md on huggingface.co/hexgrad/Kokoro-82M."
+    },
+    "elevenlabs": {
+      "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+      "modelId": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.45,
+        "similarity_boost": 0.75,
+        "style": 0.35,
+        "use_speaker_boost": true,
+        "speed": 1.05
+      },
+      "_note": "NOT VERIFIED AGAINST CURRENT DOCS: model id and voice settings names must be checked against elevenlabs.io/docs."
+    }
+  },
+  "pronunciations": [
+    {
+      "term": "HVAC",
+      "say": "H-V-A-C"
+    },
+    {
+      "term": "SEER2",
+      "say": "seer two"
+    },
+    {
+      "term": "°F",
+      "say": " degrees"
+    }
+  ],
+  "style": {
+    "cornerRadius": 999,
+    "headlineCase": "upper",
+    "motion": "bold",
+    "background": "glow",
+    "transition": "fade"
+  },
+  "captionStyle": {
+    "fontFamily": "heading",
+    "highlight": "box",
+    "fontWeight": 800,
+    "fontSizePx": 88,
+    "textTransform": "uppercase",
+    "baseColor": "#FFFFFF",
+    "activeColor": "#0B1E33",
+    "activeBackground": "#FFC93C",
+    "strokeColor": "#0B1E33",
+    "maxWordsPerPage": 3
+  },
+  "cta": {
+    "headline": "Book a $29 AC tune-up",
+    "button": "Tap to pick your time",
+    "subline": "(555) 010-0199 · Same-week appointments"
+  },
+  "music": null
+}

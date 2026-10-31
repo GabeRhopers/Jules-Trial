@@ -1,0 +1,72 @@
+{
+  "id": "anodizing-spec-checklist",
+  "brand": "demo-b2b-industrial",
+  "format": "SocialReel9x16",
+  "title": "3 numbers to put on every anodizing spec",
+  "pointLabel": "Spec",
+  "audience": "Procurement managers and design engineers specifying architectural aluminum (LinkedIn)",
+  "goal": "lead",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Specifying anodized aluminum? Three numbers decide whether your parts pass inspection.",
+      "visual": {
+        "kind": "hook",
+        "kicker": "For engineers and buyers",
+        "headline": "3 numbers for every anodizing spec"
+      }
+    },
+    {
+      "id": "spec-1",
+      "text": "One. Coating thickness. Class one architectural work needs at least 18 microns.",
+      "visual": {
+        "kind": "point",
+        "number": 1,
+        "headline": "Coating thickness",
+        "stat": {
+          "prefix": "",
+          "value": 18,
+          "suffix": " µm",
+          "label": "minimum, AAMA 611 Class I"
+        }
+      }
+    },
+    {
+      "id": "spec-2",
+      "text": "Two. Seal quality. Ask for an ASTM B680 acid dissolution result on every lot.",
+      "visual": {
+        "kind": "point",
+        "number": 2,
+        "headline": "Seal quality, tested per lot",
+        "stat": {
+          "prefix": "",
+          "value": 40,
+          "suffix": " mg/dm²",
+          "label": "maximum loss, ASTM B680"
+        }
+      }
+    },
+    {
+      "id": "spec-3",
+      "text": "Three. Color match. Hold every batch to a Delta E of 1.5 or less against your approved sample.",
+      "visual": {
+        "kind": "point",
+        "number": 3,
+        "headline": "Color match between lots",
+        "stat": {
+          "prefix": "",
+          "value": 1.5,
+          "suffix": "",
+          "label": "max Delta E vs. approved sample"
+        }
+      }
+    },
+    {
+      "id": "cta",
+      "text": "Send us your drawing. You get a quote in 24 hours and sample panels in 5 days.",
+      "visual": {
+        "kind": "cta"
+      }
+    }
+  ]
+}

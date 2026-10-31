@@ -1,0 +1,23 @@
+node_modules
+dist
+.DS_Store
+
+# Secrets: never commit. Copy .env.example to .env and fill in locally.
+.env
+.env.*
+!.env.example
+
+# Rendered output and generated media (large, reproducible from videos/<name>/)
+out
+public/audio/
+public/broll/
+*.mp4
+*.mov
+*.webm
+*.wav
+*.mp3
+!public/music/**
+
+# Local Python environment for Kokoro
+.venv/
+__pycache__/
