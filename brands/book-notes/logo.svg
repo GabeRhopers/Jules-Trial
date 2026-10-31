@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="200" viewBox="0 0 760 200">
+  <!-- Book Notes mark: an open book, shapes only (no text, so no font is needed). -->
+  <g fill="none" stroke="#F4F7FA" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M380 50 C330 30 270 30 220 45 L220 160 C270 145 330 145 380 165 Z"/>
+    <path d="M380 50 C430 30 490 30 540 45 L540 160 C490 145 430 145 380 165 Z"/>
+    <path d="M250 75 C290 66 330 68 360 78 M250 105 C290 96 330 98 360 108 M400 78 C430 68 470 66 510 75 M400 108 C430 98 470 96 510 105" stroke="#E9B44C" stroke-width="7"/>
+  </g>
+</svg>

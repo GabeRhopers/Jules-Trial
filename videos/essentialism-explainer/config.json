@@ -1,0 +1,117 @@
+{
+  "id": "essentialism-explainer",
+  "brand": "book-notes",
+  "format": "Explainer16x9",
+  "title": "Essentialism, checked against the science",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Busy all day, and nothing that matters moved? One best-selling book says you're simply doing too much.",
+      "visual": {
+        "kind": "hook",
+        "kicker": "Book analysis: Essentialism",
+        "headline": "Less, but better. Does it hold up?"
+      }
+    },
+    {
+      "id": "idea",
+      "text": "In Essentialism, Greg McKeown argues that only a few things are truly vital. So choose them on purpose, and say no to the rest.",
+      "visual": {
+        "kind": "statement",
+        "kicker": "The idea",
+        "headline": "Do fewer things, on purpose",
+        "body": "Greg McKeown, Essentialism (2014)"
+      }
+    },
+    {
+      "id": "method",
+      "text": "His method has three steps. Explore what really matters. Eliminate everything else. Then execute, until the essential becomes routine.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "The method",
+        "layout": "flow",
+        "items": [
+          {
+            "icon": "search",
+            "label": "Explore",
+            "at": "explore"
+          },
+          {
+            "icon": "scissors",
+            "label": "Eliminate",
+            "at": "eliminate"
+          },
+          {
+            "icon": "repeat",
+            "label": "Execute",
+            "at": "execute",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "scorecard",
+      "text": "We checked fourteen of the book's claims against the research. Six hold up. Three only partly. Two are contested, and three can't be tested at all.",
+      "visual": {
+        "kind": "point",
+        "number": 1,
+        "headline": "The evidence scorecard",
+        "stat": {
+          "prefix": "",
+          "value": 6,
+          "suffix": " of 14",
+          "label": "claims verified"
+        },
+        "proof": "3 partly supported \u00b7 2 contested \u00b7 3 untestable"
+      }
+    },
+    {
+      "id": "holds-up",
+      "text": "The practical tools hold up best. In one study, students expected to finish a thesis in about 34 days. They took 55. So yes, build in a buffer.",
+      "visual": {
+        "kind": "point",
+        "number": 2,
+        "headline": "The tools hold up",
+        "stat": {
+          "prefix": "",
+          "value": 55,
+          "suffix": " days",
+          "label": "actual, vs. 34 predicted"
+        },
+        "proof": "Planning fallacy: Buehler, Griffin & Ross, 1994"
+      }
+    },
+    {
+      "id": "shaky",
+      "text": "The weaker parts: its biggest ideas come from the author's own experience, and some of the science it cites has since been revised, or failed to replicate.",
+      "visual": {
+        "kind": "point",
+        "number": 3,
+        "headline": "Some science has moved on",
+        "proof": "Learned helplessness revised (2016) \u00b7 violin practice study not replicated (2019)"
+      }
+    },
+    {
+      "id": "verdict",
+      "text": "Our verdict: worth reading if other people's requests run your calendar. Trust the tools, and treat the big claims as opinion, not science.",
+      "visual": {
+        "kind": "statement",
+        "kicker": "The verdict",
+        "headline": "Read it for the tools",
+        "body": "Skip it if you already prioritize strictly"
+      }
+    },
+    {
+      "id": "cta",
+      "text": "All fourteen claims and their sources are in the description.",
+      "visual": {
+        "kind": "cta"
+      }
+    }
+  ],
+  "pointLabel": "Finding",
+  "music": null,
+  "goal": "awareness",
+  "audience": "Busy professionals and managers deciding whether Essentialism is worth their time (YouTube, LinkedIn)"
+}
