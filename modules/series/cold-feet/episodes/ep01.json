@@ -1,0 +1,151 @@
+{
+  "id": "cold-feet-ep01",
+  "series": "cold-feet",
+  "number": 1,
+  "title": "It Clicks",
+  "shots": [
+    {
+      "id": "s01-hook",
+      "location": "living-room",
+      "camera": { "focus": "both", "zoom": 1.12 },
+      "cast": [
+        { "id": "frank", "x": 330, "pose": "stand", "expr": "neutral", "outfit": "cardigan" },
+        { "id": "nefi", "x": 740, "pose": "hug", "expr": "annoyed", "outfit": "blanket" }
+      ],
+      "fx": ["cold", "title"],
+      "beats": [
+        { "type": "line", "who": "nefi", "text": "Frank. I was buried in the desert for three thousand years. I have never been this cold." }
+      ]
+    },
+    {
+      "id": "s02-frank-fine",
+      "location": "living-room",
+      "camera": { "focus": "frank", "zoom": 1.3 },
+      "cast": [
+        { "id": "frank", "x": 330, "pose": "shrug", "expr": "happy", "outfit": "cardigan" },
+        { "id": "nefi", "x": 740, "pose": "hug", "expr": "annoyed", "outfit": "blanket" }
+      ],
+      "fx": ["cold"],
+      "beats": [
+        { "type": "line", "who": "frank", "text": "The furnace is fine, my love. It just... clicks." }
+      ]
+    },
+    {
+      "id": "s03-furnace-cycle",
+      "location": "basement",
+      "camera": { "focus": "furnace", "zoom": 1.55 },
+      "cast": [],
+      "fx": [],
+      "beats": [
+        { "type": "sfx", "name": "click", "label": "CLICK" },
+        { "type": "sfx", "name": "ignite", "label": "FWOOSH" },
+        { "type": "pause", "ms": 1700 },
+        { "type": "sfx", "name": "cutoff", "label": "THUNK" },
+        { "type": "pause", "ms": 300 }
+      ]
+    },
+    {
+      "id": "s04-heartbeat",
+      "location": "living-room",
+      "camera": { "focus": "nefi", "zoom": 1.3 },
+      "cast": [
+        { "id": "frank", "x": 330, "pose": "stand", "expr": "worried", "outfit": "cardigan" },
+        { "id": "nefi", "x": 740, "pose": "hug", "expr": "annoyed", "outfit": "blanket" }
+      ],
+      "fx": ["cold"],
+      "beats": [
+        { "type": "line", "who": "nefi", "text": "It starts. It stops. It starts. It stops. That is not a furnace, Frank. That is a bad heartbeat." }
+      ]
+    },
+    {
+      "id": "s05-fire",
+      "location": "living-room",
+      "camera": { "focus": "both", "zoom": 1.0 },
+      "cast": [
+        { "id": "frank", "x": 330, "pose": "stand", "expr": "happy", "outfit": "cardigan" },
+        { "id": "nefi", "x": 740, "pose": "hug", "expr": "annoyed", "outfit": "blanket" }
+      ],
+      "fx": ["cold"],
+      "beats": [
+        { "type": "line", "who": "frank", "text": "I could take a look at it." },
+        { "type": "line", "who": "nefi", "text": "You are afraid of fire." },
+        { "type": "line", "who": "frank", "text": "I am... respectful of fire.", "expr": "sheepish" }
+      ]
+    },
+    {
+      "id": "s06-basement-fire",
+      "location": "basement",
+      "camera": { "focus": "frank", "zoom": 1.15 },
+      "cast": [
+        { "id": "frank", "x": 300, "pose": "stand", "expr": "worried", "outfit": "cardigan" }
+      ],
+      "fx": [],
+      "beats": [
+        { "type": "pause", "ms": 400 },
+        { "type": "sfx", "name": "ignite", "label": "FWOOSH", "react": { "frank": { "pose": "arms-up", "expr": "scared" } } },
+        { "type": "line", "who": "frank", "text": "Fire bad! Fire very bad!" },
+        { "type": "sfx", "name": "cutoff", "label": "THUNK" }
+      ]
+    },
+    {
+      "id": "s07-idea",
+      "location": "basement",
+      "camera": { "focus": "frank", "zoom": 1.35 },
+      "cast": [
+        { "id": "frank", "x": 300, "pose": "cables", "expr": "happy", "outfit": "cardigan" }
+      ],
+      "fx": [],
+      "beats": [
+        { "type": "line", "who": "frank", "text": "Wait. Lightning brought me back to life. Maybe lightning can bring it back too." }
+      ]
+    },
+    {
+      "id": "s08-zap",
+      "location": "basement",
+      "camera": { "focus": "both", "zoom": 1.0 },
+      "cast": [
+        { "id": "frank", "x": 300, "pose": "cables", "expr": "happy", "outfit": "cardigan" },
+        { "id": "nefi", "x": 830, "pose": "point", "expr": "scared", "outfit": "blanket" }
+      ],
+      "fx": [],
+      "beats": [
+        { "type": "line", "who": "nefi", "text": "Frank! Put down the jumper cables!" },
+        { "type": "sfx", "name": "zap", "label": "ZZZAP!", "react": { "frank": { "pose": "arms-up", "expr": "scared" }, "nefi": { "expr": "scared" } } },
+        { "type": "pause", "ms": 300 }
+      ]
+    },
+    {
+      "id": "s09-dark",
+      "location": "living-room",
+      "camera": { "focus": "both", "zoom": 1.05 },
+      "cast": [
+        { "id": "frank", "x": 330, "pose": "stand", "expr": "sheepish", "outfit": "cardigan", "singed": true },
+        { "id": "nefi", "x": 740, "pose": "hug", "expr": "annoyed", "outfit": "blanket" }
+      ],
+      "fx": ["dark", "cold"],
+      "beats": [
+        { "type": "pause", "ms": 700 },
+        { "type": "line", "who": "nefi", "text": "Frank?" },
+        { "type": "line", "who": "frank", "text": "Is it... warmer?" },
+        { "type": "pause", "ms": 500 },
+        { "type": "sfx", "name": "chirp", "label": "BEEP" },
+        { "type": "pause", "ms": 600 },
+        { "type": "line", "who": "nefi", "text": "Frank. What is that beeping?", "expr": "scared" },
+        { "type": "sfx", "name": "chirp", "label": "BEEP" },
+        { "type": "sfx", "name": "sting" }
+      ]
+    },
+    {
+      "id": "s10-tbc",
+      "location": "card",
+      "card": { "title": "TO BE CONTINUED", "subtitle": "Episode 2: The Flame Sensor" },
+      "camera": { "focus": "wide", "zoom": 1 },
+      "cast": [],
+      "fx": [],
+      "beats": [
+        { "type": "line", "who": "narrator", "text": "Next time, on Cold Feet." },
+        { "type": "pause", "ms": 900 }
+      ]
+    }
+  ]
+}

@@ -6,6 +6,8 @@ import type { ShellLayout } from "./compositions/VideoShell";
 import type { ResolvedProps } from "./lib/load-video";
 import { videos } from "./lib/registry";
 import type { VideoFormat } from "./lib/types";
+import { calculateSeriesMetadata, SERIES_FPS, SeriesEpisode } from "../modules/series/remotion/SeriesEpisode";
+import { episodes as seriesEpisodes } from "../modules/series/remotion/registry";
 
 const FORMATS: Record<VideoFormat, { component: React.FC<ResolvedProps>; layout: ShellLayout; calculateMetadata: CalculateMetadataFunction<ResolvedProps> }> = {
   SocialReel9x16: { component: SocialReel9x16, layout: REEL_LAYOUT, calculateMetadata: calculateReelMetadata },
@@ -41,5 +43,21 @@ export const RemotionRoot: React.FC = () => (
         </Folder>
       );
     })}
+    {/* Optional series module (modules/series). Remove this folder block to disable it. */}
+    <Folder name="Series">
+      {seriesEpisodes.map((ep) => (
+        <Composition
+          key={ep.id}
+          id={ep.id}
+          component={SeriesEpisode}
+          width={1080}
+          height={1920}
+          fps={SERIES_FPS}
+          durationInFrames={SERIES_FPS * 60}
+          defaultProps={{ episodeId: ep.id }}
+          calculateMetadata={calculateSeriesMetadata}
+        />
+      ))}
+    </Folder>
   </>
 );

@@ -1,0 +1,161 @@
+{
+  "id": "cold-feet-ep02",
+  "series": "cold-feet",
+  "number": 2,
+  "title": "The Flame Sensor",
+  "cta": { "headline": "Book a $49 furnace safety check", "button": "Tap to pick your time", "subline": "(555) 010-0199 · Same-week appointments" },
+  "shots": [
+    {
+      "id": "s01-previously",
+      "flashback": true,
+      "location": "basement",
+      "camera": { "focus": "both", "zoom": 1.0 },
+      "cast": [
+        { "id": "frank", "x": 300, "pose": "cables", "expr": "happy", "outfit": "cardigan" },
+        { "id": "nefi", "x": 830, "pose": "point", "expr": "scared", "outfit": "blanket" }
+      ],
+      "fx": ["recap", "title"],
+      "beats": [
+        { "type": "line", "who": "narrator", "text": "Previously, on Cold Feet. A furnace that will not stay on. A monster with jumper cables." },
+        { "type": "sfx", "name": "zap", "label": "ZZZAP!", "react": { "frank": { "pose": "arms-up", "expr": "scared" } } },
+        { "type": "line", "who": "narrator", "text": "And a mysterious beep." },
+        { "type": "sfx", "name": "chirp", "label": "BEEP" },
+        { "type": "pause", "ms": 300 }
+      ]
+    },
+    {
+      "id": "s02-get-out",
+      "location": "living-room",
+      "camera": { "focus": "nefi", "zoom": 1.25 },
+      "cast": [
+        { "id": "frank", "x": 330, "pose": "stand", "expr": "worried", "outfit": "cardigan", "singed": true },
+        { "id": "nefi", "x": 740, "pose": "point", "expr": "neutral", "outfit": "blanket" }
+      ],
+      "fx": ["dark", "cold"],
+      "beats": [
+        { "type": "line", "who": "nefi", "text": "When an alarm goes off and we do not know why, we do not guess. We get outside first. Then we call for help." },
+        { "type": "line", "who": "frank", "text": "Yes, my love." }
+      ]
+    },
+    {
+      "id": "s03-cold-feet",
+      "location": "outside",
+      "camera": { "focus": "both", "zoom": 1.05 },
+      "cast": [
+        { "id": "frank", "x": 450, "pose": "carry", "expr": "happy", "outfit": "cardigan", "singed": true },
+        { "id": "nefi", "x": 450, "pose": "carried", "expr": "annoyed", "outfit": "blanket" }
+      ],
+      "fx": ["snow", "cold"],
+      "beats": [
+        { "type": "line", "who": "nefi", "text": "Frank, why are you carrying me?" },
+        { "type": "line", "who": "frank", "text": "You have cold feet." },
+        { "type": "sfx", "name": "van", "label": "VROOM", "react": { "van": { "arrive": true } } }
+      ]
+    },
+    {
+      "id": "s04-tech-arrives",
+      "location": "outside",
+      "camera": { "focus": "tech", "zoom": 1.3 },
+      "cast": [
+        { "id": "frank", "x": 300, "pose": "stand", "expr": "sheepish", "outfit": "cardigan", "singed": true },
+        { "id": "tech", "x": 760, "pose": "wave", "expr": "happy", "outfit": "uniform" }
+      ],
+      "fx": ["snow", "van-parked"],
+      "beats": [
+        { "type": "line", "who": "tech", "text": "Evening, folks. I'm Dee, with Demo HVAC. I hear somebody tried lightning?" },
+        { "type": "line", "who": "frank", "text": "It worked for me." }
+      ]
+    },
+    {
+      "id": "s05-co-check",
+      "location": "living-room",
+      "camera": { "focus": "tech", "zoom": 1.3 },
+      "cast": [
+        { "id": "tech", "x": 560, "pose": "meter", "expr": "happy", "outfit": "uniform" }
+      ],
+      "fx": ["meter"],
+      "beats": [
+        { "type": "line", "who": "tech", "text": "Good news. Zero carbon monoxide. One chirp about once a minute means a low battery." },
+        { "type": "sfx", "name": "pop", "label": "SNAP" },
+        { "type": "line", "who": "tech", "text": "Four beeps and a pause is the one that means get out and call 911. You did the right thing." }
+      ]
+    },
+    {
+      "id": "s06-flame-sensor",
+      "location": "basement",
+      "camera": { "focus": "tech", "zoom": 1.25 },
+      "cast": [
+        { "id": "tech", "x": 300, "pose": "rod", "expr": "neutral", "outfit": "uniform" }
+      ],
+      "fx": [],
+      "beats": [
+        { "type": "line", "who": "tech", "text": "Your furnace lights, then shuts off after a few seconds. That's often a dirty flame sensor. It can't see the flame, so it shuts the gas off." },
+        { "type": "line", "who": "tech", "text": "Power off. Careful cleaning. Power back on." }
+      ]
+    },
+    {
+      "id": "s07-it-runs",
+      "location": "basement",
+      "camera": { "focus": "furnace", "zoom": 1.5 },
+      "cast": [],
+      "fx": ["warm"],
+      "beats": [
+        { "type": "sfx", "name": "click", "label": "CLICK" },
+        { "type": "sfx", "name": "ignite", "label": "FWOOSH" },
+        { "type": "sfx", "name": "hum", "label": "HMMMM" }
+      ]
+    },
+    {
+      "id": "s08-toes",
+      "location": "living-room",
+      "camera": { "focus": "both", "zoom": 1.05 },
+      "cast": [
+        { "id": "frank", "x": 330, "pose": "stand", "expr": "happy", "outfit": "cardigan", "singed": true },
+        { "id": "nefi", "x": 740, "pose": "stand", "expr": "happy", "outfit": "wraps" }
+      ],
+      "fx": ["warm"],
+      "beats": [
+        { "type": "line", "who": "nefi", "text": "Frank. I can feel my toes." },
+        { "type": "line", "who": "frank", "text": "You have toes?", "expr": "worried" },
+        { "type": "line", "who": "nefi", "text": "Frank.", "expr": "annoyed" }
+      ]
+    },
+    {
+      "id": "s09-tip",
+      "location": "card",
+      "card": { "title": "FURNACE TIP", "subtitle": "Starts, then shuts off in seconds? Call a pro. And please, no lightning." },
+      "camera": { "focus": "wide", "zoom": 1 },
+      "cast": [],
+      "fx": [],
+      "beats": [
+        { "type": "line", "who": "narrator", "text": "Furnace starting and stopping in seconds? Call a pro. And please, no lightning." }
+      ]
+    },
+    {
+      "id": "s10-cta",
+      "location": "endcard",
+      "camera": { "focus": "wide", "zoom": 1 },
+      "cast": [],
+      "fx": [],
+      "beats": [
+        { "type": "line", "who": "narrator", "text": "Book your furnace safety check today." },
+        { "type": "pause", "ms": 1600 }
+      ]
+    },
+    {
+      "id": "s11-next",
+      "location": "basement",
+      "camera": { "focus": "frank", "zoom": 1.3 },
+      "cast": [
+        { "id": "frank", "x": 300, "pose": "stand", "expr": "worried", "outfit": "cardigan", "singed": true }
+      ],
+      "fx": ["puddle", "next"],
+      "beats": [
+        { "type": "sfx", "name": "drip", "label": "DRIP" },
+        { "type": "line", "who": "frank", "text": "Nefi? Why is the basement floor wet?" },
+        { "type": "line", "who": "nefi", "text": "Frank." },
+        { "type": "sfx", "name": "sting" }
+      ]
+    }
+  ]
+}

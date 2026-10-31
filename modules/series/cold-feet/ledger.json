@@ -1,0 +1,43 @@
+{
+  "series": "cold-feet",
+  "_note": "Continuity ledger. 'start' is the state an episode must begin from; 'end' is what changed. The next episode's 'start' must equal the previous 'end'. Checked by modules/series/scripts/continuity_check.py.",
+  "episodes": [
+    {
+      "episode": 1,
+      "start": {
+        "outfits": { "frank": "cardigan", "nefi": "blanket" },
+        "conditions": { "frank": [], "nefi": ["always cold"] },
+        "props": { "jumper-cables": "garage" },
+        "house": { "furnace": "short-cycling", "co-alarm-battery": "low", "power": "on", "basement-floor": "dry" },
+        "relationships": { "frank+nefi": "married, loving, Nefi frustrated about the cold" }
+      },
+      "end": {
+        "outfits": { "frank": "cardigan", "nefi": "blanket" },
+        "conditions": { "frank": ["singed hair from the zap"], "nefi": ["always cold"] },
+        "props": { "jumper-cables": "basement" },
+        "house": { "furnace": "short-cycling", "co-alarm-battery": "low", "power": "out", "basement-floor": "dry" },
+        "relationships": { "frank+nefi": "married, Nefi alarmed" }
+      },
+      "openThreads": ["What is the beeping?", "Is the furnace damaged by the zap?"]
+    },
+    {
+      "episode": 2,
+      "start": {
+        "outfits": { "frank": "cardigan", "nefi": "blanket" },
+        "conditions": { "frank": ["singed hair from the zap"], "nefi": ["always cold"] },
+        "props": { "jumper-cables": "basement" },
+        "house": { "furnace": "short-cycling", "co-alarm-battery": "low", "power": "out", "basement-floor": "dry" },
+        "relationships": { "frank+nefi": "married, Nefi alarmed" }
+      },
+      "end": {
+        "outfits": { "frank": "cardigan", "nefi": "wraps" },
+        "conditions": { "frank": ["singed hair from the zap"], "nefi": ["warm for the first time in 3,000 years"] },
+        "props": { "jumper-cables": "basement" },
+        "house": { "furnace": "fixed (flame sensor cleaned)", "co-alarm-battery": "new", "power": "on", "basement-floor": "wet" },
+        "relationships": { "frank+nefi": "married, happy, Dee the tech is now a friend" }
+      },
+      "resolvedThreads": ["What is the beeping?", "Is the furnace damaged by the zap?"],
+      "openThreads": ["Why is the basement floor wet? (Episode 3: water heater)"]
+    }
+  ]
+}

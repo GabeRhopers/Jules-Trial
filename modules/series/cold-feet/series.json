@@ -1,0 +1,81 @@
+{
+  "id": "cold-feet",
+  "title": "COLD FEET",
+  "tagline": "A monster marriage micro-drama",
+  "logline": "Frank, a gentle stitched-together giant who is terrified of fire, and Nefi, a 3,000-year-old mummy who is always cold, try to keep their marriage (and their furnace) running.",
+  "format": "9:16",
+  "fps": 30,
+  "targetEpisodeSeconds": [55, 75],
+  "brand": "demo-home-services",
+  "rules": [
+    "Hook in the first 3 seconds: open on a line, never on a logo.",
+    "Every episode ends on a cliffhanger or a 'next episode' tease.",
+    "Home-service facts must be accurate and safe: no DIY gas or electrical work shown as a good idea; when an alarm sounds, get outside first.",
+    "Original character designs only (no Universal-style flat-top head and neck bolts)."
+  ],
+  "characters": [
+    {
+      "id": "frank",
+      "name": "Frank",
+      "role": "Husband. A huge, gentle monster stitched together from spare parts. Brought to life by lightning.",
+      "traits": ["sweet", "literal", "terrified of fire", "overconfident about DIY", "calls Nefi 'my love'"],
+      "look": {
+        "version": "frank-v1",
+        "skin": "#9CC59A",
+        "hair": "#1E1B24",
+        "details": "messy black hair, stitches across forehead and left cheek, round electrode scar on the right temple, heavy brow, square jaw, no neck bolts",
+        "outfits": { "cardigan": "brown knit cardigan #8B5E3C over gray shirt, charcoal trousers, black boots" }
+      },
+      "voice": { "provider": "kokoro-onnx", "voice": "am_onyx", "lang": "en-us", "speed": 0.86 },
+      "captionColor": "#9CE29A"
+    },
+    {
+      "id": "nefi",
+      "name": "Nefi",
+      "role": "Wife. A 3,000-year-old mummy and former royal. Dry humor. Always cold.",
+      "traits": ["sarcastic", "elegant", "reads every manual", "loves Frank, hates the cold"],
+      "look": {
+        "version": "nefi-v1",
+        "wrap": "#E9DFC7",
+        "details": "linen wraps with darker wrap lines, kohl-lined amber eyes through an eye slit, gold headband with blue stone, gold and lapis collar",
+        "outfits": {
+          "blanket": "wraps plus a purple fringed blanket over the shoulders",
+          "wraps": "wraps only"
+        }
+      },
+      "voice": { "provider": "kokoro-onnx", "voice": "bf_emma", "lang": "en-gb", "speed": 0.95 },
+      "captionColor": "#FFD36E"
+    },
+    {
+      "id": "tech",
+      "name": "Dee",
+      "role": "HVAC technician from the sponsor brand. Calm, kind, a little amused by monsters.",
+      "traits": ["calm", "explains simply", "safety first"],
+      "look": {
+        "version": "tech-v1",
+        "details": "navy uniform with brand-orange cap and logo patch, tool belt, short beard",
+        "outfits": { "uniform": "brand uniform" }
+      },
+      "voice": { "provider": "kokoro-onnx", "voice": "am_eric", "lang": "en-us", "speed": 1.0 },
+      "captionColor": "#FF9A62"
+    },
+    {
+      "id": "narrator",
+      "name": "Narrator",
+      "role": "Off-screen announcer for recaps and teasers.",
+      "voice": { "provider": "kokoro-onnx", "voice": "bm_lewis", "lang": "en-gb", "speed": 0.95 },
+      "captionColor": "#FFFFFF"
+    }
+  ],
+  "locations": {
+    "living-room": "Small cozy living room at night: window with moon, lamp, couch, thermostat and a CO alarm on the wall.",
+    "basement": "Concrete basement with the furnace, pipes and wooden stairs.",
+    "outside": "Front yard at night with light snow and the house behind.",
+    "card": "Full-screen title or text card."
+  },
+  "pronunciations": [
+    { "term": "911", "say": "nine one one" },
+    { "term": "CO", "say": "C O" },
+    { "term": "HVAC", "say": "H-V-A-C" }
+  ]
+}

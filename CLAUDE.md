@@ -74,3 +74,10 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 - `npx remotion compositions` (list all) fails if any video has no narration yet; rendering a single video by id works.
 - Anything marked "NOT VERIFIED AGAINST CURRENT DOCS" (ElevenLabs endpoint/models/credit rates, Kokoro voice names other than af_heart, Higgsfield MCP setup) must be checked against official docs before relying on it. See SETUP_LOG.md.
 - Remotion license: free for teams of up to 3; see `LICENSE_NOTES.md` before each new client.
+
+## Optional module: series (vertical micro-dramas)
+- Lives in `modules/series/` (README there). First test series: `cold-feet` (2 episodes, demo HVAC tie-in).
+- Registered in `src/Root.tsx` under the "Series" folder; remove that block and the folder to disable it.
+- Voices: Kokoro via `kokoro-onnx` (free, local, no PyTorch), one fixed voice per character in `series.json`.
+- Build: `make_audio.py <episode.json>` then `continuity_check.py <series dir>` then `node modules/series/scripts/render.ts <episode-id>`.
+- Every episode must keep `ledger.json` in sync (start = previous end). Recap shots use `"flashback": true`.
