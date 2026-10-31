@@ -93,7 +93,7 @@ const Proof: React.FC<{ text: string; size: number }> = ({ text, size }) => {
 };
 
 /** Renders any scene kind for a format, given that format's scene area and sizes. */
-export const FormatScene: React.FC<SceneRenderArgs & { area: Rect; sizes: SceneSizes }> = ({ config, scene, pointCount, pointLabel, brollAvailable, area, sizes }) => {
+export const FormatScene: React.FC<SceneRenderArgs & { area: Rect; sizes: SceneSizes }> = ({ config, scene, video, pointCount, pointLabel, brollAvailable, area, sizes }) => {
   const { brand, fonts } = useBrand();
   const visual = config.visual;
 
@@ -128,7 +128,7 @@ export const FormatScene: React.FC<SceneRenderArgs & { area: Rect; sizes: SceneS
             data-qc="point-label"
             style={{ fontFamily: fonts.body, fontWeight: 600, fontSize: sizes.label, color: brand.colors.textMuted, textTransform: "uppercase", letterSpacing: "0.08em" }}
           >
-            {pointLabel} {visual.number} of {pointCount}
+            {pointLabel} {visual.number} {video.pointOfWord ?? "of"} {pointCount}
           </div>
         </div>
       );

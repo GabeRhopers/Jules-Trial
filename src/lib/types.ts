@@ -165,6 +165,8 @@ export type VideoConfig = {
   title: string;
   /** Word shown on numbered points, e.g. "Sign" -> "Sign 1 of 3". Defaults to "Point". */
   pointLabel?: string;
+  /** Word between the number and the total on numbered points, e.g. "de" -> "Ferramenta 1 de 3". Defaults to "of". */
+  pointOfWord?: string;
   /** Music file in public/music/ for this video. Overrides brand.music; null = no music. */
   music?: string | null;
   audience?: string;
