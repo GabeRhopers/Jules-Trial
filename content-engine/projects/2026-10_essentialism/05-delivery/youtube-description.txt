@@ -1,0 +1,50 @@
+Busy all day, and nothing that matters moved? Greg McKeown's Essentialism (2014) says the fix is doing fewer things, on purpose. We checked 14 of the book's claims against meta-analyses and the original studies, and turned what holds up into 6 things you can do this week.
+
+CHAPTERS
+00:00 Busy but stuck? The book's diagnosis
+00:28 Big idea 1: the Essentialist mindset
+00:54 Big idea 2: Explore, Eliminate, Execute
+01:19 Takeaway 1: plan from your worst case
+01:52 Takeaway 2: decide your no in advance
+02:21 Takeaway 3: cut your losses
+02:40 Takeaway 4: track your progress
+03:03 Takeaway 5: protect your attention
+03:24 Takeaway 6: give routines two months
+03:42 What to take with a grain of salt
+03:58 Verdict and your week
+
+THE BOOK IN BRIEF
+1) The mindset: you always have a choice; only a few things are vital; every yes is a trade-off ("which problem do I want?").
+2) The method: Explore (space to think, sleep, strict criteria), Eliminate (one clear goal, a graceful no, cut your losses), Execute (buffers, small wins, routines).
+
+YOUR WEEK
+- Plan from your worst-case estimate, not your best guess
+- Write one if-then rule: "If a new request lands, then I ask what it replaces"
+- Ask the sign-up question: "If I weren't already in this, would I sign up today?"
+- Write one line every Friday: what moved on my one priority?
+- Guard your sleep before a demanding week
+- Start one routine and give it two months
+
+ALL 14 CLAIMS WE CHECKED
+Holds up (6): Juran's "vital few" idea; top violin students slept about 8.6 h a day; sleep loss hurts attention and working memory; sunk-cost bias; the planning fallacy; routines become automatic (median 66 days).
+Partly supported (3): learned helplessness (theory revised in 2016); play helps thinking (thin adult evidence); small wins as the top motivator (overstated).
+Contested (2): deliberate practice as the main factor (failed a 2019 replication); the endowment effect (still debated).
+No study found (3): the clarity paradox; the 90 Percent Rule; how unclear teams behave (author's experience).
+Where a claim fell short, the video uses better-backed research instead: if-then plans, short breaks, progress tracking.
+
+SOURCES
+Book: Essentialism: The Disciplined Pursuit of Less, Greg McKeown, Crown Business, 2014. https://openlibrary.org/isbn/9780804137386
+Origin: HBR, The Disciplined Pursuit of Less (2012). https://hbr.org/2012/08/the-disciplined-pursuit-of-less
+Planning fallacy: Buehler, Griffin & Ross (1994). https://bear.warrington.ufl.edu/brenner/mar7588/Papers/buehler-et-al-1994.pdf
+If-then plans: Gollwitzer & Sheeran (2006), meta-analysis of 94 studies. https://kops.uni-konstanz.de/entities/publication/2e749bfb-8533-437c-8203-7e788c910c5f
+Sunk cost: Roth, Robbert & Straus (2015), meta-analysis. https://link.springer.com/article/10.1007/s40685-014-0014-8
+Progress tracking: Harkin et al. (2016), 138 experiments. https://pubmed.ncbi.nlm.nih.gov/26479070/
+Sleep loss: Lim & Dinges (2010), meta-analysis. https://pubmed.ncbi.nlm.nih.gov/20438143/
+Breaks: Albulescu et al. (2022), meta-analysis. https://pubmed.ncbi.nlm.nih.gov/36044424/
+Habits: Lally et al. (2010). https://doi.org/10.1002/ejsp.674
+Violin study: Ericsson et al. (1993). https://graphics8.nytimes.com/images/blogs/freakonomics/pdf/DeliberatePractice%28PsychologicalReview%29.pdf
+Replication: Macnamara & Maitra (2019). https://pmc.ncbi.nlm.nih.gov/articles/PMC6731745/
+Learned helplessness revised: Maier & Seligman (2016). https://pmc.ncbi.nlm.nih.gov/articles/PMC4920136/
+
+HOW WE MADE THIS
+This analysis is based on public sources about the book (publisher catalog, the author's site and article, detailed reader notes), not a full read of the text. Every research claim was checked against the original study or a meta-analysis. A few tips (the Friday line, two months for a routine, the if-then rule wording) are our suggestions built on the evidence. Not affiliated with the author or publisher.

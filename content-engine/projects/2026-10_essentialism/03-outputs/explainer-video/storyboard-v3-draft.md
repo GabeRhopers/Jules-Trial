@@ -110,3 +110,116 @@ Expected total: **about 4 min 30 s.** If it runs long, the Juran example (scene 
 3. **Voice:** free Kokoro voice (current). ElevenLabs sounds better but costs credits; it needs your approval and an estimate first.
 4. **Music:** none, unless you have a licensed track.
 5. **Render time:** about 4 to 5 times longer than v2 in this cloud session (roughly an hour).
+
+---
+
+# Publishing package
+
+## Title options (YouTube limit: 100 characters)
+
+1. Essentialism, Checked Against the Research: 6 Tips That Actually Work (69)
+2. Is Essentialism Backed by Science? What Holds Up and What to Do Instead (71)
+3. Essentialism Book Review: 14 Claims Checked, 6 Tips You Can Use (63)
+
+Recommended: **1** (states the payoff, not just the book).
+
+## Video description (paste-ready, 3,932 of 5,000 characters)
+
+Chapter times are estimates from the narration length; they get finalized from the real render.
+YouTube rules checked: first timestamp 00:00, at least 3 chapters in ascending order, each at least 10 seconds.
+
+```text
+Busy all day, and nothing that matters moved? Greg McKeown's Essentialism (2014) says the fix is doing fewer things, on purpose. We checked 14 of the book's claims against meta-analyses and the original studies, and turned what holds up into 6 things you can do this week.
+
+CHAPTERS
+00:00 Busy but stuck? The book's diagnosis
+00:28 Big idea 1: the Essentialist mindset
+00:54 Big idea 2: Explore, Eliminate, Execute
+01:19 Takeaway 1: plan from your worst case
+01:52 Takeaway 2: decide your no in advance
+02:21 Takeaway 3: cut your losses
+02:40 Takeaway 4: track your progress
+03:03 Takeaway 5: protect your attention
+03:24 Takeaway 6: give routines two months
+03:42 What to take with a grain of salt
+03:58 Verdict and your week
+
+THE BOOK IN BRIEF
+1) The mindset: you always have a choice; only a few things are vital; every yes is a trade-off ("which problem do I want?").
+2) The method: Explore (space to think, sleep, strict criteria), Eliminate (one clear goal, a graceful no, cut your losses), Execute (buffers, small wins, routines).
+
+YOUR WEEK
+- Plan from your worst-case estimate, not your best guess
+- Write one if-then rule: "If a new request lands, then I ask what it replaces"
+- Ask the sign-up question: "If I weren't already in this, would I sign up today?"
+- Write one line every Friday: what moved on my one priority?
+- Guard your sleep before a demanding week
+- Start one routine and give it two months
+
+ALL 14 CLAIMS WE CHECKED
+Holds up (6): Juran's "vital few" idea; top violin students slept about 8.6 h a day; sleep loss hurts attention and working memory; sunk-cost bias; the planning fallacy; routines become automatic (median 66 days).
+Partly supported (3): learned helplessness (theory revised in 2016); play helps thinking (thin adult evidence); small wins as the top motivator (overstated).
+Contested (2): deliberate practice as the main factor (failed a 2019 replication); the endowment effect (still debated).
+No study found (3): the clarity paradox; the 90 Percent Rule; how unclear teams behave (author's experience).
+Where a claim fell short, the video uses better-backed research instead: if-then plans, short breaks, progress tracking.
+
+SOURCES
+Book: Essentialism: The Disciplined Pursuit of Less, Greg McKeown, Crown Business, 2014. https://openlibrary.org/isbn/9780804137386
+Origin: HBR, The Disciplined Pursuit of Less (2012). https://hbr.org/2012/08/the-disciplined-pursuit-of-less
+Planning fallacy: Buehler, Griffin & Ross (1994). https://bear.warrington.ufl.edu/brenner/mar7588/Papers/buehler-et-al-1994.pdf
+If-then plans: Gollwitzer & Sheeran (2006), meta-analysis of 94 studies. https://kops.uni-konstanz.de/entities/publication/2e749bfb-8533-437c-8203-7e788c910c5f
+Sunk cost: Roth, Robbert & Straus (2015), meta-analysis. https://link.springer.com/article/10.1007/s40685-014-0014-8
+Progress tracking: Harkin et al. (2016), 138 experiments. https://pubmed.ncbi.nlm.nih.gov/26479070/
+Sleep loss: Lim & Dinges (2010), meta-analysis. https://pubmed.ncbi.nlm.nih.gov/20438143/
+Breaks: Albulescu et al. (2022), meta-analysis. https://pubmed.ncbi.nlm.nih.gov/36044424/
+Habits: Lally et al. (2010). https://doi.org/10.1002/ejsp.674
+Violin study: Ericsson et al. (1993). https://graphics8.nytimes.com/images/blogs/freakonomics/pdf/DeliberatePractice%28PsychologicalReview%29.pdf
+Replication: Macnamara & Maitra (2019). https://pmc.ncbi.nlm.nih.gov/articles/PMC6731745/
+Learned helplessness revised: Maier & Seligman (2016). https://pmc.ncbi.nlm.nih.gov/articles/PMC4920136/
+
+HOW WE MADE THIS
+This analysis is based on public sources about the book (publisher catalog, the author's site and article, detailed reader notes), not a full read of the text. Every research claim was checked against the original study or a meta-analysis. A few tips (the Friday line, two months for a routine, the if-then rule wording) are our suggestions built on the evidence. Not affiliated with the author or publisher.
+```
+
+## Pinned comment (optional)
+
+```text
+Which of the 6 would help you most this week? Our pick for busy managers: the if-then rule. "If a new request lands, then I ask what it replaces."
+```
+
+---
+
+# Full analysis behind the video (not in the description)
+
+## Strengths of the book
+- The execution chapters rest on solid science: the planning fallacy (C-12), sunk-cost bias (C-10, meta-analysis) and habit formation (C-14).
+- The sleep argument holds up: the violin figures match the original study (C-04), and a meta-analysis shows sleep loss hurts attention and working memory (C-06).
+- Practical tools: decision questions, scripts for saying no, buffer time.
+
+## Weaknesses and blind spots
+- The core framing (clarity paradox, 90 Percent Rule, team clarity) is the author's experience, not research (C-01, C-08, C-09).
+- Some cited science has moved on: learned helplessness revised (C-03), deliberate practice not replicated (C-05), endowment effect debated (C-11).
+- Some findings are stretched: small wins (C-13), adult play (C-07).
+- Reader reviews note the advice assumes you can say no, and that parts repeat the author's HBR writing (opinion, not tested).
+
+## Evidence scorecard (14 book claims)
+
+| Verdict | Count | Claims |
+|---|---|---|
+| Verified | 6 | Vital few (C-02) · violin sleep figures (C-04) · sleep loss and attention (C-06) · sunk cost (C-10) · planning fallacy (C-12) · routines (C-14) |
+| Partly supported | 3 | Learned helplessness (C-03) · play (C-07) · small wins (C-13) |
+| Contested | 2 | Deliberate practice (C-05) · endowment effect (C-11) |
+| No study found | 3 | Clarity paradox (C-01) · 90 Percent Rule (C-08) · team clarity (C-09) |
+
+## Research used instead (not from the book)
+
+| Replaces | Research shows | Source |
+|---|---|---|
+| 90 Percent Rule (C-08) | If-then plans help people start, stay on track and drop failing commitments (94 studies, d = .65; may be slightly inflated by publication bias) | S-01 |
+| Play (C-07) | Short breaks raise energy (d = .36) and cut fatigue (d = .35); no significant overall performance effect; longer breaks help more | S-02 |
+| Small wins (C-13) | Tracking progress raises goal attainment (138 experiments, d = .40), more when recorded or shared | S-03 |
+
+## Known limits and open items
+- Access level C: built from public sources about the book, not the full text. Said in the description.
+- "McKeown" pronunciation by the voice is unverified: listen before publishing.
+- Full detail with every link: `01-research/claims-table.md`, `02-pack/analysis.md`, `04-qa/qa-report.md`.
