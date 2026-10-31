@@ -22,7 +22,7 @@
 
 **ferramenta-2:** Ferramenta dois: escreva regras do tipo se, então. Não achamos estudo que teste a regra dos 90 por cento. Mas uma ideia parecida tem evidência forte: os planos se, então. Você define uma situação específica e a ação exata que vai tomar. Em 94 estudos, esses planos ajudaram as pessoas a começar, manter o rumo e até largar compromissos que estavam falhando.
 
-**ferramenta-2-como:** O segredo é decidir antes da hora chegar. Por exemplo: se chegar um pedido novo, então pergunto o que ele substitui. Se ele não serve ao meu objetivo principal, então ofereço uma alternativa. Outro exemplo: se uma reunião chegar sem pauta, então peço a pauta antes de aceitar.
+**ferramenta-2-como:** O segredo é decidir antes da hora chegar. Por exemplo: se chegar um pedido novo, então pergunto o que ele substitui. Se ele serve ao meu objetivo principal, eu aceito. Se não serve, então ofereço uma alternativa. Outro exemplo: se uma reunião chegar sem pauta, então peço a pauta antes de aceitar.
 
 **ferramenta-3:** Ferramenta três: registre o seu progresso por escrito. O livro diz que pequenas vitórias são o maior motivador. Isso estica um único estudo. O que se sustenta é o registro. Em 138 experimentos, fazer as pessoas acompanharem o próprio progresso as ajudou a atingir mais metas, e o efeito foi maior quando o progresso era escrito ou compartilhado.
 

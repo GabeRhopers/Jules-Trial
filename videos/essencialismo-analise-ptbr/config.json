@@ -161,7 +161,7 @@
     },
     {
       "id": "ferramenta-2-como",
-      "text": "O segredo é decidir antes da hora chegar. Por exemplo: se chegar um pedido novo, então pergunto o que ele substitui. Se ele não serve ao meu objetivo principal, então ofereço uma alternativa. Outro exemplo: se uma reunião chegar sem pauta, então peço a pauta antes de aceitar.",
+      "text": "O segredo é decidir antes da hora chegar. Por exemplo: se chegar um pedido novo, então pergunto o que ele substitui. Se ele serve ao meu objetivo principal, eu aceito. Se não serve, então ofereço uma alternativa. Outro exemplo: se uma reunião chegar sem pauta, então peço a pauta antes de aceitar.",
       "visual": {
         "kind": "whiteboard",
         "title": "Regra se, então",
@@ -175,7 +175,7 @@
             "at": "serve"
           },
           "A": {
-            "at": "objetivo"
+            "at": "aceito"
           },
           "O": {
             "at": "alternativa",
