@@ -20,4 +20,5 @@ Claude to proceed with the best approach for this first test.
 ## Outputs
 
 - Full 8-minute script: `03-outputs/explainer-video/script-full.md`
-- 68-second video: `videos/essentialism-explainer/` (render: `out/book-notes/essentialism-explainer.mp4`, git-ignored)
+- v1 68-second video: `videos/essentialism-explainer/`
+- v2 (method update): `03-outputs/explainer-video/script-full-v2.md` and `videos/essentialism-explainer-v2/` (about 75 s)

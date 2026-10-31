@@ -1,0 +1,139 @@
+{
+  "id": "essentialism-explainer-v2",
+  "brand": "book-notes",
+  "format": "Explainer16x9",
+  "title": "Essentialism: what works, backed by research",
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Busy all day, and nothing that matters moved? The book Essentialism says: do fewer things, on purpose. Here's what actually works.",
+      "visual": {
+        "kind": "hook",
+        "kicker": "Book analysis: Essentialism",
+        "headline": "Do fewer things. Which tips really work?"
+      }
+    },
+    {
+      "id": "mindset",
+      "text": "Big idea one is a mindset. You always have a choice. Only a few things are truly vital. And every yes is a trade-off.",
+      "visual": {
+        "kind": "statement",
+        "kicker": "Idea 1: the mindset",
+        "headline": "Only a few things are vital",
+        "body": "You always have a choice \u00b7 every yes is a trade-off"
+      }
+    },
+    {
+      "id": "method",
+      "text": "Big idea two is a method. Explore what really matters. Eliminate the rest, with a graceful no. Then execute, until the essential becomes routine.",
+      "visual": {
+        "kind": "whiteboard",
+        "title": "Idea 2: the method",
+        "layout": "flow",
+        "items": [
+          {
+            "icon": "search",
+            "label": "Explore",
+            "at": "explore"
+          },
+          {
+            "icon": "scissors",
+            "label": "Eliminate",
+            "at": "eliminate"
+          },
+          {
+            "icon": "repeat",
+            "label": "Execute",
+            "at": "execute",
+            "circle": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "holds-up",
+      "text": "Its practical tools hold up. In one study, students expected to finish a thesis in about 34 days. They took 55. So build in a buffer.",
+      "visual": {
+        "kind": "point",
+        "number": 1,
+        "headline": "Build in a buffer",
+        "stat": {
+          "prefix": "",
+          "value": 55,
+          "suffix": "",
+          "label": "days it took (34 predicted)"
+        },
+        "proof": "Planning fallacy: Buehler, Griffin & Ross, 1994"
+      }
+    },
+    {
+      "id": "swap-plans",
+      "text": "But we found no study testing its 90 Percent Rule. Research shows if-then plans work: if a new request comes in, then ask what it replaces.",
+      "visual": {
+        "kind": "point",
+        "number": 2,
+        "headline": "Use if-then plans",
+        "stat": {
+          "prefix": "",
+          "value": 94,
+          "suffix": "",
+          "label": "studies back if-then plans"
+        },
+        "proof": "Meta-analysis: Gollwitzer & Sheeran, 2006"
+      }
+    },
+    {
+      "id": "swap-breaks",
+      "text": "The book says play sharpens your thinking, but adult evidence is thin. What works: short breaks restore energy. After hard work, you may need more than ten minutes.",
+      "visual": {
+        "kind": "point",
+        "number": 3,
+        "headline": "Take real breaks",
+        "stat": {
+          "prefix": "",
+          "value": 10,
+          "suffix": "+ min",
+          "label": "may help after demanding work"
+        },
+        "proof": "Meta-analysis: Albulescu et al., 2022"
+      }
+    },
+    {
+      "id": "swap-tracking",
+      "text": "And small wins as the top motivator is a stretch. What works: track your progress, in writing. It raises your odds of reaching the goal.",
+      "visual": {
+        "kind": "point",
+        "number": 4,
+        "headline": "Track progress in writing",
+        "stat": {
+          "prefix": "",
+          "value": 138,
+          "suffix": "",
+          "label": "experiments back it"
+        },
+        "proof": "Meta-analysis: Harkin et al., 2016"
+      }
+    },
+    {
+      "id": "verdict",
+      "text": "The verdict: read it for the tools, especially if other people's requests run your calendar.",
+      "visual": {
+        "kind": "statement",
+        "kicker": "The verdict",
+        "headline": "Read it for the tools",
+        "body": "Skip it if you already prioritize strictly"
+      }
+    },
+    {
+      "id": "cta",
+      "text": "Sources for every claim are in the description.",
+      "visual": {
+        "kind": "cta"
+      }
+    }
+  ],
+  "pointLabel": "Takeaway",
+  "music": null,
+  "goal": "awareness",
+  "audience": "Busy professionals and managers deciding whether Essentialism is worth their time (YouTube, LinkedIn)"
+}

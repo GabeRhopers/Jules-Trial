@@ -30,3 +30,14 @@ Fields searched: cognitive psychology, behavioral economics, sleep science, orga
 | Unverifiable | 3 | C-01, C-08, C-09 |
 | Contradicted | 0 | |
 | **Total** | **14** | |
+
+## Supplementary evidence: what research supports instead (v2)
+
+For book claims that are not verified, these rows give the best-supported alternative on the same topic.
+They are not claims from the book; label them "research shows" in any output.
+
+| ID | Replaces | What the research supports | Evidence | Evidence level | Source |
+|---|---|---|---|---|---|
+| S-01 | C-08 (90 Percent Rule, untested) | Turn a decision rule into an if-then plan ("If a new request comes in, then I ask what it replaces"). If-then plans help people start, stay on track, and **disengage from failing courses of action** | 94 independent tests, more than 8,000 participants, d = .65 on goal attainment. Caveat: a 2009 test found only slightly inflated estimates from publication bias, so the real effect may be a bit smaller | Meta-analysis | [Gollwitzer & Sheeran 2006, Adv. Exp. Social Psychology 38 (abstract, Univ. of Konstanz)](https://kops.uni-konstanz.de/entities/publication/2e749bfb-8533-437c-8203-7e788c910c5f) · [Wieber et al. 2015 review](https://pmc.ncbi.nlm.nih.gov/articles/PMC4500900/) |
+| S-02 | C-07 (play, thin adult evidence) | Short breaks during work reliably raise energy and reduce fatigue. For demanding work, breaks longer than 10 minutes are likely needed for performance | 22 samples, N = 2,335: vigor d = .36, fatigue d = .35; overall performance d = .16 (not significant); longer breaks gave bigger performance gains | Meta-analysis | [Albulescu et al. 2022, PLoS ONE](https://pubmed.ncbi.nlm.nih.gov/36044424/) |
+| S-03 | C-13 (small wins "most effective" motivator, overstated) | Tracking your progress raises the odds of reaching a goal, more so when you write it down or share it | 138 randomized studies, N = 19,951: goal attainment d = .40; larger effects when progress is physically recorded or reported | Meta-analysis | [Harkin et al. 2016, Psychological Bulletin](https://pubmed.ncbi.nlm.nih.gov/26479070/) |

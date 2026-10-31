@@ -53,3 +53,32 @@ claims as a well-argued point of view, not science.
 - [x] Explanation is faithful and attributed
 - [x] Evaluation is fair and every point traces to a Claims Table row
 - **State:** self-checked by Claude, 2026-10-31. Awaiting your approval.
+
+---
+
+# v2 additions (method update: short verdicts, practical swaps)
+
+## Book summary: 2 topics, with subtopics and examples
+
+**Topic 1: The Essentialist mindset** (Part I)
+- You always have a choice: choosing is something you do, not something you have (Ch. 2).
+- Only a few things are vital: most activities are trivial, an idea the book ties to Juran's "vital few" (Ch. 3, C-02).
+- Every yes is a trade-off: ask "which problem do I want?" instead of "how can I do both?" (Ch. 4).
+
+**Topic 2: The 3-step method** (Parts II to IV)
+- Explore: make space to think, protect sleep, and filter options with strict criteria (Ch. 5 to 9; example: top violinists slept about 8.6 hours a day, C-04).
+- Eliminate: set one clear goal, say a graceful no, and cut your losses (Ch. 10 to 14; example: sunk-cost bias, C-10).
+- Execute: add buffer time, chase small wins, and make the essential routine (Ch. 15 to 20; example: the planning fallacy, C-12).
+
+## Short verdict on the claims
+
+The practical tools hold up (buffers, sleep, cutting losses, routine). The big framing ideas are the author's
+experience, not research. A few cited studies have been revised or overstated.
+
+## What the evidence supports instead
+
+| Book says | Verdict in a few words | Research shows instead |
+|---|---|---|
+| Score options; under 90, say no (C-08) | No study found | Write if-then plans for your priorities and your no's; they help you follow through and drop failing commitments (S-01) |
+| Play boosts your thinking (C-07) | Thin evidence in adults | Short breaks reliably restore energy and reduce fatigue; after demanding work, breaks over 10 minutes may be needed (S-02) |
+| Small wins are the top motivator (C-13) | Overstated | Track your progress and write it down; it raises the odds of reaching the goal (S-03) |

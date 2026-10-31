@@ -31,3 +31,24 @@ Checked: `03-outputs/explainer-video/script-full.md` (8 min) and `videos/essenti
 ## Gate 3
 
 - **State:** self-checked by Claude, 2026-10-31. Awaiting your approval. Open items: 2, 3, 6, 7.
+
+---
+
+# QA v2 (method update: deeper summary, short verdicts, research-backed swaps)
+
+Checked: `script-full-v2.md` (about 6.5 min) and `videos/essentialism-explainer-v2/config.json` (about 75 s).
+
+| # | Severity | Where | Finding | Status |
+|---|---|---|---|---|
+| 1 | High | Both, 90 Percent Rule | "Never tested" overstated our evidence; we only know that no study was found | **Fixed:** "we found no study testing it" |
+| 2 | Medium | Both, breaks swap | "Take more than 10 minutes" stated a suggestion from the meta-analysis as a finding | **Fixed:** "you may need more than ten minutes" |
+| 3 | Medium | Full v2, Juran line | First draft said a small share of problems "causes most of the defects"; the source wording is that fixing a small fraction improves quality a lot | **Fixed** before render |
+| 4 | Low | S-01 | Implementation-intention effect (d = .65) may be slightly inflated by publication bias | Noted in the Claims Table; script says "help", not a number |
+| 5 | Open | Both | v1 items still open: "McKeown" pronunciation, "best-selling" claim (only in v1 hook), Access level C note in the description | Open |
+
+- [x] Every factual sentence carries a C or S ID; S rows are labeled "research shows", never attributed to the book
+- [x] Verdicts are one short line each
+- [x] Summary = 2 topics with 3 subtopics each (full) and 3 points each (short)
+- [x] Video QC passes; no em dashes
+
+**Gate 3 (v2):** self-checked by Claude, 2026-10-31. Awaiting your approval.
