@@ -25,6 +25,20 @@ The goal of every script is the action in the CTA (a booked call, a sample reque
 - One action, with what they get and how fast: "Send us your drawing. Quote in 24 hours." / "Book a $29 tune-up. Tap to pick your time."
 - Match the goal: lead = low-friction ask (sample, quote, checklist); sale = offer + deadline or limited slots; awareness = follow / learn more.
 
+## Whiteboard scenes (optional)
+A `whiteboard` scene draws a handwritten title, then icons and short labels stroke by stroke, each starting
+on a cue word in the narration. Use it when **showing how something works** beats telling:
+- Good fits: a process (anodizing steps, how an integration moves data, what a tune-up covers), a cause and
+  effect chain ("dirty filter, less air, frozen coil"), a before/after.
+- Not for the hook: drawing takes time, and the first 3 seconds must land a stake. Open with a normal `hook`
+  scene, then draw. Not for proof or the CTA either: numbers and buttons read better as `point` and `cta`.
+- **1 to 4 items per scene** (3 max on a reel), 1 to 3 words per label, title max about 5 words.
+- **Cue words:** each item's `at` is one word the voice says, in order. Leave about 1.5 s of narration before
+  the first cue (the title is written first), about 0.6 s between cues, and end the sentence about 1 s after
+  the last cue so the finished drawing stays on screen. QC warns when cues are too close.
+- The narration must say what the drawing shows: the viewer hears "dirty filter" as "Dirty filter" appears.
+- Icons: any Tabler outline icon; find names with `npm run icon -- <keyword>`. Pick literal, simple icons.
+
 ## On-screen text
 - Headlines: max about 6 words; stat labels max about 5 words.
 - Write numbers as digits on screen ("$29", "18 µm"). In narration, write them the way they should be spoken if the voice might misread them, or add a pronunciation.

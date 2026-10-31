@@ -33,6 +33,25 @@ The rule is about who owns or operates the **Remotion project**, not who owns th
 - Any commercial use is allowed, except reselling Remotion itself or letting others render their own Remotion code through you.
 - Server-side rendering has no automatic telemetry for Free License and "Creators" users.
 
+## Whiteboard scene assets (checked 2026-10-31)
+All are free for commercial use, including client videos. The video itself needs no attribution; keep these
+notices in the repo.
+| Asset | Where it lives | License | Source |
+|---|---|---|---|
+| Tabler icons 3.50.0 (5,203 outline icons) | `src/whiteboard/icons.json` (path data) | MIT, © Paweł Kuna | npm `@tabler/icons`, tabler.io/icons |
+| EMS Tech, EMS Readability, EMS Felix (single-line fonts) | `src/whiteboard/fonts.json` (glyph paths) | SIL Open Font License 1.1, by Sheldon B. Michaels (derivatives of Architects Daughter, Source Sans Pro, Felipa) | npm `hersheytext` 2.0.0 (MIT) `svg_fonts/` |
+| Rough.js 4.6.6 (hand-drawn arrows, circles, underlines) | npm dependency | MIT | npm `roughjs` |
+| `@remotion/paths` 4.0.539 | npm dependency | MIT (npm metadata); part of Remotion, see the Remotion license above | npm |
+| Built-in marker drawing | `src/whiteboard/Marker.tsx` | Our own vector drawing | this repo |
+
+OFL note: the fonts may be used, embedded and modified freely, but may not be sold on their own, and
+modified versions must not use the original font names. We only convert them to path data for rendering.
+
+**Hand images:** do not reuse hand PNGs from other projects unless their license is stated (for example,
+`srt-whiteboard-animation`'s `drawing-hand.png` has no stated source or license). The US Copyright Office
+(Copyrightability report, January 2025) says images generated from prompts alone are not copyrightable, so an
+AI-generated hand can be used but not owned exclusively. A photo of your own hand is the cleanest option.
+
 ## Per-client decision log
 | Client | Who owns the project? | Combined headcount | License needed | Decided on |
 |---|---|---|---|---|

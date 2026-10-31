@@ -67,6 +67,44 @@ export type Brand = {
   cta: { headline: string; button: string; subline: string };
   /** File name inside public/music/, or null for no music bed */
   music: string | null;
+  /** Optional look for `whiteboard` scenes. Without it, defaults are used (see src/whiteboard/style.ts). */
+  whiteboard?: WhiteboardStyle;
+};
+
+/** Brand look for whiteboard (draw-on) scenes. Every field is optional. */
+export type WhiteboardStyle = {
+  /** Board color. Default "#FBFAF6" (warm white). */
+  paper?: string;
+  /** Marker color for drawings and handwriting. Default "#1F2328". */
+  ink?: string;
+  /** Second marker color, for circles and underlines. Default: the brand's primary color. */
+  highlight?: string;
+  /** Handwriting: "marker" (whiteboard print), "clean" (neat sans), "script" (cursive). Default "marker". */
+  font?: WhiteboardFont;
+  /**
+   * Your own hand image (PNG with transparent background) in brands/<id>/, instead of the built-in marker.
+   * `tipX`/`tipY`: where the pen tip is in the image, in % of its width and height (e.g. 8 and 12).
+   * `height`: display height in px for a 1080 px tall frame (scaled for other sizes).
+   */
+  hand?: { file: string; tipX: number; tipY: number; height: number };
+};
+
+export type WhiteboardFont = "marker" | "clean" | "script";
+
+/** One drawing on a whiteboard scene. Drawn when its cue word is spoken. */
+export type WhiteboardItem = {
+  /** Tabler outline icon name (find one with `npm run icon -- <keyword>`), e.g. "building-factory-2" */
+  icon?: string;
+  /** Short handwritten label under the icon (1 to 3 words reads best) */
+  label?: string;
+  /** Word from this scene's narration that starts this drawing. Without it, drawings are spread evenly. */
+  at?: string;
+  /** Draw a hand-drawn circle around this item, in the highlight color */
+  circle?: boolean;
+  /** "free" layout only: center of the icon and icon size, in % of the scene area (size % of its height) */
+  x?: number;
+  y?: number;
+  size?: number;
 };
 
 export type Stat = { prefix: string; value: number; suffix: string; label: string };
@@ -84,7 +122,13 @@ export type SceneVisual =
    * Without `src` (or if the file is missing) a labeled placeholder shows the `prompt`, so gaps are obvious.
    */
   | { kind: "broll"; src?: string; prompt?: string; headline?: string; lowerThird?: LowerThirdContent }
-  | { kind: "cta"; headline?: string; button?: string; subline?: string };
+  | { kind: "cta"; headline?: string; button?: string; subline?: string }
+  /**
+   * Whiteboard explainer: a handwritten title, then icons and labels drawn stroke by stroke by a moving
+   * marker, each starting on its cue word. "flow" (default) = up to 4 items in a row joined by arrows,
+   * for processes. "free" = you place each item with x/y/size.
+   */
+  | { kind: "whiteboard"; title?: string; layout?: "flow" | "free"; items: WhiteboardItem[] };
 
 export type SceneConfig = { id: string; text: string; visual: SceneVisual };
 

@@ -30,6 +30,7 @@ const SIZES: SceneSizes = {
   cta: 0.7,
   pointLayout: "stack",
   lowerThird: { x: 100, bottom: 290, scale: 0.8 },
+  whiteboard: { title: 52, label: 32, icon: 170 },
 };
 
 export const calculatePromoMetadata: CalculateMetadataFunction<ResolvedProps> = async ({ props, abortSignal }) => {

@@ -30,6 +30,7 @@ const SIZES: SceneSizes = {
   cta: 0.9,
   pointLayout: "split",
   lowerThird: { x: 150, bottom: 220, scale: 0.9 },
+  whiteboard: { title: 56, label: 38, icon: 230 },
 };
 
 export const calculateExplainerMetadata: CalculateMetadataFunction<ResolvedProps> = async ({ props, abortSignal }) => {

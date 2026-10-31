@@ -7,6 +7,8 @@ import { NumberBadge } from "../../components/NumberBadge";
 import { StatCounter } from "../../components/StatCounter";
 import { useBrand } from "../../lib/brand-context";
 import type { Rect } from "../../lib/safe-zones";
+import type { WhiteboardSizes } from "../../whiteboard/geometry";
+import { WhiteboardScene } from "../../whiteboard/WhiteboardScene";
 import { SceneArea, type SceneRenderArgs } from "../VideoShell";
 
 /** Type sizes and layout choices for one format. */
@@ -24,6 +26,8 @@ export type SceneSizes = {
   pointLayout: "stack" | "split";
   /** Lower third: left edge and distance from the bottom of the frame */
   lowerThird: { x: number; bottom: number; scale: number };
+  /** Handwriting and icon sizes for whiteboard scenes */
+  whiteboard: WhiteboardSizes;
 };
 
 const Kicker: React.FC<{ text: string; size: number }> = ({ text, size }) => {
@@ -170,6 +174,9 @@ export const FormatScene: React.FC<SceneRenderArgs & { area: Rect; sizes: SceneS
           ) : null}
         </>
       );
+
+    case "whiteboard":
+      return <WhiteboardScene visual={visual} sceneId={config.id} scene={scene} area={area} sizes={sizes.whiteboard} />;
 
     case "cta":
       return (

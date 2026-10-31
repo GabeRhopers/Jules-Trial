@@ -34,6 +34,7 @@ const SIZES: SceneSizes = {
   cta: 0.85,
   pointLayout: "stack",
   lowerThird: { x: SAFE.x + PAD, bottom: H - (SAFE.y + 70 + 680), scale: 1 },
+  whiteboard: { title: 52, label: 42, icon: 220 },
 };
 
 export const calculateReelMetadata: CalculateMetadataFunction<ResolvedProps> = async ({ props, abortSignal }) => {

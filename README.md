@@ -80,7 +80,8 @@ npm run brand:new -- acme-aluminum --name="Acme Aluminum" --from=demo-b2b-indust
 Then edit `brands/acme-aluminum/brand.json`:
 - `colors`, `fonts` (a Google Font listed in `src/lib/font-map.ts`, or licensed WOFF2 files in `fonts/`)
 - `toneOfVoice`, default `cta`, `pronunciations` (product names, standards, local place names)
-- `style`: `cornerRadius` (999 = pills, 6 = square), `headlineCase`, `motion` (`bold` or `calm`), `background` (`glow` or `grid`), `transition`
+- `style`: `cornerRadius` (999 = pills, 6 = square), `headlineCase`, `motion` (`bold` or `calm`), `background` (`glow`, `grid` or `hearts`), `transition`
+- `whiteboard` (optional): look of whiteboard scenes, see section 8
 - `captionStyle`, `voice` (provider plus Kokoro and/or ElevenLabs settings)
 
 Replace `logo.svg` (text converted to outlines), then check everything:
@@ -88,6 +89,34 @@ Replace `logo.svg` (text converted to outlines), then check everything:
 npm run brand:check -- acme-aluminum
 ```
 Or just ask Claude: "Create a brand for Acme Aluminum from their website colors and this logo."
+
+### 8. Whiteboard scenes (optional)
+Any video can include **whiteboard scenes**: a handwritten title, then icons and labels drawn stroke by stroke
+by a moving marker, each starting on the word the voice says. Best for "how it works" moments: a process,
+a cause and effect, a before/after. Ask Claude for it during `/new-video` ("make the process scene a whiteboard"),
+or write it in `config.json`:
+```json
+{
+  "id": "process",
+  "text": "A durable finish takes four steps. We clean the raw part, the tank grows a hard oxide layer, we dye it, and then we seal it.",
+  "visual": {
+    "kind": "whiteboard",
+    "title": "How anodizing protects your part",
+    "items": [
+      { "icon": "spray", "label": "Clean and etch", "at": "clean" },
+      { "icon": "bolt", "label": "Grow oxide layer", "at": "tank" },
+      { "icon": "droplet", "label": "Dye", "at": "dye" },
+      { "icon": "shield-check", "label": "Seal", "at": "seal", "circle": true }
+    ]
+  }
+}
+```
+- `at`: the spoken word that starts each drawing. `circle`: circles the item in the brand color.
+- Find icons: `npm run icon -- factory` (any of 5,203 free Tabler icons, also at tabler.io/icons).
+- Look per brand (optional, `brand.json` → `whiteboard`): paper and marker colors, handwriting style
+  (`marker`, `clean`, `script`), and your own hand photo instead of the built-in marker:
+  `"hand": { "file": "hand.png", "tipX": 8, "tipY": 10, "height": 520 }` (PNG with transparent background in the brand folder; tip position in % of the image).
+- Examples: `anodizing-process-whiteboard` (16:9) and `ac-freeze-whiteboard` (9:16).
 
 ## Estimated cost per video
 
@@ -114,6 +143,8 @@ Notes:
 | `anodizing-spec-checklist` | demo-b2b-industrial | SocialReel9x16 |
 | `anodizing-rework-explainer` | demo-b2b-industrial | Explainer16x9 |
 | `spring-tuneup-promo` | demo-home-services | PromoSquare1x1 (shot 2 intentionally missing) |
+| `anodizing-process-whiteboard` | demo-b2b-industrial | Explainer16x9 with 2 whiteboard scenes |
+| `ac-freeze-whiteboard` | demo-home-services | SocialReel9x16 with 1 whiteboard scene |
 
 Narration audio is not committed. Before previewing an example, run `npm run narrate -- <video-id>`
 (Kokoro, free; `--provider=kokoro` for the industrial brand, which defaults to ElevenLabs), or

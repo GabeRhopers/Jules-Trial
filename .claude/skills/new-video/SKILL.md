@@ -39,7 +39,10 @@ Revise until the user approves. Do not narrate before approval.
 1. Pick a video id: lowercase, dashes, specific (e.g. `spring-ac-tuneup-reel`).
 2. `npm run video:new -- <video-id> --brand=<brand> --format=<format> --title="<title>"`
 3. Replace every TODO in `videos/<video-id>/config.json` and `script.md` with the approved script.
-   Scene kinds: `hook`, `statement`, `point` (with `stat` and optional `proof`), `broll`, `cta`. Set
+   Scene kinds: `hook`, `statement`, `point` (with `stat` and optional `proof`), `broll`, `cta`, and the
+   optional `whiteboard` (title + items drawn on cue words; see "Whiteboard scenes" in `script-rules.md`
+   and the example in `videos/anodizing-process-whiteboard/config.json`). Check every icon name with
+   `npm run icon -- <keyword>` before narrating. Set
    `pointLabel` (e.g. "Sign", "Spec", "Benefit") and `music` if wanted.
 4. New technical terms, product names or standards: add them to the brand's `pronunciations`.
 

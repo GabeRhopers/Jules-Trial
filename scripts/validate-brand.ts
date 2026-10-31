@@ -89,6 +89,35 @@ export const validateBrand = (id: string): { errors: string[]; warnings: string[
       `voice.elevenlabs.voiceId is still a placeholder${voice.provider === "elevenlabs" ? " (required before narration with ElevenLabs)" : ""}`,
     );
   }
+  // Optional whiteboard look (only used by whiteboard scenes)
+  if (brand.whiteboard) {
+    const wb = brand.whiteboard;
+    for (const key of ["paper", "ink", "highlight"] as const) {
+      if (wb[key] !== undefined && !HEX.test(wb[key])) errors.push(`whiteboard.${key} "${wb[key]}" must be a 6-digit hex color`);
+    }
+    if (wb.font !== undefined && !["marker", "clean", "script"].includes(wb.font)) errors.push(`whiteboard.font must be "marker", "clean" or "script"`);
+    if (wb.hand) {
+      if (!existsSync(path.join(dir, wb.hand.file))) errors.push(`whiteboard.hand.file ${wb.hand.file} not found in ${dir}/`);
+      if (!/\.(png|webp)$/i.test(wb.hand.file)) warnings.push("whiteboard.hand.file should be a PNG or WebP with a transparent background");
+      for (const k of ["tipX", "tipY"] as const) {
+        if (!(wb.hand[k] >= 0 && wb.hand[k] <= 100)) errors.push(`whiteboard.hand.${k} must be a percentage from 0 to 100`);
+      }
+      if (!(wb.hand.height > 0)) errors.push("whiteboard.hand.height must be a positive number of pixels");
+    }
+  }
+  const paper = brand.whiteboard?.paper ?? "#FBFAF6";
+  if (HEX.test(paper)) {
+    const wbChecks: [string, string][] = [
+      ["whiteboard ink on paper", brand.whiteboard?.ink ?? "#1F2328"],
+      ["whiteboard highlight on paper", brand.whiteboard?.highlight ?? brand.colors.primary],
+    ];
+    for (const [name, fg] of wbChecks) {
+      if (!HEX.test(fg)) continue;
+      const ratio = contrast(fg, paper);
+      // A warning, not an error: it only matters if the brand uses whiteboard scenes
+      if (ratio < 3) warnings.push(`contrast for ${name} is ${ratio.toFixed(2)}:1 (needs 3:1 if you use whiteboard scenes); set whiteboard.highlight`);
+    }
+  }
   if (brand.music && !existsSync(path.join("public", "music", brand.music))) errors.push(`music file public/music/${brand.music} not found`);
   if (brand.pronunciations.length === 0) warnings.push("no pronunciations listed: add product names, standards and technical terms");
   return { errors, warnings };

@@ -6,12 +6,15 @@
 //
 // Usage: node scripts/qc.ts <video-id> [--every=<frames>] [--brand=<brand-id>] [--allow-placeholders]
 //  - no B-roll slot is still an empty placeholder (unless --allow-placeholders, for drafts)
+//  - whiteboard scenes: ink and highlight readable on the paper, captions readable on the paper, and a
+//    warning when cue words are so close together that drawings had to be sped up
 import { bundle } from "@remotion/bundler";
 import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { buildTimeline } from "../src/lib/timeline.ts";
+import { resolveWhiteboardStyle } from "../src/whiteboard/style.ts";
 import type { Brand, NarrationManifest, VideoConfig } from "../src/lib/types.ts";
 
 /**
@@ -22,7 +25,7 @@ const minCaptionPx = (width: number, height: number) => (height > width ? 64 : h
 /** WCAG AA contrast for large text */
 const MIN_CONTRAST = 3;
 
-type QcLine = { frame: number; issues: string[]; page: string | null; active: string | null; captionFontPx: number | null; placeholders: string[] };
+type QcLine = { frame: number; issues: string[]; page: string | null; active: string | null; captionFontPx: number | null; placeholders: string[]; notes?: string[] };
 
 const luminance = (hex: string) => {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4));
@@ -79,6 +82,7 @@ const main = async () => {
 
   const problems: string[] = [];
   const emptySlots = new Set<string>();
+  const notes = new Set<string>();
   let syncChecked = 0;
   for (const line of lines) {
     for (const issue of line.issues) problems.push(`frame ${line.frame}: ${issue}`);
@@ -97,6 +101,7 @@ const main = async () => {
       problems.push(`frame ${line.frame}: caption font ${line.captionFontPx}px is below ${minPx}px`);
     }
     for (const p of line.placeholders) emptySlots.add(p);
+    for (const n of line.notes ?? []) notes.add(n);
   }
   const cs = brand.captionStyle;
   const pairs: [string, string, string][] = [
@@ -105,6 +110,15 @@ const main = async () => {
     ["headline text on background", brand.colors.text, brand.colors.background],
     ["CTA button text", brand.colors.textOnPrimary, brand.colors.primary],
   ];
+  if (video.scenes.some((s) => s.visual.kind === "whiteboard")) {
+    const wb = resolveWhiteboardStyle(brand);
+    pairs.push(
+      ["whiteboard ink on paper", wb.ink, wb.paper],
+      ["whiteboard highlight on paper", wb.highlight, wb.paper],
+      // Captions over the paper stay readable through their outline color
+      ["caption outline on whiteboard paper", cs.strokeColor, wb.paper],
+    );
+  }
   const contrasts = pairs.map(([name, fg, bg]) => {
     const ratio = contrast(fg, bg);
     if (ratio < MIN_CONTRAST) problems.push(`contrast too low for ${name}: ${ratio.toFixed(2)}:1 (need ${MIN_CONTRAST}:1)`);
@@ -119,6 +133,7 @@ const main = async () => {
     if (allowPlaceholders) console.log(`Note: ${msg} (allowed with --allow-placeholders)`);
     else problems.push(`${msg}. Add the clips to public/broll/${videoId}/, or re-run with --allow-placeholders for drafts`);
   }
+  for (const n of notes) console.log(`Warning: ${n}. Move the cue words further apart, or shorten the labels.`);
   if (problems.length === 0) {
     console.log("PASS: no issues found");
   } else {

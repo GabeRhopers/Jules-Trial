@@ -16,18 +16,22 @@
     "@remotion/google-fonts": "4.0.539",
     "@remotion/layout-utils": "4.0.539",
     "@remotion/media": "4.0.539",
+    "@remotion/paths": "4.0.539",
     "@remotion/renderer": "4.0.539",
     "@remotion/transitions": "4.0.539",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "remotion": "4.0.539"
+    "remotion": "4.0.539",
+    "roughjs": "4.6.6"
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.539",
+    "@tabler/icons": "3.50.0",
     "@types/node": "^22.20.5",
     "@types/react": "19.2.7",
     "@types/web": "0.0.166",
     "eslint": "10.12.0",
+    "hersheytext": "2.0.0",
     "prettier": "3.8.1",
     "typescript": "5.9.3"
   },
@@ -44,7 +48,9 @@
     "brand:check": "node scripts/validate-brand.ts",
     "narrate": "node scripts/narrate.ts",
     "test": "node --test scripts/lib/*.test.ts",
-    "video:new": "node scripts/new-video.ts"
+    "video:new": "node scripts/new-video.ts",
+    "icon": "node scripts/find-icon.ts",
+    "whiteboard:assets": "node scripts/build-whiteboard-assets.ts"
   },
   "allowScripts": {
     "esbuild": false
