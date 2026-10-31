@@ -118,6 +118,30 @@ or write it in `config.json`:
   `"hand": { "file": "hand.png", "tipX": 8, "tipY": 10, "height": 520 }` (PNG with transparent background in the brand folder; tip position in % of the image).
 - Examples: `anodizing-process-whiteboard` (16:9) and `ac-freeze-whiteboard` (9:16).
 
+**Flowcharts with decisions** (`"layout": "diagram"`): write the diagram in Mermaid, the same text that works in
+GitHub, Notion and draw.io. It is laid out automatically and drawn by hand, one node per cue word:
+```json
+"visual": {
+  "kind": "whiteboard",
+  "title": "Furnace check",
+  "layout": "diagram",
+  "diagram": "flowchart TD\n  T{Set to heat?} -->|No| S[Switch to heat]\n  T -->|Yes| F{Filter dirty?}\n  F -->|Yes| R([Replace filter])\n  F -->|No| P[Call a pro]",
+  "nodes": { "T": { "at": "thermostat" }, "S": { "at": "switch" }, "F": { "at": "filter" },
+             "R": { "at": "replace" }, "P": { "at": "pro", "icon": "phone-call", "highlight": true } }
+}
+```
+Shapes: `[box]`, `(rounded)`, `([pill])`, `((circle))`, `{decision}`. Arrows: `-->`, `-->|label|`, `---`, `-.->`.
+Example: `furnace-no-heat-whiteboard` (9:16).
+
+### 9. Standalone diagrams (optional draw.io plugin)
+For process maps and workflow sketches outside videos, the official draw.io plugin (free, Apache-2.0) lets Claude
+create editable `.drawio` files (and PNG/SVG/PDF with draw.io Desktop). Install it once, inside `claude`:
+```
+/plugin marketplace add jgraph/drawio-mcp
+/plugin install drawio@drawio
+```
+It is a third-party plugin, so it is not switched on automatically for this project.
+
 ## Estimated cost per video
 
 | Item | 30 s reel | 60 s explainer | 20 s promo |
@@ -145,6 +169,7 @@ Notes:
 | `spring-tuneup-promo` | demo-home-services | PromoSquare1x1 (shot 2 intentionally missing) |
 | `anodizing-process-whiteboard` | demo-b2b-industrial | Explainer16x9 with 2 whiteboard scenes |
 | `ac-freeze-whiteboard` | demo-home-services | SocialReel9x16 with 1 whiteboard scene |
+| `furnace-no-heat-whiteboard` | demo-home-services | SocialReel9x16 with a whiteboard decision flowchart |
 
 Narration audio is not committed. Before previewing an example, run `npm run narrate -- <video-id>`
 (Kokoro, free; `--provider=kokoro` for the industrial brand, which defaults to ElevenLabs), or

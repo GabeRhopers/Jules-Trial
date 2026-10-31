@@ -446,3 +446,28 @@ New packages: `@remotion/paths` 4.0.539, `roughjs` 4.6.6 (dependencies); `@table
 | Frame strip of the reel | Each item appears on its cue word ("filter", "air", "freezes") |
 Found and fixed while testing: icon lines were 4x bolder than handwriting; reel icons too small; uncued items
 started before the title finished; the circle crossed arrows in narrow layouts.
+
+## Whiteboard flowcharts from Mermaid + diagram tooling (2026-10-31)
+
+### Research summary (free diagram tools Claude can use)
+draw.io's official Claude Code plugin and MCP (jgraph, Apache-2.0); Excalidraw MCP (MIT, under the excalidraw org);
+Mermaid (MIT; no official MCP found); D2 (MPL-2.0); mermaid-to-excalidraw, React Flow, Cytoscape, AntV (MIT);
+ELK (EPL-2.0); bpmn-js (free, watermark must stay); Kroki (MIT, self-host). tldraw needs a paid key for production.
+
+### Built
+- `layout: "diagram"` for whiteboard scenes: Mermaid flowchart text → our parser (`src/whiteboard/flowchart.ts`,
+  strict subset, clear errors) → dagre layout (MIT, synchronous, so every frame renders the same) → hand-drawn
+  Rough.js shapes (box, rounded, pill, circle, decision), straight hand-drawn arrows clipped to each outline,
+  labels placed beside their line, optional icons and highlight color per node. Scaled down (never up) to fit;
+  QC warns when diagram text ends up under 28 px tall at 1080p.
+- Demo `videos/furnace-no-heat-whiteboard` (SocialReel9x16, demo-home-services, Kokoro voice).
+- `scripts/lib/flowchart.test.ts` (3 tests). Docs: CLAUDE.md, README (sections 8 and 9), script rules, `/new-video`, LICENSE_NOTES.
+
+### Not done, on purpose
+- Auto-enabling the draw.io plugin in `.claude/settings.json` was blocked by the session's safety check (third-party
+  code). README section 9 and CLAUDE.md give the two install commands instead; each user decides.
+
+### Found and fixed while testing
+Edge labels as layout rows doubled the diagram height (now drawn beside the line); curved connectors made hooks at
+arrowheads (now straight for simple links); loop-back arrows overlapped (paired edges keep separate routes);
+"24 h" left "h" alone on a line (orphan rule in word wrap).

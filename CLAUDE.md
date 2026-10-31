@@ -23,7 +23,8 @@ public/broll/<video-id>/     footage and AI clips (git-ignored)
 public/music/                music beds + README.md with each track's license
 out/<brand-id>/              rendered MP4 + SRT (git-ignored)
 src/compositions/            SocialReel9x16, Explainer16x9, PromoSquare1x1, VideoShell (shared frame), scenes/
-src/whiteboard/              optional whiteboard scene: WhiteboardScene, Marker, geometry, timing, icons.json, fonts.json
+src/whiteboard/              optional whiteboard scene: WhiteboardScene, Marker, geometry, diagram (flowcharts), flowchart (Mermaid reader),
+                             timing, icons.json, fonts.json
 src/components/              AnimatedTitle, KineticCaptions, LowerThird, StatCounter, NumberBadge, LogoReveal,
                              CtaEndCard, BRollSlot, MusicBed (ducking), ProgressBar, BrandBackground, QcProbe
 src/lib/                     types, timeline (narration-driven timing), registry (auto-discovery), fonts, motion, safe zones
@@ -49,13 +50,19 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 - Add product names, standards and technical terms to `pronunciations` (the voice says `say`, captions show `term`).
 
 ## Whiteboard scenes (optional)
-- Scene kind `whiteboard`: `{ "kind": "whiteboard", "title": "...", "layout": "flow" | "free", "items": [{ "icon", "label", "at", "circle", "x", "y", "size" }] }`.
+- Scene kind `whiteboard`: `{ "kind": "whiteboard", "title": "...", "layout": "flow" | "free" | "diagram", "items": [{ "icon", "label", "at", "circle", "x", "y", "size" }] }`.
   `flow` (default) puts up to 4 items in a row joined by hand-drawn arrows; `free` places each item by `x`/`y`/`size` (% of the scene area).
+- `layout: "diagram"`: a **Mermaid flowchart** in `"diagram"` (decisions, branches, labeled arrows), laid out automatically (dagre) and drawn by hand. Per-node options in `"nodes"`: `{ "<id>": { "at", "icon", "highlight" } }`. Each node and the arrows into it draw on the node's cue word. Supported syntax: `flowchart TD|LR|BT|RL`, `A[Box] A(Rounded) A([Pill]) A((Circle)) A{Decision}`, `-->`, `---`, `-.->`, `==>`, `-->|label|`, `-- label -->`, chains. Not supported (clear error): subgraph, styles, `&`. Example: `videos/furnace-no-heat-whiteboard`.
+  Keep diagrams to 4 to 6 nodes (reels: TD direction, 2 to 3 words per node, no icons inside decisions); QC warns when a diagram has to shrink so much that its text is under 28 px tall (at 1080p).
 - Each item starts drawing when its `at` word is spoken (matched in order, ignoring case, accents and punctuation). A cue that is not in the narration stops the render with a clear error. Items without `at` are spread evenly.
 - Icons: any of the 5,203 Tabler outline icons (`npm run icon -- <keyword>`). Handwriting: single-line fonts, so letters are written stroke by stroke (Portuguese accents included).
 - Brand look (all optional) in `brand.json` → `whiteboard`: `paper`, `ink`, `highlight` (circles and underlines; default = primary color), `font` (`marker`, `clean`, `script`), `hand` (your own hand PNG: `file`, `tipX`/`tipY` in % of the image, `height` px at 1080p). Without `hand`, a built-in vector marker is used.
 - Never use a hand image you did not make or license. AI-generated hands can be used but are not copyright-protected (US Copyright Office, Jan 2025); a photo of your own hand is the safest.
 - Script rules for whiteboard scenes are in `.claude/skills/new-video/script-rules.md`.
+
+## Diagrams outside videos
+- For standalone diagrams (process maps, HubSpot workflow sketches, client approvals), write **Mermaid** first: it renders in GitHub, Notion and the draw.io plugin, and the same text can become a whiteboard `diagram` scene.
+- Optional: the official draw.io plugin for Claude Code (Apache-2.0, by jgraph) creates editable `.drawio` files: `/plugin marketplace add jgraph/drawio-mcp` then `/plugin install drawio@drawio`. It is not enabled for this project automatically; each user installs it themselves.
 
 ## Quality checklist (before any delivery)
 - [ ] `node scripts/qc.ts <id>` passes: text inside safe zones, no overflow, captions never overlap other text, captions in sync with narration, caption size readable on a phone, contrast OK, no empty B-roll slots. For whiteboard scenes it also checks the drawing stays in the safe zone, ink/highlight contrast on the paper, and warns when cue words are too close together.

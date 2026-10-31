@@ -133,7 +133,7 @@ const main = async () => {
     if (allowPlaceholders) console.log(`Note: ${msg} (allowed with --allow-placeholders)`);
     else problems.push(`${msg}. Add the clips to public/broll/${videoId}/, or re-run with --allow-placeholders for drafts`);
   }
-  for (const n of notes) console.log(`Warning: ${n}. Move the cue words further apart, or shorten the labels.`);
+  for (const n of [...notes].flatMap((x) => x.split(" | "))) console.log(`Warning: ${n}.`);
   if (problems.length === 0) {
     console.log("PASS: no issues found");
   } else {

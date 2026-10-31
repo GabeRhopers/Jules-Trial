@@ -22,6 +22,8 @@ type TimedStroke = Stroke & { startMs: number; endMs: number };
 
 /** Gaps shorter than this keep the marker on the board; longer gaps send it out of frame */
 const STAY_MS = 700;
+/** Diagram text smaller than this (cap height, px at 1080 px) is hard to read on a phone (QC warns) */
+const MIN_DIAGRAM_CAP_PX = 28;
 const MOVE_MS = 320;
 
 /**
@@ -34,12 +36,14 @@ export const WhiteboardScene: React.FC<Props> = ({ visual, sceneId, scene, area,
   const { brand } = useBrand();
   const style = resolveWhiteboardStyle(brand);
 
-  const { strokes, bounds, rushed } = useMemo(() => {
-    const { groups, bounds } = layoutWhiteboard({
+  const { strokes, bounds, notes } = useMemo(() => {
+    const { groups, bounds, scale } = layoutWhiteboard({
       sceneId,
       title: visual.title,
       layout: visual.layout ?? "flow",
-      items: visual.items,
+      items: visual.items ?? [],
+      diagram: visual.diagram,
+      nodes: visual.nodes,
       area,
       sizes,
       font: style.font,
@@ -69,8 +73,15 @@ export const WhiteboardScene: React.FC<Props> = ({ visual, sceneId, scene, area,
       );
       return g.strokes.map((s, k) => ({ ...s, startMs: spans[k][0], endMs: spans[k][1] }));
     });
-    return { strokes: timed, bounds, rushed: windows.filter((w) => w.compressed).length };
-  }, [visual, sceneId, scene, area, sizes, style.font, style.ink, style.highlight, brand.style.motion, fps, height]);
+    const rushed = windows.filter((w) => w.compressed).length;
+    const notes = [
+      rushed > 0 ? `whiteboard scene "${sceneId}": ${rushed} drawing(s) sped up because cue words are too close together. Move the cue words further apart, or shorten the labels` : null,
+      sizes.label * scale < MIN_DIAGRAM_CAP_PX * (Math.min(width, height) / 1080)
+        ? `whiteboard scene "${sceneId}": the diagram had to shrink to ${Math.round(scale * 100)}% to fit, so its text is only ${Math.round(sizes.label * scale)} px tall (${MIN_DIAGRAM_CAP_PX}+ reads well on a phone). Use fewer nodes, shorter labels, or the other direction (TD/LR)`
+        : null,
+    ].filter((n): n is string => n !== null);
+    return { strokes: timed, bounds, notes };
+  }, [visual, sceneId, scene, area, sizes, style.font, style.ink, style.highlight, brand.style.motion, fps, width, height]);
 
   const t = (frame / fps) * 1000;
   const tip = markerPosition(strokes, t, { x: width * 1.08, y: height * 1.15 });
@@ -101,7 +112,7 @@ export const WhiteboardScene: React.FC<Props> = ({ visual, sceneId, scene, area,
       {/* Quality check: everything drawn must stay in the safe zone and clear of captions */}
       <div
         data-qc="whiteboard"
-        data-qc-note={rushed > 0 ? `whiteboard scene "${sceneId}": ${rushed} drawing(s) sped up because cue words are too close together` : undefined}
+        data-qc-note={notes.length ? notes.join(" | ") : undefined}
         style={{ position: "absolute", left: bounds.x, top: bounds.y, width: bounds.width, height: bounds.height, pointerEvents: "none" }}
       />
       {tip ? <Marker tip={tip} frameHeight={height} ink={style.ink} brandId={brand.id} hand={style.hand} /> : null}

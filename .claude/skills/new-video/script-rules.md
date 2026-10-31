@@ -38,6 +38,10 @@ on a cue word in the narration. Use it when **showing how something works** beat
   the last cue so the finished drawing stays on screen. QC warns when cues are too close.
 - The narration must say what the drawing shows: the viewer hears "dirty filter" as "Dirty filter" appears.
 - Icons: any Tabler outline icon; find names with `npm run icon -- <keyword>`. Pick literal, simple icons.
+- **Diagram layout** (decisions and branches, e.g. "is it set to heat? no: switch it; yes: check the filter"):
+  4 to 6 nodes, 2 to 3 words per node, yes/no on the arrows, the answer or offer as the `highlight` node.
+  Reels: top-down (`flowchart TD`), title max about 3 words, no icons inside decision diamonds.
+  Narrate the path in the same order the nodes are written, with one cue word per node.
 
 ## On-screen text
 - Headlines: max about 6 words; stat labels max about 5 words.

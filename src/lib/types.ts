@@ -91,6 +91,16 @@ export type WhiteboardStyle = {
 
 export type WhiteboardFont = "marker" | "clean" | "script";
 
+/** Options for one node of a whiteboard diagram. The node, its label and the arrows into it draw together. */
+export type WhiteboardNode = {
+  /** Word from this scene's narration that starts drawing this node. Without it, nodes are spread evenly. */
+  at?: string;
+  /** Tabler outline icon drawn inside the node, above its text */
+  icon?: string;
+  /** Draw this node's outline in the highlight color (the answer, the key step) */
+  highlight?: boolean;
+};
+
 /** One drawing on a whiteboard scene. Drawn when its cue word is spoken. */
 export type WhiteboardItem = {
   /** Tabler outline icon name (find one with `npm run icon -- <keyword>`), e.g. "building-factory-2" */
@@ -128,7 +138,20 @@ export type SceneVisual =
    * marker, each starting on its cue word. "flow" (default) = up to 4 items in a row joined by arrows,
    * for processes. "free" = you place each item with x/y/size.
    */
-  | { kind: "whiteboard"; title?: string; layout?: "flow" | "free"; items: WhiteboardItem[] };
+  | {
+      kind: "whiteboard";
+      title?: string;
+      layout?: "flow" | "free" | "diagram";
+      /** "flow" and "free" layouts */
+      items?: WhiteboardItem[];
+      /**
+       * "diagram" layout: a Mermaid flowchart (boxes, {decisions}, arrows with labels), laid out
+       * automatically. Same syntax as Mermaid in GitHub/Notion; see src/whiteboard/flowchart.ts for what is supported.
+       */
+      diagram?: string;
+      /** "diagram" layout: per-node options, keyed by the node id used in `diagram` */
+      nodes?: Record<string, WhiteboardNode>;
+    };
 
 export type SceneConfig = { id: string; text: string; visual: SceneVisual };
 

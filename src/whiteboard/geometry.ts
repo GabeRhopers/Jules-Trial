@@ -4,7 +4,8 @@
 import { getBoundingBox, getLength, getPointAtLength, getSubpaths, normalizePath, parsePath, reduceInstructions, serializeInstructions } from "@remotion/paths";
 import rough from "roughjs";
 import type { Rect } from "../lib/safe-zones";
-import type { WhiteboardFont, WhiteboardItem } from "../lib/types";
+import type { WhiteboardFont, WhiteboardItem, WhiteboardNode } from "../lib/types";
+import { diagramGroups } from "./diagram";
 import fontData from "./fonts.json";
 import iconData from "./icons.json";
 
@@ -104,6 +105,12 @@ export const wrapText = (text: string, fontName: WhiteboardFont, cap: number, ma
     } else line = next;
   }
   if (line) lines.push(line);
+  // Never leave a tiny word ("h", "of", "24") alone on the last line if it fits on the line before
+  if (lines.length > 1) {
+    const last = lines[lines.length - 1];
+    const merged = `${lines[lines.length - 2]} ${last}`;
+    if (last.length <= 2 && measureText(merged, fontName, cap) <= maxWidth * 1.25) lines.splice(-2, 2, merged);
+  }
   return lines;
 };
 
@@ -131,12 +138,12 @@ const seedFrom = (key: string) => {
   return (h >>> 0) % 2147483647 || 1;
 };
 
-const roughStrokes = (key: string, make: (g: ReturnType<typeof rough.generator>, seed: number) => Parameters<ReturnType<typeof rough.generator>["toPaths"]>[0], color: string, width: number) => {
+export const roughStrokes = (key: string, make: (g: ReturnType<typeof rough.generator>, seed: number) => Parameters<ReturnType<typeof rough.generator>["toPaths"]>[0], color: string, width: number) => {
   const gen = rough.generator();
   return gen.toPaths(make(gen, seedFrom(key))).flatMap((p) => toStrokes(p.d, color, width));
 };
 
-const roughOpts = (seed: number, roughness: number) => ({ seed, roughness, bowing: 1.2, disableMultiStroke: true, preserveVertices: true });
+export const roughOpts = (seed: number, roughness: number) => ({ seed, roughness, bowing: 1.2, disableMultiStroke: true, preserveVertices: true });
 
 export const arrowStrokes = (key: string, from: Point, to: Point, color: string, width: number): Stroke[] => {
   const angle = Math.atan2(to.y - from.y, to.x - from.x);
@@ -161,8 +168,11 @@ export const underlineStrokes = (key: string, from: Point, to: Point, color: str
 export type WhiteboardLayoutInput = {
   sceneId: string;
   title?: string;
-  layout: "flow" | "free";
+  layout: "flow" | "free" | "diagram";
   items: WhiteboardItem[];
+  /** "diagram" layout: Mermaid flowchart text and per-node options */
+  diagram?: string;
+  nodes?: Record<string, WhiteboardNode>;
   area: Rect;
   sizes: WhiteboardSizes;
   font: WhiteboardFont;
@@ -170,9 +180,10 @@ export type WhiteboardLayoutInput = {
   highlight: string;
 };
 
-export type WhiteboardLayout = { groups: StrokeGroup[]; bounds: Rect };
+/** `scale` < 1 when a diagram had to shrink to fit (text gets smaller too) */
+export type WhiteboardLayout = { groups: StrokeGroup[]; bounds: Rect; scale: number };
 
-export const layoutWhiteboard = ({ sceneId, title, layout, items, area, sizes, font, ink, highlight }: WhiteboardLayoutInput): WhiteboardLayout => {
+export const layoutWhiteboard = ({ sceneId, title, layout, items, diagram, nodes, area, sizes, font, ink, highlight }: WhiteboardLayoutInput): WhiteboardLayout => {
   const groups: StrokeGroup[] = [];
   const labelLineH = sizes.label * 1.55;
   const markerW = Math.max(3, sizes.label * 0.13);
@@ -194,7 +205,13 @@ export const layoutWhiteboard = ({ sceneId, title, layout, items, area, sizes, f
 
   const region = { x: area.x, y: top, width: area.width, height: area.y + area.height - top };
 
-  if (layout === "free") {
+  let scale = 1;
+  if (layout === "diagram") {
+    if (!diagram) throw new Error(`Whiteboard scene "${sceneId}": layout "diagram" needs a "diagram" (Mermaid flowchart text)`);
+    const res = diagramGroups({ sceneId, source: diagram, options: nodes ?? {}, region, cap: sizes.label, font, ink, highlight });
+    groups.push(...res.groups);
+    scale = res.scale;
+  } else if (layout === "free") {
     items.forEach((item, i) => {
       const size = ((item.size ?? 22) / 100) * area.height;
       const center = { x: area.x + ((item.x ?? 50) / 100) * area.width, y: area.y + ((item.y ?? 50) / 100) * area.height };
@@ -232,7 +249,7 @@ export const layoutWhiteboard = ({ sceneId, title, layout, items, area, sizes, f
     const y1 = Math.min(...boxes.map((b) => b.y1)) - pad;
     bounds = { x: x1, y: y1, width: Math.max(...boxes.map((b) => b.x2)) + pad - x1, height: Math.max(...boxes.map((b) => b.y2)) + pad - y1 };
   }
-  return { groups, bounds };
+  return { groups, bounds, scale };
 };
 
 const itemStrokes = (

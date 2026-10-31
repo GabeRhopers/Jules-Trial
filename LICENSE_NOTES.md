@@ -42,6 +42,9 @@ notices in the repo.
 | EMS Tech, EMS Readability, EMS Felix (single-line fonts) | `src/whiteboard/fonts.json` (glyph paths) | SIL Open Font License 1.1, by Sheldon B. Michaels (derivatives of Architects Daughter, Source Sans Pro, Felipa) | npm `hersheytext` 2.0.0 (MIT) `svg_fonts/` |
 | Rough.js 4.6.6 (hand-drawn arrows, circles, underlines) | npm dependency | MIT | npm `roughjs` |
 | `@remotion/paths` 4.0.539 | npm dependency | MIT (npm metadata); part of Remotion, see the Remotion license above | npm |
+| dagre 3.1.3 (`@dagrejs/dagre`, flowchart layout) | npm dependency | MIT | npm `@dagrejs/dagre` |
+| Mermaid flowchart syntax | `src/whiteboard/flowchart.ts` (our own reader, no Mermaid code) | n/a | mermaid.js.org/syntax/flowchart.html |
+| draw.io plugin for Claude Code (optional, not installed by this repo) | each user's Claude Code | Apache-2.0, by jgraph | github.com/jgraph/drawio-mcp |
 | Built-in marker drawing | `src/whiteboard/Marker.tsx` | Our own vector drawing | this repo |
 
 OFL note: the fonts may be used, embedded and modified freely, but may not be sold on their own, and
