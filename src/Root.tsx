@@ -1,10 +1,11 @@
 import { Composition, Folder, type CalculateMetadataFunction } from "remotion";
 import { calculateExplainerMetadata, EXPLAINER_LAYOUT, Explainer16x9 } from "./compositions/Explainer16x9";
 import { calculatePromoMetadata, PROMO_LAYOUT, PromoSquare1x1 } from "./compositions/PromoSquare1x1";
+import { getPhotoAd, PHOTO_AD_SIZE, PhotoAd9x16, photoAdDuration } from "./compositions/PhotoAd9x16";
 import { calculateReelMetadata, REEL_LAYOUT, SocialReel9x16 } from "./compositions/SocialReel9x16";
 import type { ShellLayout } from "./compositions/VideoShell";
 import type { ResolvedProps } from "./lib/load-video";
-import { videos } from "./lib/registry";
+import { photoAds, videos } from "./lib/registry";
 import type { VideoFormat } from "./lib/types";
 
 const FORMATS: Record<VideoFormat, { component: React.FC<ResolvedProps>; layout: ShellLayout; calculateMetadata: CalculateMetadataFunction<ResolvedProps> }> = {
@@ -41,5 +42,20 @@ export const RemotionRoot: React.FC = () => (
         </Folder>
       );
     })}
+    {/* Photo ads: one still image + animated text + sound effects, no narration (photo-ads/<id>/config.json) */}
+    <Folder name="PhotoAd9x16">
+      {photoAds.map((ad) => (
+        <Composition
+          key={ad.id}
+          id={ad.id}
+          component={PhotoAd9x16}
+          width={PHOTO_AD_SIZE.width}
+          height={PHOTO_AD_SIZE.height}
+          fps={PHOTO_AD_SIZE.fps}
+          durationInFrames={photoAdDuration(getPhotoAd(ad.id), PHOTO_AD_SIZE.fps)}
+          defaultProps={{ adId: ad.id }}
+        />
+      ))}
+    </Folder>
   </>
 );

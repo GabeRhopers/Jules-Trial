@@ -30,6 +30,8 @@ src/components/              AnimatedTitle, KineticCaptions, LowerThird, StatCou
 src/lib/                     types, timeline (narration-driven timing), registry (auto-discovery), fonts, motion, safe zones
 scripts/                     narrate, qc, render, make-srt, new-video, new-brand, validate-brand, placeholder-narration,
                              find-icon, build-whiteboard-assets
+photo-ads/<id>/              photo ads: config.json + one still image (no narration), see "Photo ads" below
+public/sfx/                  generated sound effects (npm run sfx; original, free to use)
 editor/                      the browser editing screen (npm run editor): forms + live preview + voice/QC/render buttons
 scripts/editor/              its local server (127.0.0.1:3100), rspack build and save validation
 .claude/skills/new-video/    the /new-video workflow and script rules
@@ -101,6 +103,13 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 - It runs only Kokoro (free), the silent test voice, QC and render. ElevenLabs stays out of the editor on purpose (cost rules above).
 - The preview uses `resolveVideoConfig(..., { allowStale: true })`: changed scenes keep their old audio until "Make voice"; final renders still require fresh narration.
 - When changing compositions or scene types, update `editor/SceneEditor.tsx` (forms) and `editor/checks.ts` (inline checks) too.
+
+## Photo ads (one still image, no narration)
+- `photo-ads/<id>/config.json` + the image (1080x1920 ideal). Composition `PhotoAd9x16` (src/compositions/PhotoAd9x16.tsx): slow eased push-in toward `motion.focusX/Y`, logo drop-in, text boxes flush to a screen edge sliding in with words rising ("\n" sets line breaks), optional glow pulse (`highlight`) with a beep, end card in the brand colors (red and blue swooshes, logo, headline; the brand name in the headline is shown in the accent color).
+- Sound is synced by placing each effect at the same time as its motion (whoosh with each box, pop when a logo lands, beep with the glow, whoosh + pop + chime on the end card), over wind ambience and a music bed.
+- Commands: `npm run photo-ad -- qc <id>` (Reels safe zones, action rail, overflow) and `npm run photo-ad -- render <id>` → `out/<brand>/<id>.mp4`.
+- Always use the client's clean image (no baked-in text or logo). Text burned into a picture cannot be animated, and removing it leaves seams.
+- The editing screen does not edit photo ads yet; edit config.json (or ask Claude).
 
 ## Known limits
 - `npx remotion compositions` (list all) fails if any video has no narration yet; rendering a single video by id works.

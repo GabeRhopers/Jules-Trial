@@ -1,6 +1,6 @@
 // Auto-discovers every brands/<id>/brand.json and videos/<id>/config.json at bundle time.
 // Adding a brand or a video needs no code changes: just add the folder.
-import type { Brand, VideoConfig } from "./types";
+import type { Brand, PhotoAdConfig, VideoConfig } from "./types";
 
 type Context = { keys(): string[]; (id: string): unknown };
 declare global {
@@ -12,6 +12,8 @@ declare global {
 const brandFiles = import.meta.webpackContext("../../brands", { recursive: true, regExp: /brand\.json$/ });
 const brandAssets = import.meta.webpackContext("../../brands", { recursive: true, regExp: /\.(svg|png|jpe?g|webp|woff2?|ttf|otf)$/ });
 const videoFiles = import.meta.webpackContext("../../videos", { recursive: true, regExp: /config\.json$/ });
+const photoAdFiles = import.meta.webpackContext("../../photo-ads", { recursive: true, regExp: /config\.json$/ });
+const photoAdAssets = import.meta.webpackContext("../../photo-ads", { recursive: true, regExp: /\.(png|jpe?g|webp)$/ });
 
 const unwrap = <T,>(mod: unknown): T => ((mod as { default?: T }).default ?? mod) as T;
 
@@ -23,6 +25,15 @@ export const brands: Record<string, Brand> = Object.fromEntries(
 );
 
 export const videos: VideoConfig[] = videoFiles.keys().map((key) => unwrap<VideoConfig>(videoFiles(key)));
+
+export const photoAds: PhotoAdConfig[] = photoAdFiles.keys().map((key) => unwrap<PhotoAdConfig>(photoAdFiles(key)));
+
+/** URL of a photo ad's image, resolved by the bundler. */
+export const getPhotoAdAsset = (adId: string, file: string): string => {
+  const key = photoAdAssets.keys().find((k) => k.endsWith(`${adId}/${file}`));
+  if (!key) throw new Error(`Image "${file}" not found in photo-ads/${adId}/`);
+  return unwrap<string>(photoAdAssets(key));
+};
 
 export const getBrand = (id: string): Brand => {
   const brand = brands[id];

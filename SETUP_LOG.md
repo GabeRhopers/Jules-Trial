@@ -497,3 +497,14 @@ Built our own instead, on Remotion's Player (same license as the rest of Remotio
   sandbox): load, live edit before save, stale warning, Ctrl+S writes exactly the edit, bad cue word flagged, free voice job
   (only the changed scene regenerated), QC PASS, render + download (HTTP 206 range), add scene, format switch, 16:9 video,
   no page errors. Test edits to `btac-furnace-no-heat` were reverted and its voice and render restored.
+
+## Photo ads + BTAC "first cold morning" (2026-11-02)
+- New composition `PhotoAd9x16` + `photo-ads/<id>/config.json` (auto-discovered), `scripts/photo-ad.ts` (qc, render),
+  `scripts/make-sfx.ts` (original sound effects in public/sfx/).
+- BTAC ad from the client's picture: text boxes were baked into the image. LaMa inpainting was blocked by the session's
+  safety check (it downloads and runs an external model); OpenCV shift-map inpainting (opencv-contrib, local) left visible
+  seams, so `background.jpg` is a STAND-IN until the client's clean image is added. The client then sent clean versions in
+  chat, but chat images are not saved as files in this session; the tall 9:16 version has the same framing as the original,
+  so the layout carries over.
+- Changes from the client's layout, for Reels: logo moved from y=80 to y=292 (the top 270 px is covered by Reels UI); the
+  second text box moved up from the bottom (caption area) to y=982, ending above the action rail. QC PASS (66 frames).

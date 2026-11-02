@@ -194,3 +194,25 @@ export type NarrationManifest = {
   generatedAt: string;
   scenes: SceneNarration[];
 };
+
+/**
+ * Photo ad: one still image with a slow push-in, animated text boxes, sound effects synced to the motion,
+ * and an end card. No narration. Lives in photo-ads/<id>/config.json (+ the image file). Times are in seconds.
+ */
+export type PhotoAdConfig = {
+  id: string;
+  brand: string;
+  title: string;
+  /** Image file in the same folder, ideally 1080x1920 */
+  image: string;
+  imageNote?: string;
+  /** Slow push-in toward a point of the image (px in image coordinates) */
+  motion: { focusX: number; focusY: number; zoomTo: number; untilSec: number };
+  logo?: { atSec: number; width: number; y: number };
+  /** Text boxes flush with the left or right screen edge; "\n" in the text sets line breaks. `y` = top in px. */
+  texts: { text: string; atSec: number; side: "left" | "right"; y: number; fontSize?: number }[];
+  /** Optional glow pulse on a spot of the image (e.g. a thermostat screen), with a beep */
+  highlight?: { atSec: number; x: number; y: number; radius: number };
+  endCard: { atSec: number; headline: string; holdSec: number; subline?: string };
+  audio: { music: string | null; wind?: boolean };
+};
