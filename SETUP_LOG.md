@@ -480,3 +480,20 @@ arrowheads (now straight for simple links); loop-back arrows overlapped (paired 
   card, flowchart ends in a highlighted "Call BTAC" node, CTA "Still no heat? Call BTAC" with "Lubbock & the South Plains".
   Demo placeholders removed. No phone number on purpose: directories list two different numbers; add it once BTAC confirms.
 - QC PASS (104 sync checks; highlighted caption 5.0:1, whiteboard highlight 8.5:1). Render 1080x1920, 22.1 s, 3.7 MB.
+
+## Editing screen (2026-11-02)
+Research (previous turn): OpenCut (MIT) is mid-rewrite with its API/MCP only planned; Remotion Editor Starter costs $600 and
+its drag-and-drop timeline fights narration-driven timing; several "React video editor" repos have unclear or paid licenses.
+Built our own instead, on Remotion's Player (same license as the rest of Remotion).
+
+- `npm run editor` → http://localhost:3100 (127.0.0.1 only). `scripts/editor/server.ts` (Node http, no new framework),
+  `scripts/editor/build.ts` (rspack, the bundler Remotion uses, so `brands/` and `videos/` auto-discovery works),
+  `scripts/editor/validate.ts` (save validation, path guard), `editor/` (React page: forms per scene type, Mermaid flowchart
+  box table, inline checks, live preview, job log, download link).
+- `src/lib/load-video.ts`: `resolveVideoConfig()` resolves an unsaved config; stale scenes are compared by scene id, and
+  adding/removing/reordering scenes is reported separately (one quick narration re-run fixes it).
+- New packages: `@remotion/player` 4.0.539; dev: `@rspack/core` 1.7.11 (already installed by Remotion), `@types/react-dom`.
+- Tests: `scripts/lib/editor.test.ts` (path guard, save validation): 16/16 with the existing tests. Browser tests (Playwright,
+  sandbox): load, live edit before save, stale warning, Ctrl+S writes exactly the edit, bad cue word flagged, free voice job
+  (only the changed scene regenerated), QC PASS, render + download (HTTP 206 range), add scene, format switch, 16:9 video,
+  no page errors. Test edits to `btac-furnace-no-heat` were reverted and its voice and render restored.

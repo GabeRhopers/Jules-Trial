@@ -64,7 +64,22 @@ ElevenLabs only after you approve the credit estimate), offers B-roll, opens the
 feedback, runs the quality check and renders the final files.
 You can also give it everything at once: `/new-video demo-home-services SocialReel9x16 water heater warning signs`.
 
-### 6. Preview and render by hand
+### 6. Edit in the browser (no code)
+```bash
+npm run editor          # then open http://localhost:3100
+```
+Pick a video at the top. Every scene is a form on the left (voice text, headlines, drawings, flowchart boxes and
+cue words, call to action), and the real video plays on the right, updating as you type, before you save.
+- **Save** (or Ctrl+S) writes `videos/<id>/config.json`. **Undo changes** goes back to the last save.
+- **Make voice (free)** regenerates the Kokoro voice for changed scenes only. **Silent test voice** works without Kokoro.
+- **Quality check** and **Render final video** run the same checks and render as the commands below; the last
+  render can be downloaded from the page.
+- Red ⛔ notes stop the render (for example a cue word that is not in the voice text); 💡 notes are tips.
+- A yellow note says which scenes need a new voice after you change their text, or add, remove or reorder scenes.
+- Premium ElevenLabs voices cost credits, so they are not in the editor: ask Claude, which shows the cost first.
+- New brands appear after restarting the editor. It only runs on your own computer (it listens on 127.0.0.1).
+
+### 7. Preview and render by hand
 ```bash
 npm run dev                                       # Remotion Studio at http://localhost:3000
 npm run qc -- <video-id>                          # quality check (safe zones, overflow, sync, contrast)
@@ -73,7 +88,7 @@ npm run render:video -- <video-id> --brand=<id>   # same video in another brand
 ```
 In Studio, set `showSafeZones` to see the platform UI areas, and change `brandId` to preview another brand.
 
-### 7. Add a new client brand
+### 8. Add a new client brand
 ```bash
 npm run brand:new -- acme-aluminum --name="Acme Aluminum" --from=demo-b2b-industrial
 ```
@@ -81,7 +96,7 @@ Then edit `brands/acme-aluminum/brand.json`:
 - `colors`, `fonts` (a Google Font listed in `src/lib/font-map.ts`, or licensed WOFF2 files in `fonts/`)
 - `toneOfVoice`, default `cta`, `pronunciations` (product names, standards, local place names)
 - `style`: `cornerRadius` (999 = pills, 6 = square), `headlineCase`, `motion` (`bold` or `calm`), `background` (`glow`, `grid` or `hearts`), `transition`
-- `whiteboard` (optional): look of whiteboard scenes, see section 8
+- `whiteboard` (optional): look of whiteboard scenes, see section 9
 - `captionStyle`, `voice` (provider plus Kokoro and/or ElevenLabs settings)
 
 Replace `logo.svg` (text converted to outlines), then check everything:
@@ -90,7 +105,7 @@ npm run brand:check -- acme-aluminum
 ```
 Or just ask Claude: "Create a brand for Acme Aluminum from their website colors and this logo."
 
-### 8. Whiteboard scenes (optional)
+### 9. Whiteboard scenes (optional)
 Any video can include **whiteboard scenes**: a handwritten title, then icons and labels drawn stroke by stroke
 by a moving marker, each starting on the word the voice says. Best for "how it works" moments: a process,
 a cause and effect, a before/after. Ask Claude for it during `/new-video` ("make the process scene a whiteboard"),
@@ -133,7 +148,7 @@ GitHub, Notion and draw.io. It is laid out automatically and drawn by hand, one 
 Shapes: `[box]`, `(rounded)`, `([pill])`, `((circle))`, `{decision}`. Arrows: `-->`, `-->|label|`, `---`, `-.->`.
 Example: `furnace-no-heat-whiteboard` (9:16).
 
-### 9. Standalone diagrams (optional draw.io plugin)
+### 10. Standalone diagrams (optional draw.io plugin)
 For process maps and workflow sketches outside videos, the official draw.io plugin (free, Apache-2.0) lets Claude
 create editable `.drawio` files (and PNG/SVG/PDF with draw.io Desktop). Install it once, inside `claude`:
 ```

@@ -21,3 +21,6 @@ public/broll/
 # Local Python environment for Kokoro
 .venv/
 __pycache__/
+
+# Built editor page (npm run editor rebuilds it on every start)
+.editor-dist/

@@ -30,6 +30,8 @@ src/components/              AnimatedTitle, KineticCaptions, LowerThird, StatCou
 src/lib/                     types, timeline (narration-driven timing), registry (auto-discovery), fonts, motion, safe zones
 scripts/                     narrate, qc, render, make-srt, new-video, new-brand, validate-brand, placeholder-narration,
                              find-icon, build-whiteboard-assets
+editor/                      the browser editing screen (npm run editor): forms + live preview + voice/QC/render buttons
+scripts/editor/              its local server (127.0.0.1:3100), rspack build and save validation
 .claude/skills/new-video/    the /new-video workflow and script rules
 ```
 Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatically. The composition id is the video id.
@@ -85,6 +87,7 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 | New video folder | `npm run video:new -- <id> --brand=<brand> --format=<format>` |
 | Narration | `npm run narrate -- <id> [--provider=kokoro\|elevenlabs] [--force]` |
 | Silent test narration | `npm run narrate:placeholder -- <id>` |
+| Edit in the browser (forms + live preview) | `npm run editor` → http://localhost:3100 |
 | Preview | `npm run dev` |
 | Quality check | `npm run qc -- <id> [--allow-placeholders] [--brand=<id>]` |
 | Render MP4 + SRT | `npm run render:video -- <id> [--brand=<id>]` |
@@ -92,6 +95,12 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 | Find a whiteboard icon | `npm run icon -- <keyword>` |
 | Rebuild whiteboard icons/fonts (after upgrading @tabler/icons) | `npm run whiteboard:assets` |
 | Unit tests | `npm test` |
+
+## Editing screen (`npm run editor`)
+- The user can edit any video without code: it writes the same `videos/<id>/config.json`, so recipe-first editing still holds. If the user says they edited in the editor, re-read the config before changing it.
+- It runs only Kokoro (free), the silent test voice, QC and render. ElevenLabs stays out of the editor on purpose (cost rules above).
+- The preview uses `resolveVideoConfig(..., { allowStale: true })`: changed scenes keep their old audio until "Make voice"; final renders still require fresh narration.
+- When changing compositions or scene types, update `editor/SceneEditor.tsx` (forms) and `editor/checks.ts` (inline checks) too.
 
 ## Known limits
 - `npx remotion compositions` (list all) fails if any video has no narration yet; rendering a single video by id works.

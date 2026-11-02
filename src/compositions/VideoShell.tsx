@@ -98,7 +98,8 @@ export const VideoShell: React.FC<Props> = ({ resolved, showSafeZones, qc, layou
           })}
         </TransitionSeries>
 
-        {timeline.scenes.map((scene) => (
+        {/* Scenes without audio yet (only in the editor preview, before narration) stay silent */}
+        {timeline.scenes.filter((scene) => scene.audio).map((scene) => (
           <Sequence key={`audio-${scene.id}`} name={`voice ${scene.id}`} from={scene.startFrame} durationInFrames={scene.durationInFrames} layout="none">
             <Audio src={staticFile(scene.audio)} />
           </Sequence>

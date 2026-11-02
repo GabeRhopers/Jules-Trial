@@ -25,7 +25,29 @@ export type ResolvedProps = InputProps & {
 export const resolveVideo = async (props: InputProps, fps: number, abortSignal?: AbortSignal) => {
   const video = getVideo(props.videoId);
   const brand = getBrand(props.brandId ?? video.brand);
-  const res = await fetch(staticFile(`audio/${video.id}/manifest.json`), { signal: abortSignal });
+  const { resolved, staleScenes, orderChanged } = await resolveVideoConfig(video, brand, fps, { abortSignal });
+  if (staleScenes.length > 0 || orderChanged) {
+    throw new Error(
+      `Narration is out of date for scenes: ${staleScenes.join(", ") || "(scenes added, removed or reordered)"}. Re-run the narration script for "${video.id}".`,
+    );
+  }
+  return resolved;
+};
+
+/**
+ * Same as resolveVideo, but for a config passed in directly (the editor's unsaved changes).
+ * With `allowStale`, scenes whose text changed since the last narration keep their old audio and timing
+ * (so the preview still plays) and are listed in `staleScenes`.
+ */
+export const resolveVideoConfig = async (
+  video: VideoConfig,
+  brand: Brand,
+  fps: number,
+  options: { abortSignal?: AbortSignal; allowStale?: boolean; cacheBust?: string } = {},
+) => {
+  const { abortSignal, allowStale = false, cacheBust } = options;
+  const bust = cacheBust ? `?v=${cacheBust}` : "";
+  const res = await fetch(staticFile(`audio/${video.id}/manifest.json`) + bust, { signal: abortSignal });
   if (!res.ok) {
     throw new Error(
       `No narration for "${video.id}". Run: node scripts/narrate.ts ${video.id}  (or scripts/placeholder-narration.ts for a silent test track)`,
@@ -33,10 +55,25 @@ export const resolveVideo = async (props: InputProps, fps: number, abortSignal?:
   }
   const manifest = (await res.json()) as NarrationManifest;
 
-  const stale = video.scenes.filter((scene, i) => manifest.scenes[i]?.id !== scene.id || manifest.scenes[i]?.text !== scene.text);
-  if (stale.length > 0 || manifest.scenes.length !== video.scenes.length) {
-    throw new Error(
-      `Narration is out of date for scenes: ${stale.map((s) => s.id).join(", ") || "(scene count changed)"}. Re-run the narration script for "${video.id}".`,
+  // A scene is stale when its text changed (or it has no audio yet). Separately, the narration's scene order
+  // must match the video's: adding, removing or reordering scenes needs a quick re-run (unchanged audio is reused).
+  const staleScenes = video.scenes.filter((scene) => manifest.scenes.find((m) => m.id === scene.id)?.text !== scene.text).map((s) => s.id);
+  const orderChanged = manifest.scenes.map((m) => m.id).join("|") !== video.scenes.map((s) => s.id).join("|");
+  if (orderChanged && !allowStale) {
+    throw new Error(`Narration is out of date (scenes added, removed or reordered). Re-run the narration script for "${video.id}".`);
+  }
+  if (orderChanged) {
+    // Preview only: line up audio by scene id where possible; new scenes get a short silent placeholder
+    manifest.scenes = video.scenes.map(
+      (scene) =>
+        manifest.scenes.find((m) => m.id === scene.id) ?? {
+          id: scene.id,
+          text: scene.text,
+          audio: "",
+          durationMs: 2500,
+          hash: "",
+          words: [{ text: "…", startMs: 0, endMs: 2500 }],
+        },
     );
   }
 
@@ -51,5 +88,9 @@ export const resolveVideo = async (props: InputProps, fps: number, abortSignal?:
   }
 
   const music = video.music !== undefined ? video.music : brand.music;
-  return { video, brand, logoSrc: getBrandAsset(brand.id, brand.logo), timeline, music, brollAvailable };
+  return {
+    resolved: { video, brand, logoSrc: getBrandAsset(brand.id, brand.logo), timeline, music, brollAvailable },
+    staleScenes,
+    orderChanged,
+  };
 };
