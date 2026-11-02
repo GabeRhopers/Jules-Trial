@@ -6,14 +6,14 @@
   "imageNote": "STAND-IN: the client's text and logo were removed by inpainting and leave seams. Replace background.jpg with the clean photo (same 1080x1920 framing), then re-render.",
   "motion": {
     "focusX": 960,
-    "focusY": 560,
+    "focusY": 395,
     "zoomTo": 1.09,
     "untilSec": 7.6
   },
   "logo": {
     "atSec": 0.25,
-    "width": 300,
-    "y": 292
+    "width": 250,
+    "y": 272
   },
   "texts": [
     {
