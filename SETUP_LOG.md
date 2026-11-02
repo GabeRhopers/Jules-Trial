@@ -508,3 +508,7 @@ Built our own instead, on Remotion's Player (same license as the rest of Remotio
   so the layout carries over.
 - Changes from the client's layout, for Reels: logo moved from y=80 to y=292 (the top 270 px is covered by Reels UI); the
   second text box moved up from the bottom (caption area) to y=982, ending above the action rail. QC PASS (66 frames).
+- Client sent the clean photos (2026-11-02). The tall 941x1672 version is the exact source of the design (mean pixel difference
+  1.8/255 outside the text areas), so it replaced the stand-in at 1080x1920 with no layout changes. The 4:5 and landscape
+  versions were not needed. Logo moved to y=272 at 250 px and the zoom centered at head height (focusY 395) so the logo
+  clears her head. QC PASS; final render 1080x1920, 11.0 s.

@@ -3,7 +3,7 @@
   "brand": "btac",
   "title": "That first cold morning (photo ad)",
   "image": "background.jpg",
-  "imageNote": "STAND-IN: the client's text and logo were removed by inpainting and leave seams. Replace background.jpg with the clean photo (same 1080x1920 framing), then re-render.",
+  "imageNote": "Client's clean photo (941x1672 source, scaled to 1080x1920). original-with-text.jpg is the client's design, kept for reference.",
   "motion": {
     "focusX": 960,
     "focusY": 395,
