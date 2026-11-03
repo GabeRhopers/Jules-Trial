@@ -1,0 +1,177 @@
+{
+  "id": "lorin-firearms",
+  "brand": "lorin",
+  "title": "3 details that say premium (firearms OEMs)",
+  "imageDir": "stories/lorin-firearms",
+  "music": "demo-pad.mp3",
+  "imageCredits": "Finish swatch photos from lorin.com/firearms (ClearMatt, Gun Metal Grey, GoldMatt, Black satin). Every firearm photo on that page is AI-generated (ChatGPT filenames), so none are used. The Polymer / Steel / Grip tiles in scene 4 are drawn textures (placeholders) until Lorin supplies real material samples.",
+  "footageNote": "Any scene can take Lorin-supplied or licensed footage: put the file in public/stories/lorin-firearms/ and set that scene's \"footage\" to its file name (mp4 or jpg). It replaces the scene's background visual; the text stays.",
+  "credential": "FFL Licensed Type III Hard Coat Supplier",
+  "swatches": [
+    {
+      "image": "clearmatt.jpg",
+      "label": "ClearMatt®"
+    },
+    {
+      "image": "gun-metal-grey.jpg",
+      "label": "Gun Metal Grey"
+    },
+    {
+      "image": "goldmatt.jpg",
+      "label": "GoldMatt®"
+    },
+    {
+      "image": "black-satin.jpg",
+      "label": "Black satin"
+    }
+  ],
+  "open": {
+    "dur": 3.6,
+    "footage": null,
+    "image": "gun-metal-grey.jpg",
+    "headline": {
+      "text": "3 details that\nsay premium.",
+      "at": 0.3
+    },
+    "credentialAt": 1.0,
+    "words": [
+      "Color.",
+      "Sheen.",
+      "Context."
+    ],
+    "wordsAt": 1.9,
+    "wordGap": 0.35
+  },
+  "color": {
+    "dur": 5.8,
+    "footage": null,
+    "number": "1",
+    "label": "COLOR",
+    "headline": {
+      "text": "Does it fit\nthe brand?",
+      "at": 0.35
+    },
+    "body": {
+      "text": "Define the color your\nproduct should communicate.",
+      "at": 1.3
+    },
+    "tilesAt": 0.6,
+    "pick": 1,
+    "pickAt": 2.6
+  },
+  "sheen": {
+    "dur": 5.8,
+    "footage": null,
+    "number": "2",
+    "label": "SHEEN",
+    "headline": {
+      "text": "Light changes\nthe read.",
+      "at": 0.35
+    },
+    "body": {
+      "text": "Review the finish in\nrelevant lighting.",
+      "at": 1.3
+    },
+    "image": "gun-metal-grey.jpg",
+    "lights": [
+      {
+        "label": "Soft light",
+        "filter": "brightness(1.08) contrast(0.88)",
+        "glow": 0.12
+      },
+      {
+        "label": "Direct light",
+        "filter": "brightness(1.3) contrast(1.18)",
+        "glow": 0.42
+      },
+      {
+        "label": "Low light",
+        "filter": "brightness(0.5) contrast(1.12)",
+        "glow": 0.05
+      }
+    ],
+    "lightsAt": 0.7
+  },
+  "context": {
+    "dur": 5.8,
+    "footage": null,
+    "number": "3",
+    "label": "CONTEXT",
+    "headline": {
+      "text": "Does it work with\neverything around it?",
+      "at": 0.35
+    },
+    "body": {
+      "text": "Review the actual combination.",
+      "at": 1.4
+    },
+    "anodized": {
+      "image": "gun-metal-grey.jpg",
+      "label": "Anodized aluminum"
+    },
+    "materials": [
+      "Polymer",
+      "Steel",
+      "Grip texture"
+    ],
+    "tilesAt": 0.6,
+    "joinAt": 2.8
+  },
+  "reference": {
+    "dur": 3.6,
+    "headline": {
+      "text": "Give everyone\nthe same picture.",
+      "at": 0.3
+    },
+    "body": {
+      "text": "Keep an approved\nappearance reference.",
+      "at": 1.0
+    },
+    "card": {
+      "image": "gun-metal-grey.jpg",
+      "title": "APPEARANCE REFERENCE",
+      "checks": [
+        "Color",
+        "Sheen",
+        "Context"
+      ],
+      "at": 0.5,
+      "checksAt": 1.5,
+      "checkGap": 0.35
+    }
+  },
+  "brief": {
+    "dur": 3.0,
+    "footage": null,
+    "image": "black-satin.jpg",
+    "headline": {
+      "text": "Give premium\na clear brief.",
+      "at": 0.3
+    },
+    "body": {
+      "text": "Your part. Your palette.\nThe look you want to achieve.",
+      "at": 1.1
+    }
+  },
+  "end": {
+    "dur": 4.8,
+    "logoVideo": "brands/lorin/animated-logo-16x9.mp4",
+    "logoBox": {
+      "sourceWidth": 3840,
+      "x": 1232,
+      "y": 844,
+      "width": 1432,
+      "height": 508
+    },
+    "soundAt": 2.3,
+    "cta": {
+      "text": "Make the finish\npart of the brand.",
+      "at": 1.6
+    },
+    "support": {
+      "text": "Bring your part and the look you want\nto achieve to the Lorin® team.",
+      "at": 2.4
+    },
+    "credentialAt": 3.0
+  }
+}

@@ -69,6 +69,9 @@ Downloaded from lorin.com on 2026-11-03, for a video made for Lorin Industries:
 | finish-*.jpg | finish swatch photos (ClearMatt, Colorin BlackMatt, Colorin Medium Bronze, Antique Copper Medium) | Lorin product swatches |
 The animated logo (public/brands/lorin/animated-logo-16x9.mp4) was supplied by the client and is used unaltered.
 
+## Lorin firearms story images (public/stories/lorin-firearms/)
+Downloaded from lorin.com/firearms on 2026-11-03: clearmatt.jpg, gun-metal-grey.jpg, goldmatt.jpg, black-satin.jpg are Lorin finish swatch photos (ClearMatt-Exterior-Standard, GunMetal-Gray, GoldMatt-MF, Colorin-BlackMatt-MF). The firearm photos on that page (ChatGPT-Image-*.png) are AI-generated and are not used. Polymer / Steel / Grip tiles are drawn in code (no image).
+
 ## Per-client decision log
 | Client | Who owns the project? | Combined headcount | License needed | Decided on |
 |---|---|---|---|---|

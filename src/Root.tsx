@@ -7,6 +7,7 @@ import type { ShellLayout } from "./compositions/VideoShell";
 import type { ResolvedProps } from "./lib/load-video";
 import { photoAds, videos } from "./lib/registry";
 import { LorinTotalCost, STORY_SIZES, storyDurationSec } from "./stories/LorinTotalCost";
+import { FIREARMS_SIZES, firearmsDurationSec, LorinFirearms } from "./stories/LorinFirearms";
 import type { VideoFormat } from "./lib/types";
 
 const FORMATS: Record<VideoFormat, { component: React.FC<ResolvedProps>; layout: ShellLayout; calculateMetadata: CalculateMetadataFunction<ResolvedProps> }> = {
@@ -54,6 +55,18 @@ export const RemotionRoot: React.FC = () => (
           height={STORY_SIZES[format].height}
           fps={STORY_SIZES[format].fps}
           durationInFrames={Math.round(storyDurationSec * STORY_SIZES[format].fps)}
+          defaultProps={{ qc: false, format }}
+        />
+      ))}
+      {(["9x16", "16x9"] as const).map((format) => (
+        <Composition
+          key={`firearms-${format}`}
+          id={format === "9x16" ? "lorin-firearms" : "lorin-firearms-16x9"}
+          component={LorinFirearms}
+          width={FIREARMS_SIZES[format].width}
+          height={FIREARMS_SIZES[format].height}
+          fps={FIREARMS_SIZES[format].fps}
+          durationInFrames={Math.round(firearmsDurationSec * FIREARMS_SIZES[format].fps)}
           defaultProps={{ qc: false, format }}
         />
       ))}
