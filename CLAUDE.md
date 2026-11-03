@@ -114,7 +114,7 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 ## Custom stories (one-off premium pieces)
 - `stories/<id>/config.json` holds the text, timing and image choices; the composition lives in `src/stories/` and is registered in `src/Root.tsx` (folder "Stories"). Images go in `public/stories/<id>/`.
 - `npm run story -- qc <id>` (9:16 safe zones, action rail, overflow) and `npm run story -- render <id>` → `out/<brand>/<id>.mp4`.
-- First story: `lorin-total-cost` (Lorin® OEM total cost, 9:16, 51.5 s; logo-only end card). Lorin rules: logo only via the official animated logo on white (`public/brands/lorin/animated-logo-16x9.mp4`, unaltered), Red Orange #DD4F05 for emphasis only, Navy #00263E panels, Poppins Bold/Regular, "Lorin®" as an adjective, no invented numbers or claims.
+- First story: `lorin-total-cost` (9:16) and `lorin-total-cost-16x9` (16:9), Lorin® OEM total cost, 51.5 s, logo-only end card. One config drives both; each format has its own layout in `src/stories/LorinTotalCost.tsx` (`useV(tall, wide)`). `npm run story -- qc|render lorin-total-cost-16x9` uses the same config (the `-16x9` suffix maps to it). Lorin rules: logo only via the official animated logo on white (`public/brands/lorin/animated-logo-16x9.mp4`, unaltered), Red Orange #DD4F05 for emphasis only, Navy #00263E panels, Poppins Bold/Regular, "Lorin®" as an adjective, no invented numbers or claims.
 - Many application images on lorin.com are AI-generated (filenames contain "ChatGPT"/"openart"); do not use them when realism is required. iStock images on lorin.com are licensed to Lorin: confirm the license covers video ads before publishing.
 
 ## Known limits

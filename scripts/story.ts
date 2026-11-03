@@ -1,5 +1,5 @@
 // Custom stories (stories/<id>/config.json + a composition registered in src/Root.tsx): quality check and render.
-//   node scripts/story.ts qc <id>       text inside the 9:16 safe zone, clear of the action rail, no overflow
+//   node scripts/story.ts qc <id>       text inside the safe zone (9:16: Reels zone + action rail; 16:9: 90% title-safe), no overflow
 //   node scripts/story.ts render <id>   out/<brand>/<id>.mp4 (same encoding settings as the other videos)
 import { bundle } from "@remotion/bundler";
 import { openBrowser, renderStill, selectComposition } from "@remotion/renderer";
@@ -13,7 +13,9 @@ if (!["qc", "render"].includes(command) || !id) {
   console.error("Usage: node scripts/story.ts qc|render <story-id>");
   process.exit(1);
 }
-const story: { brand: string } = JSON.parse(readFileSync(path.join("stories", id, "config.json"), "utf8"));
+// Format variants share one config: "<story>-16x9" reads stories/<story>/config.json
+const storyDir = id.replace(/-(16x9|1x1)$/, "");
+const story: { brand: string } = JSON.parse(readFileSync(path.join("stories", storyDir, "config.json"), "utf8"));
 
 if (command === "render") {
   const out = path.join("out", story.brand, `${id}.mp4`);
@@ -28,7 +30,7 @@ if (command === "render") {
   const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts"), rspack: true });
   const browserExecutable = process.env.REMOTION_BROWSER_EXECUTABLE ?? null;
   const browser = await openBrowser("chrome", { browserExecutable, logLevel: "error" });
-  const inputProps = { qc: true };
+  const inputProps = { qc: true, format: id.endsWith("-16x9") ? "16x9" : "9x16" };
   const composition = await selectComposition({ serveUrl, id, inputProps, puppeteerInstance: browser, browserExecutable, logLevel: "error" });
   const tmp = mkdtempSync(path.join(os.tmpdir(), "qc-"));
   const problems = new Set<string>();

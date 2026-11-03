@@ -531,3 +531,6 @@ Built our own instead, on Remotion's Player (same license as the rest of Remotio
   card, which now shows only the official animated logo on white (5 s, chime as it completes). New length 51.5 s.
   Source check: all 8 images in the video match their lorin.com originals (mean pixel difference 0.5 to 2.7 of 255,
   from resizing/JPEG only) and every source URL answers 200; unused gold-surface, precision-profiles and bronze-wheel removed.
+- 16:9 version `lorin-total-cost-16x9` (1920x1080, same 51.5 s, same config, images, sounds and logo): photo + Navy panel
+  splits side by side, horizontal process line, photo-left/analysis-right comparison, logo 1000 px wide centered.
+  QC PASS on both formats (16:9 uses the 90% title-safe area); 9:16 frames unchanged by the refactor (pixel diff 0.0).
