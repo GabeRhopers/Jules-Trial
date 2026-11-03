@@ -7,6 +7,8 @@ import type { ShellLayout } from "./compositions/VideoShell";
 import type { ResolvedProps } from "./lib/load-video";
 import { photoAds, videos } from "./lib/registry";
 import { LorinTotalCost, STORY_SIZES, storyDurationSec } from "./stories/LorinTotalCost";
+import { LookDev } from "./hdd/LookDev";
+import { DtiHddCaptionLayer, DtiHddExplainer, HDD_DURATION_FRAMES, HDD_FPS } from "./hdd/DtiHddExplainer";
 import { FIREARMS_SIZES, firearmsDurationSec, LorinFirearms } from "./stories/LorinFirearms";
 import type { VideoFormat } from "./lib/types";
 
@@ -70,6 +72,13 @@ export const RemotionRoot: React.FC = () => (
           defaultProps={{ qc: false, format }}
         />
       ))}
+    </Folder>
+    <Folder name="HDD">
+      {/* DTI HDD explainer (3D remake): with burned-in captions, and clean (no captions) */}
+      <Composition id="dti-hdd-explainer-captions" component={DtiHddExplainer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} defaultProps={{ captions: true, draft: true }} />
+      <Composition id="dti-hdd-explainer" component={DtiHddExplainer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} defaultProps={{ captions: false, draft: true }} />
+      <Composition id="dti-hdd-caption-layer" component={DtiHddCaptionLayer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} />
+      <Composition id="hdd-lookdev" component={LookDev} width={1920} height={1080} fps={30} durationInFrames={1} defaultProps={{ view: "aerial" }} />
     </Folder>
     {/* Photo ads: one still image + animated text + sound effects, no narration (photo-ads/<id>/config.json) */}
     <Folder name="PhotoAd9x16">

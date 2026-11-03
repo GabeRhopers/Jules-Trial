@@ -72,6 +72,12 @@ The animated logo (public/brands/lorin/animated-logo-16x9.mp4) was supplied by t
 ## Lorin firearms story images (public/stories/lorin-firearms/)
 Downloaded from lorin.com/firearms on 2026-11-03: clearmatt.jpg, gun-metal-grey.jpg, goldmatt.jpg, black-satin.jpg are Lorin finish swatch photos (ClearMatt-Exterior-Standard, GunMetal-Gray, GoldMatt-MF, Colorin-BlackMatt-MF). The firearm photos on that page (ChatGPT-Image-*.png) are AI-generated and are not used. Polymer / Steel / Grip tiles are drawn in code (no image).
 
+## DTI HDD explainer assets
+- `brands/dti/DTI-Logo-Approved.png` and `public/hdd/dti-hdd-explainer/dti-logo*.{png,svg}`: from directionaltech.com (file "DTI Logo - Approved"), used unaltered.
+- `public/hdd/dti-hdd-explainer/narration-original.m4a`: narration from DTI's own video, file supplied by the client.
+- `brands/dti/fonts/Montserrat-*.woff2`: Google Fonts, SIL Open Font License 1.1.
+- All 3D models are built in code for this project (no third-party models or stock footage).
+
 ## Per-client decision log
 | Client | Who owns the project? | Combined headcount | License needed | Decided on |
 |---|---|---|---|---|

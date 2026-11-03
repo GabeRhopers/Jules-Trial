@@ -1,0 +1,2308 @@
+{
+ "id": "dti-hdd-explainer",
+ "brand": "dti",
+ "title": "Horizontal Directional Drilling (DTI explainer, 3D remake)",
+ "source": "Original DTI video \"Horizontal Directional Drilling Installation Animation\" (YouTube mdLCD6t6C-w), file supplied by the client. Narration reused unchanged except the one required update.",
+ "audio": "hdd/dti-hdd-explainer/narration-original.m4a",
+ "durationSec": 188.3,
+ "transcriptNotes": [
+  "Transcribed locally (faster-whisper medium.en), checked word by word with confidence scores.",
+  "\"or radio detection device\" (heard as \"our\", 0.84 confidence): confirm.",
+  "\"one and a half size the conduit\" is what the narrator says; captions keep it verbatim: confirm."
+ ],
+ "narration": [
+  {
+   "id": "n01",
+   "start": 4.08,
+   "end": 9.52,
+   "text": "Directional drilling is used to install conduits under obstacles such as roads, buildings and wetlands.",
+   "words": [
+    {
+     "w": "Directional",
+     "s": 4.08,
+     "e": 4.72
+    },
+    {
+     "w": "drilling",
+     "s": 4.72,
+     "e": 4.94
+    },
+    {
+     "w": "is",
+     "s": 4.94,
+     "e": 5.18
+    },
+    {
+     "w": "used",
+     "s": 5.18,
+     "e": 5.4
+    },
+    {
+     "w": "to",
+     "s": 5.4,
+     "e": 5.6
+    },
+    {
+     "w": "install",
+     "s": 5.6,
+     "e": 6.0
+    },
+    {
+     "w": "conduits",
+     "s": 6.0,
+     "e": 6.56
+    },
+    {
+     "w": "under",
+     "s": 6.56,
+     "e": 6.82
+    },
+    {
+     "w": "obstacles",
+     "s": 6.82,
+     "e": 7.36
+    },
+    {
+     "w": "such",
+     "s": 7.36,
+     "e": 7.68
+    },
+    {
+     "w": "as",
+     "s": 7.68,
+     "e": 7.88
+    },
+    {
+     "w": "roads,",
+     "s": 7.88,
+     "e": 8.26
+    },
+    {
+     "w": "buildings",
+     "s": 8.46,
+     "e": 8.74
+    },
+    {
+     "w": "and",
+     "s": 8.74,
+     "e": 9.06
+    },
+    {
+     "w": "wetlands.",
+     "s": 9.06,
+     "e": 9.52
+    }
+   ]
+  },
+  {
+   "id": "n02",
+   "start": 10.46,
+   "end": 20.92,
+   "text": "As demonstrated in this video, conduits such as water, sewer, fiber, electric and gas can be installed under very busy intersections without disruption of traffic.",
+   "words": [
+    {
+     "w": "As",
+     "s": 10.46,
+     "e": 10.64
+    },
+    {
+     "w": "demonstrated",
+     "s": 10.64,
+     "e": 11.18
+    },
+    {
+     "w": "in",
+     "s": 11.18,
+     "e": 11.48
+    },
+    {
+     "w": "this",
+     "s": 11.48,
+     "e": 11.68
+    },
+    {
+     "w": "video,",
+     "s": 11.68,
+     "e": 12.1
+    },
+    {
+     "w": "conduits",
+     "s": 12.42,
+     "e": 12.8
+    },
+    {
+     "w": "such",
+     "s": 12.8,
+     "e": 12.98
+    },
+    {
+     "w": "as",
+     "s": 12.98,
+     "e": 13.22
+    },
+    {
+     "w": "water,",
+     "s": 13.22,
+     "e": 13.48
+    },
+    {
+     "w": "sewer,",
+     "s": 13.78,
+     "e": 14.02
+    },
+    {
+     "w": "fiber,",
+     "s": 14.38,
+     "e": 14.64
+    },
+    {
+     "w": "electric",
+     "s": 14.94,
+     "e": 15.26
+    },
+    {
+     "w": "and",
+     "s": 15.26,
+     "e": 15.92
+    },
+    {
+     "w": "gas",
+     "s": 15.92,
+     "e": 16.36
+    },
+    {
+     "w": "can",
+     "s": 16.36,
+     "e": 16.64
+    },
+    {
+     "w": "be",
+     "s": 16.64,
+     "e": 16.84
+    },
+    {
+     "w": "installed",
+     "s": 16.84,
+     "e": 17.26
+    },
+    {
+     "w": "under",
+     "s": 17.26,
+     "e": 17.52
+    },
+    {
+     "w": "very",
+     "s": 17.52,
+     "e": 17.9
+    },
+    {
+     "w": "busy",
+     "s": 17.9,
+     "e": 18.26
+    },
+    {
+     "w": "intersections",
+     "s": 18.26,
+     "e": 18.92
+    },
+    {
+     "w": "without",
+     "s": 18.92,
+     "e": 19.72
+    },
+    {
+     "w": "disruption",
+     "s": 19.72,
+     "e": 20.3
+    },
+    {
+     "w": "of",
+     "s": 20.3,
+     "e": 20.54
+    },
+    {
+     "w": "traffic.",
+     "s": 20.54,
+     "e": 20.92
+    }
+   ]
+  },
+  {
+   "id": "n03",
+   "start": 22.08,
+   "end": 25.24,
+   "text": "A small area is needed to set up the directional drilling equipment.",
+   "words": [
+    {
+     "w": "A",
+     "s": 22.08,
+     "e": 22.22
+    },
+    {
+     "w": "small",
+     "s": 22.22,
+     "e": 22.54
+    },
+    {
+     "w": "area",
+     "s": 22.54,
+     "e": 22.86
+    },
+    {
+     "w": "is",
+     "s": 22.86,
+     "e": 23.08
+    },
+    {
+     "w": "needed",
+     "s": 23.08,
+     "e": 23.3
+    },
+    {
+     "w": "to",
+     "s": 23.3,
+     "e": 23.5
+    },
+    {
+     "w": "set",
+     "s": 23.5,
+     "e": 23.68
+    },
+    {
+     "w": "up",
+     "s": 23.68,
+     "e": 23.84
+    },
+    {
+     "w": "the",
+     "s": 23.84,
+     "e": 24.0
+    },
+    {
+     "w": "directional",
+     "s": 24.0,
+     "e": 24.36
+    },
+    {
+     "w": "drilling",
+     "s": 24.36,
+     "e": 24.72
+    },
+    {
+     "w": "equipment.",
+     "s": 24.72,
+     "e": 25.24
+    }
+   ]
+  },
+  {
+   "id": "n04",
+   "start": 26.0,
+   "end": 30.32,
+   "text": "This area can be strategically placed away from congestion and business activities.",
+   "words": [
+    {
+     "w": "This",
+     "s": 25.66,
+     "e": 26.06
+    },
+    {
+     "w": "area",
+     "s": 26.06,
+     "e": 26.38
+    },
+    {
+     "w": "can",
+     "s": 26.38,
+     "e": 26.6
+    },
+    {
+     "w": "be",
+     "s": 26.6,
+     "e": 26.8
+    },
+    {
+     "w": "strategically",
+     "s": 26.8,
+     "e": 27.42
+    },
+    {
+     "w": "placed",
+     "s": 27.42,
+     "e": 27.88
+    },
+    {
+     "w": "away",
+     "s": 27.88,
+     "e": 28.1
+    },
+    {
+     "w": "from",
+     "s": 28.1,
+     "e": 28.36
+    },
+    {
+     "w": "congestion",
+     "s": 28.36,
+     "e": 28.92
+    },
+    {
+     "w": "and",
+     "s": 28.92,
+     "e": 29.32
+    },
+    {
+     "w": "business",
+     "s": 29.32,
+     "e": 29.68
+    },
+    {
+     "w": "activities.",
+     "s": 29.68,
+     "e": 30.32
+    }
+   ]
+  },
+  {
+   "id": "n05",
+   "start": 31.66,
+   "end": 42.16,
+   "text": "Before the directional drilling begins, the directional drilling crew pre-plans the bore path to carefully avoid obstructions such as other underground utilities.",
+   "words": [
+    {
+     "w": "Before",
+     "s": 31.66,
+     "e": 31.98
+    },
+    {
+     "w": "the",
+     "s": 31.98,
+     "e": 32.22
+    },
+    {
+     "w": "directional",
+     "s": 32.22,
+     "e": 32.58
+    },
+    {
+     "w": "drilling",
+     "s": 32.58,
+     "e": 32.9
+    },
+    {
+     "w": "begins,",
+     "s": 32.9,
+     "e": 33.52
+    },
+    {
+     "w": "the",
+     "s": 34.32,
+     "e": 34.4
+    },
+    {
+     "w": "directional",
+     "s": 34.4,
+     "e": 34.88
+    },
+    {
+     "w": "drilling",
+     "s": 34.88,
+     "e": 35.26
+    },
+    {
+     "w": "crew",
+     "s": 35.26,
+     "e": 35.62
+    },
+    {
+     "w": "pre-plans",
+     "s": 35.62,
+     "e": 36.62
+    },
+    {
+     "w": "the",
+     "s": 36.62,
+     "e": 36.84
+    },
+    {
+     "w": "bore",
+     "s": 36.84,
+     "e": 36.98
+    },
+    {
+     "w": "path",
+     "s": 36.98,
+     "e": 37.28
+    },
+    {
+     "w": "to",
+     "s": 37.28,
+     "e": 37.92
+    },
+    {
+     "w": "carefully",
+     "s": 37.92,
+     "e": 38.42
+    },
+    {
+     "w": "avoid",
+     "s": 38.42,
+     "e": 38.88
+    },
+    {
+     "w": "obstructions",
+     "s": 38.88,
+     "e": 39.8
+    },
+    {
+     "w": "such",
+     "s": 39.8,
+     "e": 40.32
+    },
+    {
+     "w": "as",
+     "s": 40.32,
+     "e": 40.54
+    },
+    {
+     "w": "other",
+     "s": 40.54,
+     "e": 40.84
+    },
+    {
+     "w": "underground",
+     "s": 40.84,
+     "e": 41.36
+    },
+    {
+     "w": "utilities.",
+     "s": 41.36,
+     "e": 42.16
+    }
+   ]
+  },
+  {
+   "id": "n06",
+   "start": 48.16,
+   "end": 52.6,
+   "text": "The horizontal bore begins with the directional drill bit entering the entrance pit.",
+   "words": [
+    {
+     "w": "The",
+     "s": 47.9,
+     "e": 48.3
+    },
+    {
+     "w": "horizontal",
+     "s": 48.3,
+     "e": 48.78
+    },
+    {
+     "w": "bore",
+     "s": 48.78,
+     "e": 49.14
+    },
+    {
+     "w": "begins",
+     "s": 49.14,
+     "e": 49.58
+    },
+    {
+     "w": "with",
+     "s": 49.58,
+     "e": 49.8
+    },
+    {
+     "w": "the",
+     "s": 49.8,
+     "e": 49.98
+    },
+    {
+     "w": "directional",
+     "s": 49.98,
+     "e": 50.44
+    },
+    {
+     "w": "drill",
+     "s": 50.44,
+     "e": 50.84
+    },
+    {
+     "w": "bit",
+     "s": 50.84,
+     "e": 51.22
+    },
+    {
+     "w": "entering",
+     "s": 51.22,
+     "e": 51.66
+    },
+    {
+     "w": "the",
+     "s": 51.66,
+     "e": 51.96
+    },
+    {
+     "w": "entrance",
+     "s": 51.96,
+     "e": 52.32
+    },
+    {
+     "w": "pit.",
+     "s": 52.32,
+     "e": 52.6
+    }
+   ]
+  },
+  {
+   "id": "n07",
+   "start": 53.44,
+   "end": 56.52,
+   "text": "The entrance pit is used to contain and manage the drilling fluids.",
+   "words": [
+    {
+     "w": "The",
+     "s": 53.24,
+     "e": 53.54
+    },
+    {
+     "w": "entrance",
+     "s": 53.54,
+     "e": 53.9
+    },
+    {
+     "w": "pit",
+     "s": 53.9,
+     "e": 54.1
+    },
+    {
+     "w": "is",
+     "s": 54.1,
+     "e": 54.28
+    },
+    {
+     "w": "used",
+     "s": 54.28,
+     "e": 54.48
+    },
+    {
+     "w": "to",
+     "s": 54.48,
+     "e": 54.68
+    },
+    {
+     "w": "contain",
+     "s": 54.68,
+     "e": 54.98
+    },
+    {
+     "w": "and",
+     "s": 54.98,
+     "e": 55.2
+    },
+    {
+     "w": "manage",
+     "s": 55.2,
+     "e": 55.54
+    },
+    {
+     "w": "the",
+     "s": 55.54,
+     "e": 55.8
+    },
+    {
+     "w": "drilling",
+     "s": 55.8,
+     "e": 56.06
+    },
+    {
+     "w": "fluids.",
+     "s": 56.06,
+     "e": 56.52
+    }
+   ]
+  },
+  {
+   "id": "n08",
+   "start": 57.54,
+   "end": 63.18,
+   "text": "The directional drilling crew are in radio communication with each other throughout the entire process.",
+   "words": [
+    {
+     "w": "The",
+     "s": 57.54,
+     "e": 57.66
+    },
+    {
+     "w": "directional",
+     "s": 57.66,
+     "e": 58.02
+    },
+    {
+     "w": "drilling",
+     "s": 58.02,
+     "e": 58.48
+    },
+    {
+     "w": "crew",
+     "s": 58.48,
+     "e": 58.82
+    },
+    {
+     "w": "are",
+     "s": 58.82,
+     "e": 59.04
+    },
+    {
+     "w": "in",
+     "s": 59.04,
+     "e": 59.32
+    },
+    {
+     "w": "radio",
+     "s": 59.32,
+     "e": 59.7
+    },
+    {
+     "w": "communication",
+     "s": 59.7,
+     "e": 60.42
+    },
+    {
+     "w": "with",
+     "s": 60.42,
+     "e": 60.72
+    },
+    {
+     "w": "each",
+     "s": 60.72,
+     "e": 61.0
+    },
+    {
+     "w": "other",
+     "s": 61.0,
+     "e": 61.26
+    },
+    {
+     "w": "throughout",
+     "s": 61.26,
+     "e": 61.74
+    },
+    {
+     "w": "the",
+     "s": 61.74,
+     "e": 62.12
+    },
+    {
+     "w": "entire",
+     "s": 62.12,
+     "e": 62.52
+    },
+    {
+     "w": "process.",
+     "s": 62.52,
+     "e": 63.18
+    }
+   ]
+  },
+  {
+   "id": "n09",
+   "start": 64.4,
+   "end": 72.1,
+   "text": "The directional drill bit is tracked by a sonde, or radio detection device housed within its extended connection to the directional drill pipe.",
+   "words": [
+    {
+     "w": "The",
+     "s": 64.4,
+     "e": 64.6
+    },
+    {
+     "w": "directional",
+     "s": 64.6,
+     "e": 65.02
+    },
+    {
+     "w": "drill",
+     "s": 65.02,
+     "e": 65.3
+    },
+    {
+     "w": "bit",
+     "s": 65.3,
+     "e": 65.48
+    },
+    {
+     "w": "is",
+     "s": 65.48,
+     "e": 65.68
+    },
+    {
+     "w": "tracked",
+     "s": 65.68,
+     "e": 65.98
+    },
+    {
+     "w": "by",
+     "s": 65.98,
+     "e": 66.24
+    },
+    {
+     "w": "a",
+     "s": 66.24,
+     "e": 66.4
+    },
+    {
+     "w": "sonde,",
+     "s": 66.4,
+     "e": 66.74
+    },
+    {
+     "w": "or",
+     "s": 66.9,
+     "e": 67.1
+    },
+    {
+     "w": "radio",
+     "s": 67.1,
+     "e": 67.4
+    },
+    {
+     "w": "detection",
+     "s": 67.4,
+     "e": 67.92
+    },
+    {
+     "w": "device",
+     "s": 67.92,
+     "e": 68.48
+    },
+    {
+     "w": "housed",
+     "s": 68.48,
+     "e": 69.02
+    },
+    {
+     "w": "within",
+     "s": 69.02,
+     "e": 69.44
+    },
+    {
+     "w": "its",
+     "s": 69.44,
+     "e": 69.68
+    },
+    {
+     "w": "extended",
+     "s": 69.68,
+     "e": 70.2
+    },
+    {
+     "w": "connection",
+     "s": 70.2,
+     "e": 70.68
+    },
+    {
+     "w": "to",
+     "s": 70.68,
+     "e": 70.94
+    },
+    {
+     "w": "the",
+     "s": 70.94,
+     "e": 71.1
+    },
+    {
+     "w": "directional",
+     "s": 71.1,
+     "e": 71.5
+    },
+    {
+     "w": "drill",
+     "s": 71.5,
+     "e": 71.78
+    },
+    {
+     "w": "pipe.",
+     "s": 71.78,
+     "e": 72.1
+    }
+   ]
+  },
+  {
+   "id": "n10",
+   "start": 72.86,
+   "end": 77.24,
+   "text": "The depth and pitch is sent to the surface and received by the walkover locating device.",
+   "words": [
+    {
+     "w": "The",
+     "s": 72.86,
+     "e": 73.04
+    },
+    {
+     "w": "depth",
+     "s": 73.04,
+     "e": 73.34
+    },
+    {
+     "w": "and",
+     "s": 73.34,
+     "e": 73.62
+    },
+    {
+     "w": "pitch",
+     "s": 73.62,
+     "e": 73.9
+    },
+    {
+     "w": "is",
+     "s": 73.9,
+     "e": 74.12
+    },
+    {
+     "w": "sent",
+     "s": 74.12,
+     "e": 74.28
+    },
+    {
+     "w": "to",
+     "s": 74.28,
+     "e": 74.42
+    },
+    {
+     "w": "the",
+     "s": 74.42,
+     "e": 74.6
+    },
+    {
+     "w": "surface",
+     "s": 74.6,
+     "e": 74.88
+    },
+    {
+     "w": "and",
+     "s": 74.88,
+     "e": 75.1
+    },
+    {
+     "w": "received",
+     "s": 75.1,
+     "e": 75.5
+    },
+    {
+     "w": "by",
+     "s": 75.5,
+     "e": 75.72
+    },
+    {
+     "w": "the",
+     "s": 75.72,
+     "e": 75.9
+    },
+    {
+     "w": "walkover",
+     "s": 75.9,
+     "e": 76.28
+    },
+    {
+     "w": "locating",
+     "s": 76.28,
+     "e": 76.7
+    },
+    {
+     "w": "device.",
+     "s": 76.7,
+     "e": 77.24
+    }
+   ]
+  },
+  {
+   "id": "n11",
+   "start": 77.96,
+   "end": 86.16,
+   "text": "The locator then gathers and interprets the information and gives directions to the directional drill operator on which way to steer the drill bit.",
+   "words": [
+    {
+     "w": "The",
+     "s": 77.76,
+     "e": 78.06
+    },
+    {
+     "w": "locator",
+     "s": 78.06,
+     "e": 78.5
+    },
+    {
+     "w": "then",
+     "s": 78.5,
+     "e": 78.78
+    },
+    {
+     "w": "gathers",
+     "s": 78.78,
+     "e": 79.24
+    },
+    {
+     "w": "and",
+     "s": 79.24,
+     "e": 80.02
+    },
+    {
+     "w": "interprets",
+     "s": 80.02,
+     "e": 80.64
+    },
+    {
+     "w": "the",
+     "s": 80.64,
+     "e": 80.88
+    },
+    {
+     "w": "information",
+     "s": 80.88,
+     "e": 81.44
+    },
+    {
+     "w": "and",
+     "s": 81.44,
+     "e": 81.72
+    },
+    {
+     "w": "gives",
+     "s": 81.72,
+     "e": 81.96
+    },
+    {
+     "w": "directions",
+     "s": 81.96,
+     "e": 82.44
+    },
+    {
+     "w": "to",
+     "s": 82.44,
+     "e": 82.74
+    },
+    {
+     "w": "the",
+     "s": 82.74,
+     "e": 82.96
+    },
+    {
+     "w": "directional",
+     "s": 82.96,
+     "e": 83.28
+    },
+    {
+     "w": "drill",
+     "s": 83.28,
+     "e": 83.58
+    },
+    {
+     "w": "operator",
+     "s": 83.58,
+     "e": 84.08
+    },
+    {
+     "w": "on",
+     "s": 84.08,
+     "e": 84.66
+    },
+    {
+     "w": "which",
+     "s": 84.66,
+     "e": 84.92
+    },
+    {
+     "w": "way",
+     "s": 84.92,
+     "e": 85.14
+    },
+    {
+     "w": "to",
+     "s": 85.14,
+     "e": 85.3
+    },
+    {
+     "w": "steer",
+     "s": 85.3,
+     "e": 85.54
+    },
+    {
+     "w": "the",
+     "s": 85.54,
+     "e": 85.76
+    },
+    {
+     "w": "drill",
+     "s": 85.76,
+     "e": 85.94
+    },
+    {
+     "w": "bit.",
+     "s": 85.94,
+     "e": 86.16
+    }
+   ]
+  },
+  {
+   "id": "n12",
+   "start": 87.16,
+   "end": 98.16,
+   "text": "An experienced directional drilling crew can navigate and steer the drill bit up, down, right, left and a combination of varying degrees of each to drill a desired horizontal bore path.",
+   "words": [
+    {
+     "w": "An",
+     "s": 87.16,
+     "e": 87.34
+    },
+    {
+     "w": "experienced",
+     "s": 87.34,
+     "e": 87.84
+    },
+    {
+     "w": "directional",
+     "s": 87.84,
+     "e": 88.34
+    },
+    {
+     "w": "drilling",
+     "s": 88.34,
+     "e": 88.68
+    },
+    {
+     "w": "crew",
+     "s": 88.68,
+     "e": 89.0
+    },
+    {
+     "w": "can",
+     "s": 89.0,
+     "e": 89.24
+    },
+    {
+     "w": "navigate",
+     "s": 89.24,
+     "e": 89.66
+    },
+    {
+     "w": "and",
+     "s": 89.66,
+     "e": 89.92
+    },
+    {
+     "w": "steer",
+     "s": 89.92,
+     "e": 90.12
+    },
+    {
+     "w": "the",
+     "s": 90.12,
+     "e": 90.28
+    },
+    {
+     "w": "drill",
+     "s": 90.28,
+     "e": 90.5
+    },
+    {
+     "w": "bit",
+     "s": 90.5,
+     "e": 90.7
+    },
+    {
+     "w": "up,",
+     "s": 90.7,
+     "e": 91.04
+    },
+    {
+     "w": "down,",
+     "s": 91.32,
+     "e": 91.66
+    },
+    {
+     "w": "right,",
+     "s": 92.1,
+     "e": 92.48
+    },
+    {
+     "w": "left",
+     "s": 92.78,
+     "e": 93.06
+    },
+    {
+     "w": "and",
+     "s": 93.06,
+     "e": 93.34
+    },
+    {
+     "w": "a",
+     "s": 93.34,
+     "e": 93.54
+    },
+    {
+     "w": "combination",
+     "s": 93.54,
+     "e": 93.96
+    },
+    {
+     "w": "of",
+     "s": 93.96,
+     "e": 94.22
+    },
+    {
+     "w": "varying",
+     "s": 94.22,
+     "e": 94.52
+    },
+    {
+     "w": "degrees",
+     "s": 94.52,
+     "e": 95.06
+    },
+    {
+     "w": "of",
+     "s": 95.06,
+     "e": 95.62
+    },
+    {
+     "w": "each",
+     "s": 95.62,
+     "e": 95.96
+    },
+    {
+     "w": "to",
+     "s": 95.96,
+     "e": 96.18
+    },
+    {
+     "w": "drill",
+     "s": 96.18,
+     "e": 96.42
+    },
+    {
+     "w": "a",
+     "s": 96.42,
+     "e": 96.6
+    },
+    {
+     "w": "desired",
+     "s": 96.6,
+     "e": 97.06
+    },
+    {
+     "w": "horizontal",
+     "s": 97.06,
+     "e": 97.58
+    },
+    {
+     "w": "bore",
+     "s": 97.58,
+     "e": 97.82
+    },
+    {
+     "w": "path.",
+     "s": 97.82,
+     "e": 98.16
+    }
+   ]
+  },
+  {
+   "id": "n13",
+   "start": 98.88,
+   "end": 105.34,
+   "text": "The drilling crew has the ability to determine the exact depth and location of the drill bit at all times.",
+   "words": [
+    {
+     "w": "The",
+     "s": 98.88,
+     "e": 99.02
+    },
+    {
+     "w": "drilling",
+     "s": 99.02,
+     "e": 99.34
+    },
+    {
+     "w": "crew",
+     "s": 99.34,
+     "e": 99.7
+    },
+    {
+     "w": "has",
+     "s": 99.7,
+     "e": 100.0
+    },
+    {
+     "w": "the",
+     "s": 100.0,
+     "e": 100.16
+    },
+    {
+     "w": "ability",
+     "s": 100.16,
+     "e": 100.5
+    },
+    {
+     "w": "to",
+     "s": 100.5,
+     "e": 100.76
+    },
+    {
+     "w": "determine",
+     "s": 100.76,
+     "e": 101.16
+    },
+    {
+     "w": "the",
+     "s": 101.16,
+     "e": 101.42
+    },
+    {
+     "w": "exact",
+     "s": 101.42,
+     "e": 101.88
+    },
+    {
+     "w": "depth",
+     "s": 101.88,
+     "e": 102.36
+    },
+    {
+     "w": "and",
+     "s": 102.36,
+     "e": 102.56
+    },
+    {
+     "w": "location",
+     "s": 102.56,
+     "e": 103.08
+    },
+    {
+     "w": "of",
+     "s": 103.08,
+     "e": 103.7
+    },
+    {
+     "w": "the",
+     "s": 103.7,
+     "e": 103.84
+    },
+    {
+     "w": "drill",
+     "s": 103.84,
+     "e": 104.04
+    },
+    {
+     "w": "bit",
+     "s": 104.04,
+     "e": 104.26
+    },
+    {
+     "w": "at",
+     "s": 104.26,
+     "e": 104.48
+    },
+    {
+     "w": "all",
+     "s": 104.48,
+     "e": 104.76
+    },
+    {
+     "w": "times.",
+     "s": 104.76,
+     "e": 105.34
+    }
+   ]
+  },
+  {
+   "id": "n14",
+   "start": 107.74,
+   "end": 112.6,
+   "text": "A typical mid-sized directional drill uses a 4-inch drill bit to drill a pilot bore.",
+   "words": [
+    {
+     "w": "A",
+     "s": 107.74,
+     "e": 108.26
+    },
+    {
+     "w": "typical",
+     "s": 108.26,
+     "e": 108.68
+    },
+    {
+     "w": "mid-sized",
+     "s": 108.68,
+     "e": 109.28
+    },
+    {
+     "w": "directional",
+     "s": 109.28,
+     "e": 109.78
+    },
+    {
+     "w": "drill",
+     "s": 109.78,
+     "e": 110.1
+    },
+    {
+     "w": "uses",
+     "s": 110.1,
+     "e": 110.44
+    },
+    {
+     "w": "a",
+     "s": 110.44,
+     "e": 110.66
+    },
+    {
+     "w": "4-inch",
+     "s": 110.66,
+     "e": 111.04
+    },
+    {
+     "w": "drill",
+     "s": 111.04,
+     "e": 111.32
+    },
+    {
+     "w": "bit",
+     "s": 111.32,
+     "e": 111.52
+    },
+    {
+     "w": "to",
+     "s": 111.52,
+     "e": 111.72
+    },
+    {
+     "w": "drill",
+     "s": 111.72,
+     "e": 111.9
+    },
+    {
+     "w": "a",
+     "s": 111.9,
+     "e": 112.14
+    },
+    {
+     "w": "pilot",
+     "s": 112.14,
+     "e": 112.38
+    },
+    {
+     "w": "bore.",
+     "s": 112.38,
+     "e": 112.6
+    }
+   ]
+  },
+  {
+   "id": "n15",
+   "start": 113.36,
+   "end": 117.9,
+   "text": "The bore path is typically enlarged to one and a half size the conduit that is being installed.",
+   "words": [
+    {
+     "w": "The",
+     "s": 113.36,
+     "e": 113.54
+    },
+    {
+     "w": "bore",
+     "s": 113.54,
+     "e": 113.72
+    },
+    {
+     "w": "path",
+     "s": 113.72,
+     "e": 113.98
+    },
+    {
+     "w": "is",
+     "s": 113.98,
+     "e": 114.24
+    },
+    {
+     "w": "typically",
+     "s": 114.24,
+     "e": 114.66
+    },
+    {
+     "w": "enlarged",
+     "s": 114.66,
+     "e": 115.08
+    },
+    {
+     "w": "to",
+     "s": 115.08,
+     "e": 115.38
+    },
+    {
+     "w": "one",
+     "s": 115.38,
+     "e": 115.52
+    },
+    {
+     "w": "and",
+     "s": 115.52,
+     "e": 115.66
+    },
+    {
+     "w": "a",
+     "s": 115.66,
+     "e": 115.8
+    },
+    {
+     "w": "half",
+     "s": 115.8,
+     "e": 115.86
+    },
+    {
+     "w": "size",
+     "s": 115.86,
+     "e": 116.18
+    },
+    {
+     "w": "the",
+     "s": 116.18,
+     "e": 116.4
+    },
+    {
+     "w": "conduit",
+     "s": 116.4,
+     "e": 116.74
+    },
+    {
+     "w": "that",
+     "s": 116.74,
+     "e": 116.98
+    },
+    {
+     "w": "is",
+     "s": 116.98,
+     "e": 117.12
+    },
+    {
+     "w": "being",
+     "s": 117.12,
+     "e": 117.32
+    },
+    {
+     "w": "installed.",
+     "s": 117.32,
+     "e": 117.9
+    }
+   ]
+  },
+  {
+   "id": "n16",
+   "start": 118.78,
+   "end": 126.38,
+   "text": "In this installation, the bore path has to be enlarged to accommodate the conduit and a reamer is attached to cut a larger diameter hole.",
+   "words": [
+    {
+     "w": "In",
+     "s": 118.78,
+     "e": 118.98
+    },
+    {
+     "w": "this",
+     "s": 118.98,
+     "e": 119.2
+    },
+    {
+     "w": "installation,",
+     "s": 119.2,
+     "e": 119.84
+    },
+    {
+     "w": "the",
+     "s": 120.3,
+     "e": 120.6
+    },
+    {
+     "w": "bore",
+     "s": 120.6,
+     "e": 120.8
+    },
+    {
+     "w": "path",
+     "s": 120.8,
+     "e": 121.04
+    },
+    {
+     "w": "has",
+     "s": 121.04,
+     "e": 121.26
+    },
+    {
+     "w": "to",
+     "s": 121.26,
+     "e": 121.42
+    },
+    {
+     "w": "be",
+     "s": 121.42,
+     "e": 121.52
+    },
+    {
+     "w": "enlarged",
+     "s": 121.52,
+     "e": 121.8
+    },
+    {
+     "w": "to",
+     "s": 121.8,
+     "e": 122.06
+    },
+    {
+     "w": "accommodate",
+     "s": 122.06,
+     "e": 122.56
+    },
+    {
+     "w": "the",
+     "s": 122.56,
+     "e": 122.82
+    },
+    {
+     "w": "conduit",
+     "s": 122.82,
+     "e": 123.22
+    },
+    {
+     "w": "and",
+     "s": 123.22,
+     "e": 123.46
+    },
+    {
+     "w": "a",
+     "s": 123.46,
+     "e": 123.68
+    },
+    {
+     "w": "reamer",
+     "s": 123.68,
+     "e": 123.88
+    },
+    {
+     "w": "is",
+     "s": 123.88,
+     "e": 124.12
+    },
+    {
+     "w": "attached",
+     "s": 124.12,
+     "e": 124.46
+    },
+    {
+     "w": "to",
+     "s": 124.46,
+     "e": 124.74
+    },
+    {
+     "w": "cut",
+     "s": 124.74,
+     "e": 124.96
+    },
+    {
+     "w": "a",
+     "s": 124.96,
+     "e": 125.24
+    },
+    {
+     "w": "larger",
+     "s": 125.24,
+     "e": 125.52
+    },
+    {
+     "w": "diameter",
+     "s": 125.52,
+     "e": 125.96
+    },
+    {
+     "w": "hole.",
+     "s": 125.96,
+     "e": 126.38
+    }
+   ]
+  },
+  {
+   "id": "n17",
+   "start": 127.16,
+   "end": 131.32,
+   "text": "The reamer is simply pulled through the existing bore path to enlarge the hole.",
+   "words": [
+    {
+     "w": "The",
+     "s": 127.16,
+     "e": 127.38
+    },
+    {
+     "w": "reamer",
+     "s": 127.38,
+     "e": 127.58
+    },
+    {
+     "w": "is",
+     "s": 127.58,
+     "e": 127.78
+    },
+    {
+     "w": "simply",
+     "s": 127.78,
+     "e": 128.02
+    },
+    {
+     "w": "pulled",
+     "s": 128.02,
+     "e": 128.4
+    },
+    {
+     "w": "through",
+     "s": 128.4,
+     "e": 128.62
+    },
+    {
+     "w": "the",
+     "s": 128.62,
+     "e": 128.84
+    },
+    {
+     "w": "existing",
+     "s": 128.84,
+     "e": 129.24
+    },
+    {
+     "w": "bore",
+     "s": 129.24,
+     "e": 129.6
+    },
+    {
+     "w": "path",
+     "s": 129.6,
+     "e": 129.9
+    },
+    {
+     "w": "to",
+     "s": 129.9,
+     "e": 130.42
+    },
+    {
+     "w": "enlarge",
+     "s": 130.42,
+     "e": 130.76
+    },
+    {
+     "w": "the",
+     "s": 130.76,
+     "e": 131.04
+    },
+    {
+     "w": "hole.",
+     "s": 131.04,
+     "e": 131.32
+    }
+   ]
+  },
+  {
+   "id": "n18",
+   "start": 132.18,
+   "end": 142.22,
+   "text": "As depicted in this video and as with most directional drilling projects, very little of the normal city activities were interrupted during the conduit installation.",
+   "words": [
+    {
+     "w": "As",
+     "s": 132.18,
+     "e": 132.8
+    },
+    {
+     "w": "depicted",
+     "s": 132.8,
+     "e": 133.2
+    },
+    {
+     "w": "in",
+     "s": 133.2,
+     "e": 133.5
+    },
+    {
+     "w": "this",
+     "s": 133.5,
+     "e": 133.7
+    },
+    {
+     "w": "video",
+     "s": 133.7,
+     "e": 134.12
+    },
+    {
+     "w": "and",
+     "s": 134.12,
+     "e": 134.78
+    },
+    {
+     "w": "as",
+     "s": 134.78,
+     "e": 135.04
+    },
+    {
+     "w": "with",
+     "s": 135.04,
+     "e": 135.22
+    },
+    {
+     "w": "most",
+     "s": 135.22,
+     "e": 135.52
+    },
+    {
+     "w": "directional",
+     "s": 135.52,
+     "e": 135.94
+    },
+    {
+     "w": "drilling",
+     "s": 135.94,
+     "e": 136.26
+    },
+    {
+     "w": "projects,",
+     "s": 136.26,
+     "e": 136.88
+    },
+    {
+     "w": "very",
+     "s": 137.38,
+     "e": 137.54
+    },
+    {
+     "w": "little",
+     "s": 137.54,
+     "e": 137.78
+    },
+    {
+     "w": "of",
+     "s": 137.78,
+     "e": 137.98
+    },
+    {
+     "w": "the",
+     "s": 137.98,
+     "e": 138.16
+    },
+    {
+     "w": "normal",
+     "s": 138.16,
+     "e": 138.44
+    },
+    {
+     "w": "city",
+     "s": 138.44,
+     "e": 138.68
+    },
+    {
+     "w": "activities",
+     "s": 138.68,
+     "e": 139.44
+    },
+    {
+     "w": "were",
+     "s": 139.44,
+     "e": 140.12
+    },
+    {
+     "w": "interrupted",
+     "s": 140.12,
+     "e": 140.66
+    },
+    {
+     "w": "during",
+     "s": 140.66,
+     "e": 141.0
+    },
+    {
+     "w": "the",
+     "s": 141.0,
+     "e": 141.22
+    },
+    {
+     "w": "conduit",
+     "s": 141.22,
+     "e": 141.48
+    },
+    {
+     "w": "installation.",
+     "s": 141.48,
+     "e": 142.22
+    }
+   ]
+  },
+  {
+   "id": "n19",
+   "start": 143.84,
+   "end": 149.4,
+   "text": "After the bore path is enlarged, the conduit is simply pulled into place by the directional drill rig.",
+   "words": [
+    {
+     "w": "After",
+     "s": 143.84,
+     "e": 144.16
+    },
+    {
+     "w": "the",
+     "s": 144.16,
+     "e": 144.36
+    },
+    {
+     "w": "bore",
+     "s": 144.36,
+     "e": 144.5
+    },
+    {
+     "w": "path",
+     "s": 144.5,
+     "e": 144.74
+    },
+    {
+     "w": "is",
+     "s": 144.74,
+     "e": 144.98
+    },
+    {
+     "w": "enlarged,",
+     "s": 144.98,
+     "e": 145.52
+    },
+    {
+     "w": "the",
+     "s": 146.04,
+     "e": 146.16
+    },
+    {
+     "w": "conduit",
+     "s": 146.16,
+     "e": 146.5
+    },
+    {
+     "w": "is",
+     "s": 146.5,
+     "e": 146.76
+    },
+    {
+     "w": "simply",
+     "s": 146.76,
+     "e": 147.06
+    },
+    {
+     "w": "pulled",
+     "s": 147.06,
+     "e": 147.46
+    },
+    {
+     "w": "into",
+     "s": 147.46,
+     "e": 147.72
+    },
+    {
+     "w": "place",
+     "s": 147.72,
+     "e": 147.98
+    },
+    {
+     "w": "by",
+     "s": 147.98,
+     "e": 148.2
+    },
+    {
+     "w": "the",
+     "s": 148.2,
+     "e": 148.34
+    },
+    {
+     "w": "directional",
+     "s": 148.34,
+     "e": 148.76
+    },
+    {
+     "w": "drill",
+     "s": 148.76,
+     "e": 149.12
+    },
+    {
+     "w": "rig.",
+     "s": 149.12,
+     "e": 149.4
+    }
+   ]
+  },
+  {
+   "id": "n20",
+   "start": 150.8,
+   "end": 168.64,
+   "text": "This method of installing utilities has many benefits that include less disruption of commercial activities, less disruption of traffic, less site rehabilitation, and directional drilling can also be used to avoid damage to wetlands, streams, and for river crossings.",
+   "words": [
+    {
+     "w": "This",
+     "s": 150.8,
+     "e": 151.08
+    },
+    {
+     "w": "method",
+     "s": 151.08,
+     "e": 151.4
+    },
+    {
+     "w": "of",
+     "s": 151.4,
+     "e": 151.6
+    },
+    {
+     "w": "installing",
+     "s": 151.6,
+     "e": 152.04
+    },
+    {
+     "w": "utilities",
+     "s": 152.04,
+     "e": 152.62
+    },
+    {
+     "w": "has",
+     "s": 152.62,
+     "e": 152.86
+    },
+    {
+     "w": "many",
+     "s": 152.86,
+     "e": 153.16
+    },
+    {
+     "w": "benefits",
+     "s": 153.16,
+     "e": 153.72
+    },
+    {
+     "w": "that",
+     "s": 153.72,
+     "e": 154.38
+    },
+    {
+     "w": "include",
+     "s": 154.38,
+     "e": 154.72
+    },
+    {
+     "w": "less",
+     "s": 154.72,
+     "e": 155.04
+    },
+    {
+     "w": "disruption",
+     "s": 155.04,
+     "e": 155.58
+    },
+    {
+     "w": "of",
+     "s": 155.58,
+     "e": 155.78
+    },
+    {
+     "w": "commercial",
+     "s": 155.78,
+     "e": 156.18
+    },
+    {
+     "w": "activities,",
+     "s": 156.18,
+     "e": 156.88
+    },
+    {
+     "w": "less",
+     "s": 157.7,
+     "e": 157.9
+    },
+    {
+     "w": "disruption",
+     "s": 157.9,
+     "e": 158.44
+    },
+    {
+     "w": "of",
+     "s": 158.44,
+     "e": 158.68
+    },
+    {
+     "w": "traffic,",
+     "s": 158.68,
+     "e": 159.12
+    },
+    {
+     "w": "less",
+     "s": 160.12,
+     "e": 160.32
+    },
+    {
+     "w": "site",
+     "s": 160.32,
+     "e": 160.66
+    },
+    {
+     "w": "rehabilitation,",
+     "s": 160.66,
+     "e": 161.48
+    },
+    {
+     "w": "and",
+     "s": 162.34,
+     "e": 162.46
+    },
+    {
+     "w": "directional",
+     "s": 162.46,
+     "e": 162.9
+    },
+    {
+     "w": "drilling",
+     "s": 162.9,
+     "e": 163.22
+    },
+    {
+     "w": "can",
+     "s": 163.22,
+     "e": 163.42
+    },
+    {
+     "w": "also",
+     "s": 163.42,
+     "e": 163.78
+    },
+    {
+     "w": "be",
+     "s": 163.78,
+     "e": 164.02
+    },
+    {
+     "w": "used",
+     "s": 164.02,
+     "e": 164.28
+    },
+    {
+     "w": "to",
+     "s": 164.28,
+     "e": 164.48
+    },
+    {
+     "w": "avoid",
+     "s": 164.48,
+     "e": 164.76
+    },
+    {
+     "w": "damage",
+     "s": 164.76,
+     "e": 165.08
+    },
+    {
+     "w": "to",
+     "s": 165.08,
+     "e": 165.4
+    },
+    {
+     "w": "wetlands,",
+     "s": 165.4,
+     "e": 165.8
+    },
+    {
+     "w": "streams,",
+     "s": 166.28,
+     "e": 166.7
+    },
+    {
+     "w": "and",
+     "s": 167.38,
+     "e": 167.5
+    },
+    {
+     "w": "for",
+     "s": 167.5,
+     "e": 167.74
+    },
+    {
+     "w": "river",
+     "s": 167.74,
+     "e": 168.06
+    },
+    {
+     "w": "crossings.",
+     "s": 168.06,
+     "e": 168.64
+    }
+   ]
+  },
+  {
+   "id": "n21",
+   "start": 170.92,
+   "end": 178.38,
+   "text": "Directional Technologies has installed miles and miles of conduit using directional drilling for over 30 years.",
+   "words": [
+    {
+     "w": "Directional",
+     "s": 170.92,
+     "e": 171.54
+    },
+    {
+     "w": "Technologies",
+     "s": 171.54,
+     "e": 172.08
+    },
+    {
+     "w": "has",
+     "s": 172.08,
+     "e": 172.44
+    },
+    {
+     "w": "installed",
+     "s": 172.44,
+     "e": 172.92
+    },
+    {
+     "w": "miles",
+     "s": 172.92,
+     "e": 173.3
+    },
+    {
+     "w": "and",
+     "s": 173.3,
+     "e": 173.58
+    },
+    {
+     "w": "miles",
+     "s": 173.58,
+     "e": 173.9
+    },
+    {
+     "w": "of",
+     "s": 173.9,
+     "e": 174.16
+    },
+    {
+     "w": "conduit",
+     "s": 174.16,
+     "e": 174.48
+    },
+    {
+     "w": "using",
+     "s": 174.48,
+     "e": 174.88
+    },
+    {
+     "w": "directional",
+     "s": 174.88,
+     "e": 175.4
+    },
+    {
+     "w": "drilling",
+     "s": 175.4,
+     "e": 175.98
+    }
+   ],
+   "originalEnding": {
+    "text": "over the past 23 years.",
+    "start": 175.98,
+    "end": 178.38,
+    "note": "Removed from the audio. Replaced by the pickup below."
+   },
+   "pickup": {
+    "text": "for over 30 years.",
+    "start": 175.98,
+    "status": "PENDING",
+    "note": "Consented voice match of the original narrator (ElevenLabs), only after written consent and an approved credit estimate. Until then the audio is muted from cut to end of sentence and the video shows a PICKUP PENDING flag."
+   }
+  },
+  {
+   "id": "n22",
+   "start": 179.46,
+   "end": 186.1,
+   "text": "Call us today to bring that level of experience to your next trenchless conduit installation.",
+   "words": [
+    {
+     "w": "Call",
+     "s": 179.46,
+     "e": 179.6
+    },
+    {
+     "w": "us",
+     "s": 179.6,
+     "e": 179.82
+    },
+    {
+     "w": "today",
+     "s": 179.82,
+     "e": 180.16
+    },
+    {
+     "w": "to",
+     "s": 180.16,
+     "e": 180.78
+    },
+    {
+     "w": "bring",
+     "s": 180.78,
+     "e": 180.96
+    },
+    {
+     "w": "that",
+     "s": 180.96,
+     "e": 181.24
+    },
+    {
+     "w": "level",
+     "s": 181.24,
+     "e": 181.52
+    },
+    {
+     "w": "of",
+     "s": 181.52,
+     "e": 181.78
+    },
+    {
+     "w": "experience",
+     "s": 181.78,
+     "e": 182.26
+    },
+    {
+     "w": "to",
+     "s": 182.26,
+     "e": 182.76
+    },
+    {
+     "w": "your",
+     "s": 182.76,
+     "e": 182.98
+    },
+    {
+     "w": "next",
+     "s": 182.98,
+     "e": 183.46
+    },
+    {
+     "w": "trenchless",
+     "s": 183.46,
+     "e": 184.32
+    },
+    {
+     "w": "conduit",
+     "s": 184.32,
+     "e": 185.1
+    },
+    {
+     "w": "installation.",
+     "s": 185.1,
+     "e": 186.1
+    }
+   ]
+  }
+ ]
+}
