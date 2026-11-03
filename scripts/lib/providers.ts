@@ -35,6 +35,25 @@ type ElevenLabsResponse = {
  */
 export const elevenLabsCreditsPerChar = (_modelId: string) => 1;
 
+export type ElevenLabsBalance = { tier: string; used: number; limit: number; resetUnix: number | null };
+
+/**
+ * Reads the account's credit balance (GET /v1/user/subscription; read-only, costs nothing).
+ * Returns null if it cannot be read (no key, network, or a key without user-read permission).
+ */
+export const fetchElevenLabsBalance = async (): Promise<ElevenLabsBalance | null> => {
+  const key = process.env.ELEVENLABS_API_KEY;
+  if (!key) return null;
+  try {
+    const res = await fetch(`${ELEVENLABS_BASE}/v1/user/subscription`, { headers: { "xi-api-key": key } });
+    if (!res.ok) return null;
+    const d = (await res.json()) as { tier: string; character_count: number; character_limit: number; next_character_count_reset_unix?: number | null };
+    return { tier: d.tier, used: d.character_count, limit: d.character_limit, resetUnix: d.next_character_count_reset_unix ?? null };
+  } catch {
+    return null;
+  }
+};
+
 export const synthesizeElevenLabs = async (brand: Brand, text: string, outMp3: string): Promise<Synthesis> => {
   const cfg = brand.voice.elevenlabs;
   if (!cfg) throw new Error(`Brand ${brand.id} has no voice.elevenlabs settings`);

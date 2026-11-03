@@ -403,3 +403,34 @@ Sandbox only: QC and render need `REMOTION_BROWSER_EXECUTABLE=/opt/pw-browsers/c
 - New background style `hearts` (`src/components/BrandBackground.tsx`, type in `src/lib/types.ts`): glow plus 18 hearts rising with a sway, deterministic per frame.
 - New brand `para-maninha` (voice `pf_dora`, pink/plum palette, heart logo) and video `te-amo-maninha` (SocialReel9x16, 21.3 s). QC PASS (99 sync checks) after widening the logo SVG: a square logo pushed the end card down into the caption band.
 - Rendered `out/para-maninha/te-amo-maninha.mp4` (5.6 MB). Samples page with download buttons: https://claude.ai/artifact/V64A2i3xZ5PSF8aDNpdmXH (private until shared).
+
+## Free tiers: ElevenLabs + Runway (2026-11-03)
+
+### Checked (official sources)
+- **ElevenLabs free:** 10,000 credits per month (about 10 min with Multilingual v2), API included, no commercial license (starts at Starter) (elevenlabs.io/pricing, /pricing/api). Free tier is disabled for accounts seen behind proxies/VPNs (help center: "Unusual activity detected"), so run it on your own computer, not in a cloud session.
+- **ElevenLabs keys:** can be restricted by scope, credit quota, IP allowlist and expiry (docs: api-reference/authentication, workspaces/api-keys).
+- **ElevenLabs balance:** `GET /v1/user/subscription` returns `tier`, `character_count`, `character_limit`, `next_character_count_reset_unix` (docs: api-reference/user/subscription/get).
+- **Runway free:** 125 credits once, never expire, "a selection" of models; Gen-4.5 is 12 credits per second; "No watermarks" is listed as a Standard feature (runwayml.com/pricing).
+- **Runway MCP:** `https://mcp.runwayml.com/mcp`, OAuth sign-in with the Runway app account, spends app credits (runwayml.com/mcp, mcp.runwayml.com). Runway's developer API is separate, "no free tier", $10 minimum (docs.dev.runwayml.com).
+
+### Changed
+- `scripts/lib/providers.ts`: `fetchElevenLabsBalance()` (read-only, costs nothing).
+- `scripts/narrate.ts` (ElevenLabs only): shows credits left and reset date; refuses a run that needs more than the balance (even with `--yes`); warns on the free plan (no commercial license) and in cloud sessions (proxy).
+- `scripts/new-video.ts`: also creates `videos/<id>/broll.md`, a log of every AI generation with credits used and left.
+- `CLAUDE.md`: cost rules for both free plans; Runway shares Higgsfield's approval rule.
+- `.claude/skills/new-video/SKILL.md`: B-roll step covers Runway; free plan means 1 or 2 short test shots.
+- `README.md`: safe ElevenLabs free setup (restricted key + credit quota), Runway connector setup, cost table row.
+- `.env.example`: key restriction tip.
+
+### Tests (no real key, no credits)
+| Test | Result |
+|---|---|
+| Mock balance 200 left, run needs 296 | Refused, nothing generated |
+| Mock balance 9,000 left, free tier, answered "n" | Balance + free-plan note shown, cancelled |
+| Balance unreadable | Warning shown, still asks before spending |
+| `new-video` scaffold | broll.md created (test folder deleted) |
+| `npm test`, `tsc`, `eslint src`, `brand:check --all` | Pass |
+
+### Manual steps for the user
+- ElevenLabs: on your computer, create a restricted key (Text to Speech + User read, credit quota), paste it into `.env`, set a default voice ID in `brand.json`.
+- Runway: add the connector `https://mcp.runwayml.com/mcp` in claude.ai (Settings, Connectors) or `claude mcp add --transport http --scope user runway https://mcp.runwayml.com/mcp` in Claude Code, then sign in.

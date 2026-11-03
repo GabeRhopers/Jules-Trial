@@ -78,4 +78,14 @@ writeFileSync(
 ${config.scenes.map((s) => `**${s.id}:** ${s.text}`).join("\n\n")}
 `,
 );
-console.log(`Created ${dir}/config.json and script.md (${format}, brand ${brand}). Replace every TODO before narrating.`);
+writeFileSync(
+  path.join(dir, "broll.md"),
+  `# B-roll log: ${id}
+
+One row per AI generation (approved shots only). Fill in "credits left" from the tool or your account page.
+
+| Date | Scene | Tool | Model | Duration | Aspect | Credits used | Credits left | Prompt | File |
+|---|---|---|---|---|---|---|---|---|---|
+`,
+);
+console.log(`Created ${dir}/config.json, script.md and broll.md (${format}, brand ${brand}). Replace every TODO before narrating.`);

@@ -10,7 +10,7 @@ captions, using Claude Code + Remotion. Three templates, any brand:
 | `PromoSquare1x1` | 1080x1080 | 15 to 30 s | Feed posts and ads with footage (B-roll) |
 
 Narration: **Kokoro** (free, runs on your computer) or **ElevenLabs** (paid, premium voices).
-Optional AI footage: **Higgsfield** (paid). Rules for Claude are in [CLAUDE.md](CLAUDE.md); the full setup
+Optional AI footage: **Runway** (free test credits) or **Higgsfield** (paid). Rules for Claude are in [CLAUDE.md](CLAUDE.md); the full setup
 history is in [SETUP_LOG.md](SETUP_LOG.md).
 
 ## Quick Start
@@ -40,7 +40,27 @@ npm run narrate -- ac-signs-before-summer        # first run downloads the Kokor
    `voice.elevenlabs.voiceId` in the brand's `brands/<brand>/brand.json`.
 3. Client videos need a paid ElevenLabs plan: the commercial license starts at Starter (elevenlabs.io/pricing, checked 2026-10-29).
 
-### 4. AI footage: Higgsfield (optional)
+**Free plan, used safely** (10,000 credits a month, about 10 minutes of voice):
+- Run ElevenLabs **on your own computer**, not in a Claude cloud session: ElevenLabs disables free-tier accounts it sees behind proxies or VPNs, and cloud sessions use a proxy.
+- When you create the key (elevenlabs.io, Settings, API Keys), restrict it: allow only **Text to Speech** and **User read** (so the script can read your balance), set a **credit quota** (for example 5,000), and an expiry if you like.
+- Pick one of the **default voices** first. If a Voice Library voice returns a permission error on the free plan, switch to a default one.
+- `npm run narrate -- <video-id> --provider=elevenlabs` shows the estimate and your remaining credits, refuses a run you can't afford, and asks before spending.
+- Keep drafting with Kokoro (free); spend ElevenLabs credits only on the version the client approves.
+
+### 4. AI footage: Runway free credits (optional, for tests)
+Runway's free plan gives **125 credits once** (they never refill): about 10 s of Gen-4.5 at 12 credits per second
+(runwayml.com/pricing, checked 2026-11-03). Free clips are likely watermarked, so use them to test prompts, not for delivery.
+Connect Runway's own MCP, which spends the same credits as the Runway app (runwayml.com/mcp):
+- **claude.ai (web, desktop, mobile):** Settings, Connectors, add a custom connector with `https://mcp.runwayml.com/mcp`, sign in with your Runway account.
+- **Claude Code on your computer:**
+```bash
+claude mcp add --transport http --scope user runway https://mcp.runwayml.com/mcp
+```
+  Then start `claude`, type `/mcp`, select **runway**, choose authenticate, and log in.
+
+Do not use Runway's developer API (dev.runway.com) for this: it is a separate account with no free tier and a $10 minimum.
+
+### 4b. AI footage: Higgsfield (optional, paid)
 Higgsfield's official MCP URL is `https://mcp.higgsfield.ai/mcp` (higgsfield.ai/mcp, checked 2026-10-29; sign-in is OAuth and lists Claude Code as a supported client). Add it with Claude Code's standard command:
 ```bash
 claude mcp add --transport http --scope user higgsfield https://mcp.higgsfield.ai/mcp
@@ -96,6 +116,7 @@ Or just ask Claude: "Create a brand for Acme Aluminum from their website colors 
 | Narration characters (one take) | about 420 | about 650 | about 230 |
 | **Kokoro voice** | $0 | $0 | $0 |
 | **ElevenLabs voice**, 3 takes, standard model (1 credit per character) | about 1,300 credits ≈ $0.20 to $0.30 | about 2,000 credits ≈ $0.35 to $0.45 | about 700 credits ≈ $0.10 to $0.15 |
+| **Runway free credits** (125 once, about 10 s of Gen-4.5; likely watermarked) | tests only | tests only | tests only |
 | **Higgsfield B-roll**, per usable clip ($0.40 to $9+, often 3 to 5 attempts) | optional | optional, 2 to 4 clips | 2 clips ≈ $1 to $18+ |
 | **Remotion** | $0 for teams of up to 3 people | $0 | $0 |
 | **Your time** once templates exist | 20 to 30 min | 45 to 60 min | 20 to 30 min |

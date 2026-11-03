@@ -56,8 +56,10 @@ Revise until the user approves. Do not narrate before approval.
 
 Ask whether the user has real footage (preferred: client's own photos/video are more credible, especially for B2B).
 - **Real footage:** ask the user to copy files into `public/broll/<video-id>/`; set each `broll` scene's `src`.
-- **Higgsfield:** propose a shot list as a table (scene, prompt, model, duration, aspect ratio, estimated
-  credits). **Wait for explicit approval before generating anything.** Generate only the approved shots,
+- **Runway (free test credits) or Higgsfield:** use the one the user has connected (`/mcp` shows it). First read
+  the remaining credits if the tool offers it. Propose a shot list as a table (scene, prompt, model, duration,
+  aspect ratio, estimated credits, credits left after). On Runway's free plan (125 credits, once), propose 1 or 2
+  short test shots and remind the user free clips are likely watermarked. **Wait for explicit approval before generating anything.** Generate only the approved shots,
   download them to `public/broll/<video-id>/`, and log each prompt in `videos/<video-id>/broll.md`.
   Never regenerate or retry without asking again. For B2B, do not generate footage that could be mistaken
   for the client's real facility, products or people.

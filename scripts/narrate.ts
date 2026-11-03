@@ -16,7 +16,7 @@ import path from "node:path";
 import { createInterface } from "node:readline/promises";
 import type { Brand, NarrationManifest, SceneNarration, VideoConfig, VoiceProvider } from "../src/lib/types.ts";
 import { applyPronunciations, wordsFromCharTimings } from "./lib/align.ts";
-import { elevenLabsCreditsPerChar, synthesizeElevenLabs, synthesizeKokoro } from "./lib/providers.ts";
+import { elevenLabsCreditsPerChar, fetchElevenLabsBalance, synthesizeElevenLabs, synthesizeKokoro } from "./lib/providers.ts";
 
 const arg = (name: string) => process.argv.find((a) => a.startsWith(`--${name}=`))?.split("=")[1];
 const flag = (name: string) => process.argv.includes(`--${name}`);
@@ -71,6 +71,27 @@ const main = async () => {
     const credits = Math.ceil(chars * elevenLabsCreditsPerChar(modelId));
     console.log(`\nEstimated cost: ${chars} characters ≈ ${credits} ElevenLabs credits (model ${modelId}).`);
     console.log("(Upper bound: 1 credit per character. Flash/Turbo models can cost less; your ElevenLabs usage page shows the real figure.)");
+
+    if (process.env.CLAUDE_CODE_REMOTE_SESSION_ID && brand.voice.elevenlabs) {
+      console.log("Note: this is a cloud session. ElevenLabs disables free-tier accounts it sees behind proxies; on the free plan, run this on your own computer.");
+    }
+    const balance = await fetchElevenLabsBalance();
+    if (balance) {
+      const left = balance.limit - balance.used;
+      const reset = balance.resetUnix ? new Date(balance.resetUnix * 1000).toISOString().slice(0, 10) : "unknown";
+      console.log(`Your ElevenLabs balance: ${left} of ${balance.limit} credits left this period (plan: ${balance.tier}, resets ${reset}).`);
+      if (credits > left) {
+        console.error(`Not enough credits: this run needs up to ${credits}, you have ${left}. Nothing was generated.`);
+        console.error("Shorten the script, wait for the reset, or use --provider=kokoro (free) for drafts.");
+        process.exit(1);
+      }
+      if (balance.tier === "free") {
+        console.log("Free plan: no commercial license. Use this audio for drafts, pitches and personal videos, not published client work.");
+      }
+    } else {
+      console.log("(Could not read your credit balance; check it on elevenlabs.io before approving.)");
+    }
+
     if (!flag("yes")) {
       const rl = createInterface({ input: process.stdin, output: process.stdout });
       const answer = (await rl.question(`Generate ${pending.length} scene(s) now? [y/N] `)).trim().toLowerCase();

@@ -1,7 +1,7 @@
 # Video production workspace
 
 Brand-consistent marketing videos with animated text, narration and captions, built with Remotion
-(React). Narration: Kokoro (free, local) or ElevenLabs (paid). Optional AI B-roll: Higgsfield (paid, MCP).
+(React). Narration: Kokoro (free, local) or ElevenLabs (paid). Optional AI B-roll: Runway (free test credits, MCP) or Higgsfield (paid, MCP).
 Main users: a marketing specialist (B2B tech and industrial clients, B2C home services) and an
 operations/IT project manager.
 
@@ -10,8 +10,10 @@ operations/IT project manager.
 ## Cost rules (always follow)
 - **ElevenLabs costs credits.** Never run `scripts/narrate.ts` with the ElevenLabs provider unless the user approved that run in this conversation. Show the script's character and credit estimate first. Never pass `--yes` without that approval.
 - **Kokoro is free** (local). Use it for drafts and previews without asking.
-- **Higgsfield costs credits on every generation.** Before generating: show the shot list (prompt, model, duration, aspect ratio, estimated credits) and wait for explicit approval. Never retry or regenerate without asking again.
-- Save Higgsfield downloads to `public/broll/<video-id>/` and log every prompt in `videos/<video-id>/broll.md`.
+- **ElevenLabs free plan** (10,000 credits per month, no commercial license): drafts, pitches and personal videos only, never published client work. It must run on the user's own computer: ElevenLabs disables free-tier accounts behind proxies, and cloud sessions use one. `narrate.ts` reads the balance first and refuses runs that exceed it.
+- **Runway and Higgsfield cost credits on every generation.** Before generating: show the shot list (prompt, model, duration, aspect ratio, estimated credits, credits left) and wait for explicit approval. Never retry or regenerate without asking again.
+- **Runway free plan:** 125 credits once, never refilled; clips are likely watermarked (no-watermark is a paid feature). Use it to test prompts, not for client delivery. Prefer the cheapest model that fits, use the shortest duration, one shot at a time, and stop when the balance can't cover the next shot.
+- Save AI footage to `public/broll/<video-id>/` and log every prompt, model, duration and credits used in `videos/<video-id>/broll.md`.
 - Never ask for API keys in chat. Keys live in `.env` (git-ignored); see `.env.example`.
 
 ## Folder structure
@@ -73,5 +75,5 @@ Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatical
 
 ## Known limits
 - `npx remotion compositions` (list all) fails if any video has no narration yet; rendering a single video by id works.
-- ElevenLabs endpoint/models/credit rates, Kokoro voice names and the Higgsfield MCP URL were verified against official docs on 2026-10-29 (see SETUP_LOG.md). Anything still marked "NOT VERIFIED" must be checked before relying on it.
+- ElevenLabs endpoint/models/credit rates, Kokoro voice names the Higgsfield MCP URL and Runway's free plan and MCP URL were verified against official docs on 2026-10-29 / 2026-11-03 (see SETUP_LOG.md). Anything still marked "NOT VERIFIED" must be checked before relying on it.
 - Remotion license: free for teams of up to 3; see `LICENSE_NOTES.md` before each new client.
