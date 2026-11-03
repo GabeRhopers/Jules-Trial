@@ -527,3 +527,7 @@ Built our own instead, on Remotion's Player (same license as the rest of Remotio
   shared in chat is #E53918, so those were not used.
 - Wording note: the brief's "Bring Lorin® your application..." uses Lorin as a noun, which the playbook disallows; used
   "Bring your application and current material to the Lorin® team." QC PASS (281 frames). Render 20.4 MB in 244 s.
+- Revision (client): removed the proof beat "Compare the full picture." (gold surface, ~46 to 49 s) and all text from the end
+  card, which now shows only the official animated logo on white (5 s, chime as it completes). New length 51.5 s.
+  Source check: all 8 images in the video match their lorin.com originals (mean pixel difference 0.5 to 2.7 of 255,
+  from resizing/JPEG only) and every source URL answers 200; unused gold-surface, precision-profiles and bronze-wheel removed.

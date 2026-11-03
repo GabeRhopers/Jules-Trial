@@ -8,74 +8,209 @@
   "open": {
     "dur": 7.6,
     "image": "macro-profiles.jpg",
-    "pan": { "fromX": 0.62, "toX": 0.48, "focusY": 0.5, "zoomFrom": 1.0, "zoomTo": 1.07 },
+    "pan": {
+      "fromX": 0.62,
+      "toX": 0.48,
+      "focusY": 0.5,
+      "zoomFrom": 1.0,
+      "zoomTo": 1.07
+    },
     "lines": [
-      { "text": "Cheap metal.", "at": 0.7, "out": 4.6 },
-      { "text": "Expensive product.", "at": 2.4, "out": 4.6, "accent": true, "sound": "hit" },
-      { "text": "How did that\nhappen?", "at": 5.0 }
+      {
+        "text": "Cheap metal.",
+        "at": 0.7,
+        "out": 4.6
+      },
+      {
+        "text": "Expensive product.",
+        "at": 2.4,
+        "out": 4.6,
+        "accent": true,
+        "sound": "hit"
+      },
+      {
+        "text": "How did that\nhappen?",
+        "at": 5.0
+      }
     ]
   },
   "factors": {
     "dur": 10.8,
     "image": "anodizing-line.jpg",
-    "pan": { "fromX": 0.5, "toX": 0.5, "focusY": 0.42, "zoomFrom": 1.0, "zoomTo": 1.12 },
-    "title": { "text": "The price tag\nisn't the total.", "at": 0.6, "out": 6.2 },
-    "items": ["Material", "Fabrication", "Finishing", "Handling", "Scrap", "Freight"],
+    "pan": {
+      "fromX": 0.5,
+      "toX": 0.5,
+      "focusY": 0.42,
+      "zoomFrom": 1.0,
+      "zoomTo": 1.12
+    },
+    "title": {
+      "text": "The price tag\nisn't the total.",
+      "at": 0.6,
+      "out": 6.2
+    },
+    "items": [
+      "Material",
+      "Fabrication",
+      "Finishing",
+      "Handling",
+      "Scrap",
+      "Freight"
+    ],
     "itemsAt": 2.4,
     "itemGap": 0.55,
-    "closing": { "text": "They all affect what your\nproduct costs to make.", "at": 6.5 }
+    "closing": {
+      "text": "They all affect what your\nproduct costs to make.",
+      "at": 6.5
+    }
   },
   "steps": {
     "dur": 10.6,
-    "title": { "text": "Extra steps\neat the savings.", "at": 0.5, "out": 2.3 },
+    "title": {
+      "text": "Extra steps\neat the savings.",
+      "at": 0.5,
+      "out": 2.3
+    },
     "base": [
-      { "label": "Material", "icon": "box" },
-      { "label": "Fabrication", "icon": "tool" },
-      { "label": "Finishing", "icon": "spray" },
-      { "label": "Ship", "icon": "truck" }
+      {
+        "label": "Material",
+        "icon": "box"
+      },
+      {
+        "label": "Fabrication",
+        "icon": "tool"
+      },
+      {
+        "label": "Finishing",
+        "icon": "spray"
+      },
+      {
+        "label": "Ship",
+        "icon": "truck"
+      }
     ],
     "extra": [
-      { "label": "Extra handling", "icon": "forklift", "after": "Material", "line": "A lower material price\ncan mean more handling.", "at": 2.6 },
-      { "label": "Secondary finishing", "icon": "brush", "after": "Finishing", "line": "More finishing.", "at": 4.5 },
-      { "label": "Scrap and rework", "icon": "recycle", "after": "Secondary finishing", "line": "More scrap.", "at": 5.7 },
-      { "label": "Repeated steps", "icon": "repeat", "after": "Fabrication", "line": "More process.", "at": 6.9 }
+      {
+        "label": "Extra handling",
+        "icon": "forklift",
+        "after": "Material",
+        "line": "A lower material price\ncan mean more handling.",
+        "at": 2.6
+      },
+      {
+        "label": "Secondary finishing",
+        "icon": "brush",
+        "after": "Finishing",
+        "line": "More finishing.",
+        "at": 4.5
+      },
+      {
+        "label": "Scrap and rework",
+        "icon": "recycle",
+        "after": "Secondary finishing",
+        "line": "More scrap.",
+        "at": 5.7
+      },
+      {
+        "label": "Repeated steps",
+        "icon": "repeat",
+        "after": "Fabrication",
+        "line": "More process.",
+        "at": 6.9
+      }
     ],
-    "closing": { "text": "Price those steps in.", "at": 8.4 }
+    "closing": {
+      "text": "Price those steps in.",
+      "at": 8.4
+    }
   },
   "compare": {
     "dur": 10.6,
     "image": "machined-part.jpg",
-    "title": { "text": "Compare the whole job.", "at": 0.5, "out": 4.2 },
+    "title": {
+      "text": "Compare the whole job.",
+      "at": 0.5,
+      "out": 4.2
+    },
     "checks": [
-      { "text": "Same design.", "at": 1.4 },
-      { "text": "Same volume.", "at": 2.0 },
-      { "text": "Same workflow.", "at": 2.6 }
+      {
+        "text": "Same design.",
+        "at": 1.4
+      },
+      {
+        "text": "Same volume.",
+        "at": 2.0
+      },
+      {
+        "text": "Same workflow.",
+        "at": 2.6
+      }
     ],
     "barsAt": 4.4,
-    "barLabels": { "material": "Material price", "finished": "Finished product cost" },
-    "segments": ["Fabrication", "Finishing", "Handling", "Scrap", "Freight"],
+    "barLabels": {
+      "material": "Material price",
+      "finished": "Finished product cost"
+    },
+    "segments": [
+      "Fabrication",
+      "Finishing",
+      "Handling",
+      "Scrap",
+      "Freight"
+    ],
     "conclusion": [
-      { "text": "Judge the cost of the\nfinished product.", "at": 6.8 },
-      { "text": "Not just the material.", "at": 8.2, "accent": true }
+      {
+        "text": "Judge the cost of the\nfinished product.",
+        "at": 6.8
+      },
+      {
+        "text": "Not just the material.",
+        "at": 8.2,
+        "accent": true
+      }
     ]
   },
   "proof": {
-    "dur": 9.6,
+    "dur": 6.9,
     "beats": [
-      { "kind": "image", "image": "copper-profiles.jpg", "at": 0, "pan": { "fromX": 0.4, "toX": 0.55, "focusY": 0.5, "zoomFrom": 1.04, "zoomTo": 1.0 }, "text": "Make the bargain\nprove itself." },
-      { "kind": "finishes", "images": ["finish-clear.jpg", "finish-black.jpg", "finish-bronze.jpg", "finish-copper.jpg"], "at": 3.2, "text": "Bring your application and\ncurrent material to the\nLorin® team." },
-      { "kind": "image", "image": "gold-surface.jpg", "at": 6.6, "pan": { "fromX": 0.58, "toX": 0.42, "focusY": 0.5, "zoomFrom": 1.0, "zoomTo": 1.05 }, "text": "Compare the\nfull picture.", "accent": true }
+      {
+        "kind": "image",
+        "image": "copper-profiles.jpg",
+        "at": 0,
+        "pan": {
+          "fromX": 0.4,
+          "toX": 0.55,
+          "focusY": 0.5,
+          "zoomFrom": 1.04,
+          "zoomTo": 1.0
+        },
+        "text": "Make the bargain\nprove itself."
+      },
+      {
+        "kind": "finishes",
+        "images": [
+          "finish-clear.jpg",
+          "finish-black.jpg",
+          "finish-bronze.jpg",
+          "finish-copper.jpg"
+        ],
+        "at": 3.2,
+        "text": "Bring your application and\ncurrent material to the\nLorin\u00ae team."
+      }
     ]
   },
   "end": {
-    "dur": 7.0,
+    "dur": 5.0,
     "logoVideo": "brands/lorin/animated-logo-16x9.mp4",
-    "logoBox": { "x": 1232, "y": 844, "width": 1432, "height": 508, "sourceWidth": 3840 },
-    "logoWidth": 780,
-    "logoCenterY": 760,
-    "cta": "Compare the full picture.",
-    "secondary": "Bring us your application and current material.",
-    "url": "lorin.com",
-    "ctaAt": 2.8
+    "logoBox": {
+      "x": 1232,
+      "y": 844,
+      "width": 1432,
+      "height": 508,
+      "sourceWidth": 3840
+    },
+    "logoWidth": 820,
+    "logoCenterY": 800,
+    "soundAt": 2.3
   }
 }

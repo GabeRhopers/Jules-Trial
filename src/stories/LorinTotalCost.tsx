@@ -389,7 +389,7 @@ const Proof: React.FC<{ fonts: Fonts }> = ({ fonts }) => {
         const start = b.at;
         const end = i + 1 < beats.length ? beats[i + 1].at : s.dur;
         const dur = end - start;
-        const sizes: Record<string, [number, number]> = { "copper-profiles.jpg": [3200, 2400], "gold-surface.jpg": [2200, 1238] };
+        const sizes: Record<string, [number, number]> = { "copper-profiles.jpg": [3200, 2400] };
         return (
           <Sequence key={i} from={Math.round(start * fps)} durationInFrames={Math.round((dur + (i + 1 < beats.length ? WIPE : 0)) * fps)} layout="none">
             <Wipe first={i === 0}>
@@ -414,7 +414,8 @@ const Proof: React.FC<{ fonts: Fonts }> = ({ fonts }) => {
   );
 };
 
-const End: React.FC<{ fonts: Fonts }> = ({ fonts }) => {
+/** Logo only: the official animated logo, unaltered, on white. */
+const End: React.FC<{ fonts: Fonts }> = () => {
   const s = C.end;
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -430,11 +431,6 @@ const End: React.FC<{ fonts: Fonts }> = ({ fonts }) => {
       <div data-qc={frame > 2.6 * fps ? "logo" : undefined} style={{ position: "absolute", left: W / 2 - s.logoWidth / 2, top: s.logoCenterY - (s.logoBox.height * scale) / 2, width: s.logoWidth, height: s.logoBox.height * scale }} />
       <div style={{ position: "absolute", left: W / 2 - logoCx, top: s.logoCenterY - logoCy, width: videoW, height: videoH, opacity: fadeIn }}>
         <Video src={staticFile(s.logoVideo)} muted style={{ width: "100%", height: "100%" }} />
-      </div>
-      <div style={{ position: "absolute", left: 0, width: W, top: 1000, display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-        <Reveal text={s.cta} atSec={s.ctaAt} size={62} color={NAVY} align="center" font={fonts.heading} />
-        <Reveal text={s.secondary} atSec={s.ctaAt + 0.35} size={36} color="#111111" weight={400} align="center" font={fonts.body} />
-        <Reveal text={s.url} atSec={s.ctaAt + 0.7} size={38} color={ORANGE} align="center" font={fonts.heading} />
       </div>
     </AbsoluteFill>
   );
@@ -469,7 +465,8 @@ export const LorinTotalCost: React.FC<{ qc?: boolean }> = ({ qc }) => {
           volume={(f) => interpolate(f, [0, fps * 1.5, endStart * fps, durationInFrames - fps * 1.2, durationInFrames], [0, 0.2, 0.24, 0.24, 0], { extrapolateRight: "clamp" })}
         />
       ) : null}
-      <Tick atSec={endStart + C.end.ctaAt + 0.1} file="chime.mp3" volume={0.6} />
+      {/* Soft chime as the logo animation completes */}
+      <Tick atSec={endStart + C.end.soundAt} file="chime.mp3" volume={0.55} />
       {qc ? <QcProbe safe={SAFE} keepClear={RAIL} ready={fonts.ready} /> : null}
     </AbsoluteFill>
   );

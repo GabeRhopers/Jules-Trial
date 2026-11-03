@@ -66,7 +66,6 @@ Downloaded from lorin.com on 2026-11-03, for a video made for Lorin Industries:
 |---|---|---|
 | anodizing-line.jpg | 2020-2026-IMG_3880-Internal-Photo-Cleared.jpg | Lorin internal photo, marked "Cleared" |
 | macro-profiles.jpg, machined-part.jpg, copper-profiles.jpg | Hero-Batch-iStock-1426840658, Unrivaled-iStock-1426840748, iStock-669873192 | iStock, licensed to Lorin: confirm the license covers this use |
-| gold-surface.jpg | Lorin-Abstract-Metal.jpg | Lorin site image |
 | finish-*.jpg | finish swatch photos (ClearMatt, Colorin BlackMatt, Colorin Medium Bronze, Antique Copper Medium) | Lorin product swatches |
 The animated logo (public/brands/lorin/animated-logo-16x9.mp4) was supplied by the client and is used unaltered.
 
