@@ -9,4 +9,6 @@ no samples or downloads, so they are original and free to use in client videos.
 | pop.mp3 | 0.3 s soft pop | logo landing |
 | beep.mp3 | double digital beep | thermostat glow |
 | chime.mp3 | 1.8 s two-note chime | final message |
+| tick.mp3 | 0.12 s mechanical tick | items appearing one by one |
+| hit.mp3 | 1.4 s low soft impact | a key line landing |
 | wind.mp3 | 12 s cold wind ambience | under winter scenes |

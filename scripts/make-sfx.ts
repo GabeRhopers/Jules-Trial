@@ -32,6 +32,18 @@ const RECIPES: Record<string, { inputs: string[]; filter: string; about: string 
     filter: "aecho=0.6:0.5:60:0.25,volume=0.8",
     about: "1.8 s chime",
   },
+  // Precise mechanical tick (like a caliper or a counter), for items appearing one by one
+  tick: {
+    inputs: ["aevalsrc='0.8*sin(2*PI*3200*t)*exp(-t*90)+0.35*sin(2*PI*900*t)*exp(-t*60)':d=0.12:s=48000"],
+    filter: "highpass=f=300,volume=0.8",
+    about: "0.12 s tick",
+  },
+  // Low, soft impact for a key line
+  hit: {
+    inputs: ["aevalsrc='(0.9*sin(2*PI*(55+70*exp(-t*9))*t)+0.25*sin(2*PI*110*t)*exp(-t*6))*exp(-t*3.2)':d=1.4:s=48000"],
+    filter: "lowpass=f=900,afade=t=out:st=0.6:d=0.8,volume=0.85",
+    about: "1.4 s low impact",
+  },
   // Cold wind outside: brown noise, low-passed, slowly rising and falling
   wind: {
     inputs: ["anoisesrc=d=12:c=brown:a=0.7:r=48000"],

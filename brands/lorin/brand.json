@@ -1,0 +1,99 @@
+{
+  "id": "lorin",
+  "displayName": "Lorin Industries",
+  "description": "Lorin\u00ae anodized aluminum (Muskegon, MI). Rules from the Lorin Sales Team Playbook (2025): logo only on white or Navy, Red Orange only, no effects; Poppins Bold/Regular for digital; Lorin\u00ae used as an adjective.",
+  "colors": {
+    "primary": "#DD4F05",
+    "secondary": "#00263E",
+    "accent": "#DD4F05",
+    "background": "#00263E",
+    "backgroundAlt": "#0B3550",
+    "text": "#FFFFFF",
+    "textMuted": "#B9C7D3",
+    "textOnPrimary": "#FFFFFF",
+    "textOnAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Poppins",
+      "weights": [
+        "700"
+      ],
+      "files": {
+        "700": "fonts/Poppins-700.woff2"
+      }
+    },
+    "body": {
+      "family": "Poppins",
+      "weights": [
+        "400"
+      ],
+      "files": {
+        "400": "fonts/Poppins-400.woff2"
+      }
+    }
+  },
+  "logo": "Lorin-Logo-Tag-BLK.png",
+  "toneOfVoice": [
+    "OEM voice (playbook): expert and technical, solution-oriented, performance-driven, reliable. Precision, performance and partnership.",
+    "Use Lorin\u00ae on first prominent reference, as an adjective: 'Lorin\u00ae anodized aluminum', 'Lorin\u00ae finishes'. Never 'Lorin's', 'Buy Lorin', 'Lorin is...'.",
+    "No invented statistics, savings, tolerances, certifications, warranties or specs. Only claims from approved Lorin material.",
+    "Logo only on white or Navy #00263E, in Red Orange, never over photos, never recolored, animated or with effects."
+  ],
+  "voice": {
+    "provider": "elevenlabs",
+    "kokoro": {
+      "voice": "am_michael",
+      "lang": "a",
+      "speed": 0.98,
+      "_note": "Free, local. 'a' = American English. Voice names and quality grades: VOICES.md on huggingface.co/hexgrad/Kokoro-82M (checked 2026-10-29: af_heart A, af_bella A-, am_michael/am_fenrir/am_puck C+)."
+    },
+    "elevenlabs": {
+      "voiceId": "REPLACE_WITH_ELEVENLABS_VOICE_ID",
+      "modelId": "eleven_multilingual_v2",
+      "settings": {
+        "stability": 0.6,
+        "similarity_boost": 0.75,
+        "style": 0.15,
+        "use_speaker_boost": true,
+        "speed": 0.98
+      },
+      "_note": "Model id and voice settings names verified 2026-10-29 against elevenlabs.io/docs (convert-with-timestamps, models). Newer model: eleven_v4."
+    }
+  },
+  "pronunciations": [
+    {
+      "term": "Lorin\u00ae",
+      "say": "Lorin"
+    },
+    {
+      "term": "OEM",
+      "say": "O-E-M"
+    }
+  ],
+  "style": {
+    "cornerRadius": 4,
+    "headlineCase": "sentence",
+    "motion": "calm",
+    "background": "grid",
+    "transition": "fade"
+  },
+  "captionStyle": {
+    "fontFamily": "heading",
+    "highlight": "color",
+    "fontWeight": 700,
+    "fontSizePx": 84,
+    "textTransform": "none",
+    "baseColor": "#FFFFFF",
+    "activeColor": "#FFFFFF",
+    "activeBackground": "#DD4F05",
+    "strokeColor": "#00263E",
+    "maxWordsPerPage": 4
+  },
+  "cta": {
+    "headline": "Compare the full picture.",
+    "button": "lorin.com",
+    "subline": "Bring us your application and current material."
+  },
+  "music": null
+}

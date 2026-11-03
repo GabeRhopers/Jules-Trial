@@ -6,6 +6,7 @@ import { calculateReelMetadata, REEL_LAYOUT, SocialReel9x16 } from "./compositio
 import type { ShellLayout } from "./compositions/VideoShell";
 import type { ResolvedProps } from "./lib/load-video";
 import { photoAds, videos } from "./lib/registry";
+import { LorinTotalCost, STORY_SIZE, storyDurationSec } from "./stories/LorinTotalCost";
 import type { VideoFormat } from "./lib/types";
 
 const FORMATS: Record<VideoFormat, { component: React.FC<ResolvedProps>; layout: ShellLayout; calculateMetadata: CalculateMetadataFunction<ResolvedProps> }> = {
@@ -42,6 +43,18 @@ export const RemotionRoot: React.FC = () => (
         </Folder>
       );
     })}
+    {/* Custom stories (one composition each, text and timing in stories/<id>/config.json) */}
+    <Folder name="Stories">
+      <Composition
+        id="lorin-total-cost"
+        component={LorinTotalCost}
+        width={STORY_SIZE.width}
+        height={STORY_SIZE.height}
+        fps={STORY_SIZE.fps}
+        durationInFrames={Math.round(storyDurationSec * STORY_SIZE.fps)}
+        defaultProps={{ qc: false }}
+      />
+    </Folder>
     {/* Photo ads: one still image + animated text + sound effects, no narration (photo-ads/<id>/config.json) */}
     <Folder name="PhotoAd9x16">
       {photoAds.map((ad) => (

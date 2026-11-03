@@ -512,3 +512,18 @@ Built our own instead, on Remotion's Player (same license as the rest of Remotio
   1.8/255 outside the text areas), so it replaced the stand-in at 1080x1920 with no layout changes. The 4:5 and landscape
   versions were not needed. Logo moved to y=272 at 250 px and the zoom centered at head height (focusY 395) so the logo
   clears her head. QC PASS; final render 1080x1920, 11.0 s.
+
+## Lorin® OEM total-cost story (2026-11-03)
+- New brand `lorin` from the Lorin Sales Team Playbook (47 pages read): Red Orange #DD4F05, Navy #00263E, Black; Poppins
+  400/700 (OFL, local files); logo only on white or Navy, Red Orange, no effects; Lorin® as an adjective; OEM voice.
+- Composition `src/stories/LorinTotalCost.tsx` + `stories/lorin-total-cost/config.json`, `scripts/story.ts` (qc, render),
+  new sounds tick and hit. 9:16, 56.2 s: macro open ("Cheap metal. / Expensive product. / How did that happen?"),
+  cost factors as one stacked bar over Lorin's anodizing line, a process line gaining extra steps, split-screen comparison
+  (material price vs finished product cost, no numbers), finishes and products, white end card with the official
+  animated logo (untouched) and the CTA.
+- Images: real photos from lorin.com only (internal plant photo, iStock licensed to Lorin, finish swatches); the site's
+  AI-generated application images were not used. No moving footage was available.
+- Logo color note: animated logo orange measures 219,78,3 (on spec, #DD4F05); website PNGs are #FE4E00 and the PNG
+  shared in chat is #E53918, so those were not used.
+- Wording note: the brief's "Bring Lorin® your application..." uses Lorin as a noun, which the playbook disallows; used
+  "Bring your application and current material to the Lorin® team." QC PASS (281 frames). Render 20.4 MB in 244 s.
