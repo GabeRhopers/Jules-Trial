@@ -85,7 +85,7 @@ const Track: React.FC<{ x: number; z: number; len: number }> = ({ x, z, len }) =
  * hoses arching from the enclosure to the carriage.
  */
 export const OPERATOR_SEAT: [number, number, number] = [-49.9, 1.35, -1.0];
-export const DrillRig: React.FC<{ carriage: number; spin: number }> = ({ carriage, spin }) => {
+export const DrillRig: React.FC<{ carriage: number; spin: number; decal?: THREE.Texture }> = ({ carriage, spin, decal }) => {
   const black = mat({ color: "#1e2023", rough: 0.42, metal: 0.25, clip: "none" });
   const black2 = mat({ color: "#2a2d31", rough: 0.55, metal: 0.2, clip: "none" });
   const yellow = mat({ color: "#e3ae17", rough: 0.4, metal: 0.15, clip: "none" });
@@ -111,6 +111,13 @@ export const DrillRig: React.FC<{ carriage: number; spin: number }> = ({ carriag
         {/* thin yellow and red accent lines low on the enclosure */}
         <Box p={[-0.3, -0.1, 1.095]} s={[RACK_LENGTH - 1.3, 0.04, 0.01]} m={yellow} shadow={false} />
         <Box p={[-1.8, -0.02, 1.095]} s={[1.6, 0.04, 0.01]} m={red} shadow={false} />
+        {/* DTI's approved logo decal on the enclosure (as on DTI's own rig) */}
+        {decal ? (
+          <mesh position={[1.3, 0.5, 1.092]}>
+            <planeGeometry args={[2.4, 2.4 * (384 / 1784)]} />
+            <meshStandardMaterial map={decal} transparent roughness={0.5} depthWrite={false} />
+          </mesh>
+        ) : null}
       </group>
       {/* carriage (rotation head) on the frame: yellow gearbox, black motors, mud swivel */}
       <group position={[car.x, car.y, 0]} rotation={[0, 0, -ENTRY_ANGLE]}>

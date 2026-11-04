@@ -26,7 +26,7 @@ const MODELS = ["shrub_02", "fire_hydrant", "street_lamp_01", "concrete_road_bar
 export type ModelName = (typeof MODELS)[number];
 
 export type TexSet = { diff: THREE.Texture; nor?: THREE.Texture; rough?: THREE.Texture };
-export type Assets = { tex: Record<TexName, TexSet>; hdri: THREE.DataTexture; models: Record<ModelName, THREE.Group>; images: Record<TexName, HTMLImageElement> };
+export type Assets = { tex: Record<TexName, TexSet>; hdri: THREE.DataTexture; models: Record<ModelName, THREE.Group>; images: Record<TexName, HTMLImageElement>; dtiDecal: THREE.Texture };
 
 let promise: Promise<Assets> | null = null;
 let loaded: Assets | null = null;
@@ -67,7 +67,21 @@ const loadAll = async (): Promise<Assets> => {
       models[m] = g.scene;
     }),
   );
-  return { tex, hdri, models, images };
+  // DTI's approved white logo, as on the enclosure of DTI's own rig (white version of the approved logo)
+  const svg = await new Promise<HTMLImageElement>((res, rej) => {
+    const im = new Image();
+    im.onload = () => res(im);
+    im.onerror = rej;
+    im.src = staticFile("hdd/dti-hdd-explainer/dti-logo-approved-white.png");
+  });
+  const c = document.createElement("canvas");
+  c.width = 1784;
+  c.height = 384;
+  c.getContext("2d")!.drawImage(svg, 0, 0, c.width, c.height);
+  const dtiDecal = new THREE.CanvasTexture(c);
+  dtiDecal.colorSpace = THREE.SRGBColorSpace;
+  dtiDecal.anisotropy = 8;
+  return { tex, hdri, models, images, dtiDecal };
 };
 
 /** Assets for this tab (null until loaded; the render is held until then) */

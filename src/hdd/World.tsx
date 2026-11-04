@@ -92,7 +92,7 @@ export const World: React.FC<{ a: Assets; s: WorldState }> = ({ a, s }) => {
       {equipment ? <WorkAreaFence /> : null}
       {equipment ? (
         <>
-          <DrillRig carriage={carriage} spin={front !== null ? spin : 0} />
+          <DrillRig carriage={carriage} spin={front !== null ? spin : 0} decal={a.dtiDecal} />
           <EntryPitDetail a={a} />
           <FluidSystem a={a} t={t} flowing={fluid} />
           <SupportVehicles />
