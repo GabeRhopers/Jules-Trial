@@ -111,7 +111,7 @@ export const World: React.FC<{ a: Assets; s: WorldState }> = ({ a, s }) => {
           <Person p={[OPERATOR_SEAT[0] + 0.1, 1.24, OPERATOR_SEAT[2]]} r={Math.PI / 2} pose={s.operatorTalking ? "radio" : "operate"} />
           <Person p={[-46.6, 0.03, -2.6]} r={0} pose="monitor" skin="#8a5a3e" />
           <Person p={[RIG_SIDE.recycler[0] + 2.0, 0.03, RIG_SIDE.recycler[2] + 1.9]} r={Math.PI} pose="monitor" skin="#e0b89b" />
-          {s.planReview ? <Person p={[-61.5, 0.03, 2.2]} r={Math.PI / 2} pose="tablet" skin="#a87656" /> : null}
+          {s.planReview ? <Person p={[-38.6, 0.03, -7.4]} r={-Math.PI / 2 - 0.5} pose="tablet" skin="#a87656" /> : null}
           {s.pilot !== null ? (
             <Person p={[loc.x + 0.4, 0.2, -1.5]} r={-Math.PI / 2} pose={s.locatorPose} moving={pilotOnly && (s.pilot ?? 0) > 0.03} t={t} skin="#6f4a33" />
           ) : null}
