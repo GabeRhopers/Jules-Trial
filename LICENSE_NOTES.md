@@ -76,7 +76,8 @@ Downloaded from lorin.com/firearms on 2026-11-03: clearmatt.jpg, gun-metal-grey.
 - `brands/dti/DTI-Logo-Approved.png` and `public/hdd/dti-hdd-explainer/dti-logo*.{png,svg}`: from directionaltech.com (file "DTI Logo - Approved"), used unaltered.
 - `public/hdd/dti-hdd-explainer/narration-original.m4a`: narration from DTI's own video, file supplied by the client.
 - `brands/dti/fonts/Montserrat-*.woff2`: Google Fonts, SIL Open Font License 1.1.
-- All 3D models are built in code for this project (no third-party models or stock footage).
+- 3D models are built in code for this project, plus CC0 (public domain) textures, a sky HDRI and a few plant and street-furniture models from Poly Haven (polyhaven.com, CC0 1.0; list in `public/hdd/cc0/README.md`). No stock footage.
+- DTI rig reference photos (supplied by the user) are kept locally in `hdd/dti-hdd-explainer/reference/` (git-ignored) and used only as modeling reference; no logos or brand names are reproduced.
 
 ## Per-client decision log
 | Client | Who owns the project? | Combined headcount | License needed | Decided on |

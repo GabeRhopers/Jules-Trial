@@ -29,3 +29,6 @@ __pycache__/
 
 # Copies of renders and screenshots shared in chat (not source files)
 demo-renders/
+public/hdd/cc0/*
+!public/hdd/cc0/README.md
+hdd/dti-hdd-explainer/reference/

@@ -18,24 +18,30 @@ const shots = blocks.map((b) => {
   const start = Number(/start: ([\d.]+)/.exec(b)![1]);
   const end = Number(/end: ([\d.]+)/.exec(b)![1]);
   const title = /title: \{ (?:number: "(\d)", )?text: "([^"]+)"/.exec(b);
-  const personas = (/personas: \[([^\]]*)\]/.exec(b)?.[1] ?? "").match(/"([^"]+)"/g)?.map((x) => x.slice(1, -1)) ?? [];
+  const personas = (/audience: \[([^\]]*)\]/.exec(b)?.[1] ?? "").match(/"([^"]+)"/g)?.map((x) => x.slice(1, -1)) ?? [];
+  const view = /view: "([^"]+)"/.exec(b)?.[1] ?? "";
   const labels = [...b.matchAll(/\{ text: "([^"]+)", at: ([\d.]+)/g)].map((m) => ({ text: m[1], at: Number(m[2]) }));
-  return { id, start, end, title: title ? (title[1] ? `${title[1]}. ${title[2]}` : title[2]) : "", visual: str(b, "visual"), review: str(b, "review"), personas, labels, scene: /scene: "(\w+)"/.exec(b)?.[1] ?? "site" };
+  return { id, start, end, title: title ? (title[1] ? `${title[1]}. ${title[2]}` : title[2]) : "", visual: str(b, "visual"), review: str(b, "review"), personas, labels, scene: /scene: "(\w+)"/.exec(b)?.[1] ?? "site", view };
 });
 
 // overlay text drawn by the composition (not in the label lists)
 const OVERLAYS: Record<string, string[]> = {
-  S04: ["Work area set back from traffic and business access (outline)"],
-  S05: ["Clearance below existing utilities (bracket, no values)", "Utility locate marks on the surface (APWA colors)"],
-  S06: ["Radio communication (link between operator and locator)"],
-  S07: ["Locator display: Depth / Pitch (illustrative, no project data)", "Steering directions to the operator (link)"],
-  S08: ["Steering: Up / Down / Right / Left, then 'Gradual corrections, combined as needed'", "Plan view inset with head position"],
-  S09: ["Sizing (example): pilot bore with 4-inch bit, conduit, enlarged bore about 1.5 × conduit; 'Examples from the narration. Sizes are set for each project.'"],
-  S10: ["Localized work zones (outlines)"],
-  S12: ["Less Disruption to Businesses", "Less Traffic Disruption", "Less Surface Restoration"],
-  S13: ["Wetland, Stream and River Crossings", "Stream and wetland", "Conduit beneath the channel"],
-  S14: ["Directional Technologies, Inc. / Installing conduit by directional drilling for over 30 years"],
-  S15: ["DTI approved logo", "HDD Expertise Since 1992", "Discuss Your Next HDD Project", "203-294-9200 · 877-788-4479", "drilling@directionaltech.com · directionaltech.com"],
+  S01: ["Proposed alignment drawn as a white dashed planning line"],
+  S02: ["HDD passes beneath obstacles: Roads · Buildings · Wetlands (as spoken)"],
+  S03: ["Typical HDD applications: Water · Sewer · Fiber · Electric · Gas (as spoken); 'This crossing installs one conduit; HDD is used for each of these.'", "Legend: existing utilities (APWA colors), proposed alignment, drilled bore", "Orientation bar: Entry · Rig ◄ ► Exit · Pipe staging"],
+  S04: ["Outline: Work area set back from traffic lanes and business entrances"],
+  S05: ["Plan and profile sheet (illustrative)", "Separation set by the project design (bracket, no values)", "Legend", "Orientation bar"],
+  S06: ["Drilling fluid circuit (simplified): recycling system → mud pump → drill string → bit → returns with cuttings → entry pit → pumped back", "Orientation bar"],
+  S07: ["Radio communication (link between locator and operator)"],
+  S08: ["Walkover locator display (illustrative): Depth, Pitch; note that locating the head is separate from verifying utilities", "Track line from head to receiver", "Steering direction relayed to the operator (link)", "Orientation bar"],
+  S09: ["Steering card: profile up / down, plan right / left, 'The drilled path behind it does not move.'", "Track line", "Orientation bar"],
+  S10: ["Sizing example (from the narration): pilot bore with 4-inch bit, product pipe OD, enlarged bore about 1.5 × pipe size; 'An example only.'", "Rods added behind the reamer", "Orientation bar"],
+  S11: ["Outlines: Localized work area (both)", "Lanes, sidewalks and entrances open", "Orientation bar (reamer position)"],
+  S12: ["Swivel: the reamer turns, the pipe does not", "Arrow: Pulled toward the rig", "Orientation bar"],
+  S13: ["Less Disruption to Businesses", "Less Traffic Disruption", "Less Surface Restoration", "Open-cut trench footprint (comparison, hatched)"],
+  S14: ["Application example: Wetland, Stream and River Crossings", "Stream channel and banks", "Work areas outside the stream corridor", "Pipe installed beneath the channel"],
+  S15: ["Directional Technologies, Inc. / Installing conduit by directional drilling for over 30 years", "Legend (with installed product pipe)"],
+  S16: ["DTI approved logo", "HDD Expertise Since 1992", "Discuss Your Next HDD Project", "203-294-9200 · 877-788-4479", "drilling@directionaltech.com · directionaltech.com"],
 };
 
 const fmt = (t: number) => `${Math.floor(t / 60)}:${(t % 60).toFixed(1).padStart(4, "0")}`;
@@ -57,7 +63,7 @@ const rows = shots
   <section class="shot">
     <div class="frame"><img src="${s.id}.jpg" alt="${s.id} frame"><div class="tc">${s.id} · ${fmt(s.start)} to ${fmt(s.end)}</div></div>
     <div class="info">
-      <h2>${s.id}${s.title ? ` · ${esc(s.title)}` : ""}</h2>
+      <h2>${s.id}${s.title ? ` · ${esc(s.title)}` : ""} <span class="view">${esc(s.view)}</span></h2>
       <h3>Narration (original recording)</h3>
       <div class="narr">${narrFor(s.start, s.end).map((n) => `<p>${n}</p>`).join("") || "<p class='muted'>No narration (silent opening, as in the original).</p>"}</div>
       <h3>Visual</h3><p>${esc(s.visual)}</p>
@@ -85,25 +91,26 @@ const html = `<!doctype html>
   h2 { margin:0 0 6px; font-size:19px; color:var(--blue) } h3 { margin:12px 0 4px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted) }
   p, li { font-size:14px; line-height:1.45; margin:2px 0 } ul { margin:0; padding-left:18px } .muted { color:var(--muted) }
   .narr p { font-style:italic } .pickup { background:#fff1e5; border-bottom:2px solid var(--orange); font-style:normal; font-weight:600 }
-  .review { background:#eef3fa; padding:6px 10px; border-radius:4px }
+  .review { background:#eef3fa; padding:6px 10px; border-radius:4px } .view { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-left:6px }
   @media (max-width: 900px) { .shot { grid-template-columns: 1fr; margin:12px 16px } header, .flags { margin-left:16px; margin-right:16px; padding-left:16px; padding-right:16px } }
   @media print { body { background:#fff } .shot { margin:10px 0; padding:8px 0; border-bottom:1px solid var(--line); border-radius:0 } header, .flags { margin:0 0 10px } }
 </style></head><body>
 <header>
-  <h1>Horizontal Directional Drilling · 3D explainer storyboard</h1>
+  <h1>Horizontal Directional Drilling · 3D explainer storyboard (v2)</h1>
   <p>Directional Technologies, Inc. (DTI) · 16:9, 1920 × 1080 · 3:08 · synchronized to the original recorded narration</p>
   <p>Draft for review, ${new Date().toISOString().slice(0, 10)}. Frames are rendered from the actual 3D production files (draft quality).</p>
 </header>
 <div class="flags">
   <h2>Production requirements and open items</h2>
   <ul>
-    <li><b>Pickup line:</b> “over the past 23 years” is removed from the original audio. The replacement “for over 30 years.” (highlighted below) is <b>pending</b>: a consented voice match of the original narrator requires the narrator's written consent and an approved ElevenLabs credit estimate. Until then the audio is silent there and drafts show a PICKUP PENDING flag.</li>
-    <li><b>Personas document:</b> “DTI Personas – 7-15-26.pdf” was not received. Audience focus follows the six audience priorities in the brief; it will be refined when the PDF arrives.</li>
+    <li><b>Pickup line:</b> “over the past 23 years” is removed from the original audio; the replacement “for over 30 years.” plays at the same point once recorded (consented ElevenLabs voice match, pending the narrator's written consent, the ELEVENLABS_API_KEY environment secret and your approval of about 340 credits). No on-screen note.</li>
+    <li><b>Views:</b> one fixed site model; site overview, longitudinal section (always viewed from the same side: entry and rig on the left, exit and pipe staging on the right) and technical close-ups. The ground in front of a section is drawn as a faint translucent volume, so it reads as a visualization, not an excavation.</li>
+    <li><b>Rig:</b> generic black-and-yellow tracked rig following DTI's reference photos (enclosure, cab, stake-down towers, vise). No logos or brand names, no stated capacities.</li>
+    <li><b>Ground and geometry:</b> strata, depths, separation, entry angle and bend radius are illustrative and set per project; no universal values are shown.</li>
     <li><b>Transcript to confirm:</b> ${cfg.transcriptNotes.slice(1).map(esc).join(" ")}</li>
-    <li><b>HDD specialist review</b> of bore geometry, equipment behavior, tracking graphics, fluid handling and pullback connections is required before the final render (see notes per shot).</li>
-    <li><b>Music:</b> none licensed yet. The draft has narration only; a licensed bed will be added at low level under the voice.</li>
+    <li><b>HDD specialist review</b> of equipment geometry, tracking sequence, tooling connections, reaming direction and pullback mechanics before the final render (notes per shot).</li>
+    <li><b>Materials:</b> CC0 textures, sky lighting and plant models from Poly Haven (public domain). Music: none licensed yet.</li>
     <li><b>Contact details</b> on the end card as supplied: ${["203-294-9200", "877-788-4479", "drilling@directionaltech.com", "directionaltech.com"].join(" · ")}.</li>
-    <li>Utility colors follow the APWA / Common Ground Alliance uniform color code; utility depths, sizes and the site are illustrative, not survey data. No project measurements, costs, schedules or outcome guarantees are shown.</li>
   </ul>
 </div>
 ${rows}

@@ -75,8 +75,10 @@ export const RemotionRoot: React.FC = () => (
     </Folder>
     <Folder name="HDD">
       {/* DTI HDD explainer (3D remake): with burned-in captions, and clean (no captions) */}
-      <Composition id="dti-hdd-explainer-captions" component={DtiHddExplainer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} defaultProps={{ captions: true, draft: true }} />
-      <Composition id="dti-hdd-explainer" component={DtiHddExplainer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} defaultProps={{ captions: false, draft: true }} />
+      <Composition id="dti-hdd-explainer-captions" component={DtiHddExplainer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} defaultProps={{ captions: true, pickupFile: null }} />
+      <Composition id="dti-hdd-explainer" component={DtiHddExplainer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} defaultProps={{ captions: false, pickupFile: null }} />
+      {/* review animatic: half resolution, 15 fps, captions burned in */}
+      <Composition id="dti-hdd-animatic" component={DtiHddExplainer} width={1920} height={1080} fps={15} durationInFrames={Math.round(HDD_DURATION_FRAMES / 2)} defaultProps={{ captions: true, pickupFile: null }} />
       <Composition id="dti-hdd-caption-layer" component={DtiHddCaptionLayer} width={1920} height={1080} fps={HDD_FPS} durationInFrames={HDD_DURATION_FRAMES} />
       <Composition id="hdd-lookdev" component={LookDev} width={1920} height={1080} fps={30} durationInFrames={1} defaultProps={{ view: "aerial" }} />
     </Folder>
