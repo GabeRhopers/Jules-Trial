@@ -171,3 +171,46 @@ export const BtacGarageReel: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+// ---------- Family set: plain white centered lines with a soft shadow (as in the client's mockups) ----------
+const FAMILY_DIR = "stories/btac-family";
+/** Centered block of lines around cx; words rise one by one */
+const PlainBlock: React.FC<{ lines: string[]; cx: number; y: number; at: number; t: number }> = ({ lines, cx, y, at, t }) => {
+  let k = 0;
+  return (
+    <div style={{ position: "absolute", left: cx - 300, width: 600, top: y, fontFamily: FONT, fontWeight: 700, fontSize: 62, lineHeight: "57px", color: "#FFFFFF", textAlign: "center", textShadow: "0 2px 14px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.35)" }}>
+      {lines.map((line, li) => (
+        <div key={li} style={{ whiteSpace: "nowrap" }}>
+          {line.split(" ").map((w, wi) => {
+            const a = at + k++ * 0.13;
+            const p = interpolate(t, [a, a + 0.45], [0, 1], { ...clamp, easing: ease });
+            return (
+              <span key={wi} style={{ display: "inline-block", opacity: p, transform: `translateY(${(1 - p) * 24}px)`, marginRight: wi < line.split(" ").length - 1 ? "0.27em" : 0 }}>
+                {w}
+              </span>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const BtacFamilyReel: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const smooth = Easing.inOut(Easing.sin);
+  const after = interpolate(t, MIX, [0, 1], { ...clamp, easing: smooth }) * (1 - interpolate(t, LOOP, [0, 1], { ...clamp, easing: smooth }));
+  const textOut = interpolate(t, LOOP, [1, 0], { ...clamp, easing: smooth });
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000" }}>
+      <Photo name="before" opacity={1} dir={FAMILY_DIR} />
+      <Photo name="after" opacity={after} dir={FAMILY_DIR} />
+      <AbsoluteFill style={{ opacity: textOut }}>
+        <PlainBlock lines={["Comfort", "belongs..."]} cx={790} y={918} at={0.3} t={t} />
+        <PlainBlock lines={["...in every", "room."]} cx={790} y={1048} at={2.8} t={t} />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};

@@ -8,7 +8,7 @@ import type { ResolvedProps } from "./lib/load-video";
 import { photoAds, videos } from "./lib/registry";
 import { LorinTotalCost, STORY_SIZES, storyDurationSec } from "./stories/LorinTotalCost";
 import { LookDev } from "./hdd/LookDev";
-import { BTAC_BA, BTAC_BA_REEL, BtacBeforeAfter, BtacBeforeAfterReel, BtacFootballReel, BtacGarageReel } from "./stories/BtacBeforeAfter";
+import { BTAC_BA, BTAC_BA_REEL, BtacBeforeAfter, BtacBeforeAfterReel, BtacFamilyReel, BtacFootballReel, BtacGarageReel } from "./stories/BtacBeforeAfter";
 import { DtiHddCaptionLayer, DtiHddExplainer, HDD_DURATION_FRAMES, HDD_FPS } from "./hdd/DtiHddExplainer";
 import { FIREARMS_SIZES, firearmsDurationSec, LorinFirearms } from "./stories/LorinFirearms";
 import type { VideoFormat } from "./lib/types";
@@ -75,6 +75,7 @@ export const RemotionRoot: React.FC = () => (
       ))}
     </Folder>
     <Folder name="BTAC">
+      <Composition id="btac-family-9x16" component={BtacFamilyReel} width={BTAC_BA_REEL.width} height={BTAC_BA_REEL.height} fps={BTAC_BA_REEL.fps} durationInFrames={BTAC_BA_REEL.durationSec * BTAC_BA_REEL.fps} />
       <Composition id="btac-garage-9x16" component={BtacGarageReel} width={BTAC_BA_REEL.width} height={BTAC_BA_REEL.height} fps={BTAC_BA_REEL.fps} durationInFrames={BTAC_BA_REEL.durationSec * BTAC_BA_REEL.fps} />
       <Composition id="btac-football-9x16" component={BtacFootballReel} width={BTAC_BA_REEL.width} height={BTAC_BA_REEL.height} fps={BTAC_BA_REEL.fps} durationInFrames={BTAC_BA_REEL.durationSec * BTAC_BA_REEL.fps} />
       <Composition id="btac-before-after-9x16" component={BtacBeforeAfterReel} width={BTAC_BA_REEL.width} height={BTAC_BA_REEL.height} fps={BTAC_BA_REEL.fps} durationInFrames={BTAC_BA_REEL.durationSec * BTAC_BA_REEL.fps} />
