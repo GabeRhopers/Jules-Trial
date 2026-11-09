@@ -83,13 +83,13 @@ const PHOTO_TOP = (1920 - 1350) / 2;
 const MIX = [2.1, 3.0];
 /** loop: dissolve back to the start at the end */
 const LOOP = [5.6, 6.0];
-const Photo: React.FC<{ name: string; opacity: number; dir?: string }> = ({ name, opacity, dir = DIR }) => {
-  const src = staticFile(`${dir}/${name}.webp`);
+const Photo: React.FC<{ name: string; opacity: number; dir?: string; ext?: string }> = ({ name, opacity, dir = DIR, ext = "webp" }) => {
+  const src = staticFile(`${dir}/${name}.${ext}`);
   return (
     <AbsoluteFill style={{ opacity }}>
       {/* bands above and below: the same photo, blurred and darkened (the photo itself is untouched) */}
       <Img src={src} style={{ position: "absolute", left: -360, top: -60, width: 1800, height: 2040, objectFit: "cover", filter: "blur(38px) brightness(0.72)" }} />
-      <Img src={src} style={{ position: "absolute", left: 0, top: PHOTO_TOP, width: 1080, height: 1350 }} />
+      <Img src={src} style={{ position: "absolute", left: 0, top: PHOTO_TOP, width: 1080, height: 1350, objectFit: "cover" }} />
     </AbsoluteFill>
   );
 };
@@ -146,6 +146,27 @@ export const BtacFootballReel: React.FC = () => {
       <AbsoluteFill style={{ opacity: textOut }}>
         <PlainLine words={[["Football", false], ["is", false], ["better", true], ["when", false]]} y={995} at={0.3} t={t} />
         <PlainLine words={[["the", false], ["room", false], ["feels", true], ["right", true]]} y={1075} at={2.8} t={t} />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+// ---------- Garage set: blue boxes, as in the client's mockups (photos 1122x1402, shown at full width) ----------
+const GARAGE_DIR = "stories/btac-garage";
+export const BtacGarageReel: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const smooth = Easing.inOut(Easing.sin);
+  const after = interpolate(t, MIX, [0, 1], { ...clamp, easing: smooth }) * (1 - interpolate(t, LOOP, [0, 1], { ...clamp, easing: smooth }));
+  const textOut = interpolate(t, LOOP, [1, 0], { ...clamp, easing: smooth });
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000" }}>
+      <Photo name="before" opacity={1} dir={GARAGE_DIR} ext="jpg" />
+      <Photo name="after" opacity={after} dir={GARAGE_DIR} ext="jpg" />
+      <AbsoluteFill style={{ opacity: textOut }}>
+        <EdgeBox text="Make your garage" side="left" x0={0} x1={570} y0={PHOTO_TOP + 324} y1={PHOTO_TOP + 407} inAt={0.3} outAt={99} t={t} dx={-3} dy={-9} />
+        <EdgeBox text="usable all winter." side="left" x0={0} x1={575} y0={1160} y1={1241} inAt={2.8} outAt={99} t={t} dx={-1} dy={-9} />
       </AbsoluteFill>
     </AbsoluteFill>
   );
