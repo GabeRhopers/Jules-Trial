@@ -239,7 +239,7 @@ export const BtacOfficeReel: React.FC = () => {
 
 // Bedroom set: blue boxes as in the mockups (one box per line). "Wake up comfortable." moves from the
 // lower right (under the Reels caption and button rail) to the lower left; second text changed by the client
-// to "Get a BTAC mini split system".
+// to "Get a BTAC mini split system."
 const BEDROOM_DIR = "stories/btac-bedroom";
 export const BtacBedroomReel: React.FC = () => {
   const frame = useCurrentFrame();
@@ -256,8 +256,8 @@ export const BtacBedroomReel: React.FC = () => {
       <AbsoluteFill style={{ opacity: textOut }}>
         <EdgeBox text="Too cold to" side="left" x0={16} x1={364} y0={T + 386} y1={T + 443} inAt={0.3} outAt={99} t={t} size={47} dx={-5} dy={-2} />
         <EdgeBox text="leave the bed?" side="left" x0={16} x1={364} y0={T + 454} y1={T + 511} inAt={0.55} outAt={99} t={t} size={47} dy={-6} />
-        <EdgeBox text="Get a BTAC" side="left" x0={16} x1={430} y0={1120} y1={1177} inAt={2.8} outAt={99} t={t} size={47} dy={-2} />
-        <EdgeBox text="mini split system" side="left" x0={16} x1={430} y0={1188} y1={1245} inAt={3.05} outAt={99} t={t} size={47} dy={-5} />
+        <EdgeBox text="Get a BTAC" side="left" x0={16} x1={442} y0={1120} y1={1177} inAt={2.8} outAt={99} t={t} size={47} dy={-2} />
+        <EdgeBox text="mini split system." side="left" x0={16} x1={442} y0={1188} y1={1245} inAt={3.05} outAt={99} t={t} size={47} dy={-5} />
       </AbsoluteFill>
     </AbsoluteFill>
   );
