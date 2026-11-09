@@ -214,3 +214,25 @@ export const BtacFamilyReel: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+// Home office set: both lines stacked at the right, raised from the mockup so the second line clears
+// the Reels caption area and the right button rail
+const OFFICE_DIR = "stories/btac-office";
+export const BtacOfficeReel: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const smooth = Easing.inOut(Easing.sin);
+  const after = interpolate(t, MIX, [0, 1], { ...clamp, easing: smooth }) * (1 - interpolate(t, LOOP, [0, 1], { ...clamp, easing: smooth }));
+  const textOut = interpolate(t, LOOP, [1, 0], { ...clamp, easing: smooth });
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000" }}>
+      <Photo name="before" opacity={1} dir={OFFICE_DIR} />
+      <Photo name="after" opacity={after} dir={OFFICE_DIR} />
+      <AbsoluteFill style={{ opacity: textOut }}>
+        <PlainBlock lines={["Your home", "office should", "not have..."]} cx={785} y={952} at={0.3} t={t} />
+        <PlainBlock lines={["...a winter", "dress code."]} cx={760} y={1138} at={2.8} t={t} />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
