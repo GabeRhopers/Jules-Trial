@@ -8,6 +8,7 @@ import type { ResolvedProps } from "./lib/load-video";
 import { photoAds, videos } from "./lib/registry";
 import { LorinTotalCost, STORY_SIZES, storyDurationSec } from "./stories/LorinTotalCost";
 import { LookDev } from "./hdd/LookDev";
+import { BTAC_BA, BtacBeforeAfter } from "./stories/BtacBeforeAfter";
 import { DtiHddCaptionLayer, DtiHddExplainer, HDD_DURATION_FRAMES, HDD_FPS } from "./hdd/DtiHddExplainer";
 import { FIREARMS_SIZES, firearmsDurationSec, LorinFirearms } from "./stories/LorinFirearms";
 import type { VideoFormat } from "./lib/types";
@@ -72,6 +73,9 @@ export const RemotionRoot: React.FC = () => (
           defaultProps={{ qc: false, format }}
         />
       ))}
+    </Folder>
+    <Folder name="BTAC">
+      <Composition id="btac-before-after" component={BtacBeforeAfter} width={BTAC_BA.width} height={BTAC_BA.height} fps={BTAC_BA.fps} durationInFrames={BTAC_BA.durationSec * BTAC_BA.fps} />
     </Folder>
     <Folder name="HDD">
       {/* DTI HDD explainer (3D remake): with burned-in captions, and clean (no captions) */}
