@@ -18,7 +18,7 @@ const ease = Easing.bezier(0.22, 1, 0.36, 1);
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 /** Text box flush to a screen edge: the box slides in from its edge, then the words rise one by one */
-const EdgeBox: React.FC<{ text: string; side: "left" | "right"; x0: number; x1: number; y0: number; y1: number; inAt: number; outAt: number; t: number; dx?: number; dy?: number }> = ({ text, side, x0, x1, y0, y1, inAt, outAt, t, dx = 0, dy = 0 }) => {
+const EdgeBox: React.FC<{ text: string; side: "left" | "right"; x0: number; x1: number; y0: number; y1: number; inAt: number; outAt: number; t: number; dx?: number; dy?: number; size?: number }> = ({ text, side, x0, x1, y0, y1, inAt, outAt, t, dx = 0, dy = 0, size = 59 }) => {
   const w = x1 - x0;
   const pin = interpolate(t, [inAt, inAt + 0.55], [0, 1], { ...clamp, easing: ease });
   const pout = interpolate(t, [outAt, outAt + 0.45], [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
@@ -26,7 +26,7 @@ const EdgeBox: React.FC<{ text: string; side: "left" | "right"; x0: number; x1: 
   const words = text.split(" ");
   return (
     <div style={{ position: "absolute", left: x0, top: y0, width: w, height: y1 - y0, backgroundColor: BLUE, transform: `translateX(${shift}px)`, display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-      <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: 59, color: "#FFFFFF", whiteSpace: "nowrap", letterSpacing: "-0.005em", display: "flex", gap: "0.27em", transform: `translate(${dx}px, ${dy}px)` }}>
+      <div style={{ fontFamily: FONT, fontWeight: 700, fontSize: size, color: "#FFFFFF", whiteSpace: "nowrap", letterSpacing: "-0.005em", display: "flex", gap: "0.27em", transform: `translate(${dx}px, ${dy}px)` }}>
         {words.map((wd, i) => {
           const at = inAt + 0.3 + i * 0.12;
           const p = interpolate(t, [at, at + 0.4], [0, 1], { ...clamp, easing: ease });
@@ -232,6 +232,31 @@ export const BtacOfficeReel: React.FC = () => {
       <AbsoluteFill style={{ opacity: textOut }}>
         <PlainBlock lines={["Your home", "office should", "not have..."]} cx={785} y={952} at={0.3} t={t} />
         <PlainBlock lines={["...a winter", "dress code."]} cx={760} y={1138} at={2.8} t={t} />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+// Bedroom set: blue boxes as in the mockups (one box per line). "Wake up comfortable." moves from the
+// lower right (under the Reels caption and button rail) to the lower left, aligned with the first boxes.
+const BEDROOM_DIR = "stories/btac-bedroom";
+export const BtacBedroomReel: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const smooth = Easing.inOut(Easing.sin);
+  const after = interpolate(t, MIX, [0, 1], { ...clamp, easing: smooth }) * (1 - interpolate(t, LOOP, [0, 1], { ...clamp, easing: smooth }));
+  const textOut = interpolate(t, LOOP, [1, 0], { ...clamp, easing: smooth });
+  const T = PHOTO_TOP;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000" }}>
+      <Photo name="before" opacity={1} dir={BEDROOM_DIR} />
+      <Photo name="after" opacity={after} dir={BEDROOM_DIR} />
+      <AbsoluteFill style={{ opacity: textOut }}>
+        <EdgeBox text="Too cold to" side="left" x0={16} x1={364} y0={T + 386} y1={T + 443} inAt={0.3} outAt={99} t={t} size={47} dx={-5} dy={-2} />
+        <EdgeBox text="leave the bed?" side="left" x0={16} x1={364} y0={T + 454} y1={T + 511} inAt={0.55} outAt={99} t={t} size={47} dy={-6} />
+        <EdgeBox text="Wake up" side="left" x0={16} x1={348} y0={1120} y1={1177} inAt={2.8} outAt={99} t={t} size={47} dy={-2} />
+        <EdgeBox text="comfortable." side="left" x0={16} x1={348} y0={1188} y1={1245} inAt={3.05} outAt={99} t={t} size={47} dy={-5} />
       </AbsoluteFill>
     </AbsoluteFill>
   );
