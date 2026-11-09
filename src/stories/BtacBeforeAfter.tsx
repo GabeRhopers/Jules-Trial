@@ -71,3 +71,28 @@ export const BtacBeforeAfter: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+/**
+ * 9:16 Reels version: the full photo unchanged in the center (bands filled with a blurred, slightly darkened
+ * copy of the same photo), a straight cut from before to after (no transition), and both lines staying on
+ * screen so they read together. Text and logo sit inside the Reels safe zone (top 270, bottom 670, right rail).
+ */
+export const BTAC_BA_REEL = { width: 1080, height: 1920, fps: 30, durationSec: 10 };
+const PHOTO_TOP = (1920 - 1350) / 2;
+const CUT_AT = 3.8;
+export const BtacBeforeAfterReel: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = frame / fps;
+  const src = staticFile(`${DIR}/${t < CUT_AT ? "before" : "after"}.webp`);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000" }}>
+      {/* bands above and below: the same photo, blurred and darkened (the photo itself is untouched) */}
+      <Img src={src} style={{ position: "absolute", left: -360, top: -60, width: 1800, height: 2040, objectFit: "cover", filter: "blur(38px) brightness(0.72)" }} />
+      <Img src={src} style={{ position: "absolute", left: 0, top: PHOTO_TOP, width: 1080, height: 1350 }} />
+      <EdgeBox text="Keep the cold out" side="left" x0={0} x1={576} y0={900} y1={993} inAt={0.45} outAt={99} t={t} dx={-4} dy={3} />
+      <EdgeBox text="of your workout" side="right" x0={525} x1={1080} y0={1013} y1={1106} inAt={CUT_AT + 0.4} outAt={99} t={t} dx={9} dy={-1} />
+      <Img src={staticFile(`${DIR}/logo.png`)} style={{ position: "absolute", left: 71.4, top: 1170, width: 194.9 }} />
+    </AbsoluteFill>
+  );
+};
