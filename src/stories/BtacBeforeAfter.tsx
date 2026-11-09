@@ -75,7 +75,7 @@ export const BtacBeforeAfter: React.FC = () => {
 /**
  * 9:16 Reels version: the full photo unchanged in the center (bands filled with a blurred, slightly darkened
  * copy of the same photo), a straight cut from before to after (no transition), and both lines staying on
- * screen so they read together. Text and logo sit inside the Reels safe zone (top 270, bottom 670, right rail).
+ * screen so they read together. Text sits inside the Reels safe zone (top 270, bottom 670, right rail). No logo.
  */
 export const BTAC_BA_REEL = { width: 1080, height: 1920, fps: 30, durationSec: 6 };
 const PHOTO_TOP = (1920 - 1350) / 2;
@@ -108,8 +108,6 @@ export const BtacBeforeAfterReel: React.FC = () => {
         <EdgeBox text="Keep the cold out" side="left" x0={0} x1={576} y0={900} y1={993} inAt={0.3} outAt={99} t={t} dx={-4} dy={3} />
         <EdgeBox text="of your workout" side="right" x0={525} x1={1080} y0={1013} y1={1106} inAt={2.8} outAt={99} t={t} dx={9} dy={-1} />
       </AbsoluteFill>
-      {/* logo bottom right, inside the Reels safe zone and left of the right-side button rail */}
-      <Img src={staticFile(`${DIR}/logo.png`)} style={{ position: "absolute", left: 930 - 194.9, top: 1170, width: 194.9 }} />
     </AbsoluteFill>
   );
 };
@@ -149,7 +147,6 @@ export const BtacFootballReel: React.FC = () => {
         <PlainLine words={[["Football", false], ["is", false], ["better", true], ["when", false]]} y={995} at={0.3} t={t} />
         <PlainLine words={[["the", false], ["room", false], ["feels", true], ["right", true]]} y={1075} at={2.8} t={t} />
       </AbsoluteFill>
-      <Img src={staticFile(`${DIR}/logo.png`)} style={{ position: "absolute", left: 930 - 194.9, top: 1170, width: 194.9 }} />
     </AbsoluteFill>
   );
 };
