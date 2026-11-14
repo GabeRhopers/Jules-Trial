@@ -434,3 +434,44 @@ Sandbox only: QC and render need `REMOTION_BROWSER_EXECUTABLE=/opt/pw-browsers/c
 ### Manual steps for the user
 - ElevenLabs: on your computer, create a restricted key (Text to Speech + User read, credit quota), paste it into `.env`, set a default voice ID in `brand.json`.
 - Runway: add the connector `https://mcp.runwayml.com/mcp` in claude.ai (Settings, Connectors) or `claude mcp add --transport http --scope user runway https://mcp.runwayml.com/mcp` in Claude Code, then sign in.
+
+## Cloud-ready for iPad work (2026-11-14)
+
+### What the project needs
+| Need | Where it comes from |
+|---|---|
+| Node 22.13+ and npm | Cloud base image (v22.22.0 here) |
+| Node packages (Remotion 4.0.539, TypeScript, ESLint) | `npm ci`, run by `scripts/session-start.sh` |
+| ffmpeg + ffprobe | Environment setup script (claude-cloud) |
+| Chrome Headless Shell for Remotion | Playwright Chromium from the setup script; the hook sets `REMOTION_BROWSER_EXECUTABLE` (remotion.media is usually blocked) |
+| Python 3.10 to 3.12 + Kokoro + CPU-only PyTorch (~1.5 GB) | `/opt/kokoro-venv` from the setup script (recommended), or `.venv` built in the background by the hook |
+| Kokoro model (~330 MB) | Hugging Face, first narration: `huggingface.co`, `us.aws.cdn.hf.co`, `cas-server.xethub.hf.co` |
+| CPU-only PyTorch | `download.pytorch.org` (falls back to the 6 GB PyPI build if blocked) |
+| Optional paid services | `api.elevenlabs.io` (network secret, header `xi-api-key`), `mcp.higgsfield.ai`, `mcp.runwayml.com` |
+
+### Added
+- `scripts/session-start.sh` + SessionStart hook in `.claude/settings.json` (same pattern as GabeRhopers/claude-cloud). Cloud only (`CLAUDE_CODE_REMOTE=true`).
+- `scripts/lib/providers.ts`: clear "still installing" message if narration starts before the background voice install ends.
+- `CLAUDE.md`: "Cloud sessions" section (install, run, test, preview/render, iPad review, branch + PR).
+
+### Measured
+| Item | Result |
+|---|---|
+| Kokoro with default PyPI torch | 179 s, 5.9 GB (unused GPU libraries) |
+| Kokoro with CPU-only torch | 74 s, 1.5 GB |
+| Setup-script block (venv + 3 voices pre-downloaded) | 69 s |
+
+### Tested from scratch (fresh clone, empty pip/npm/Hugging Face caches)
+| Step | Result |
+|---|---|
+| Hook with `CLAUDE_CODE_REMOTE` unset (personal computer) | Did nothing, exit 0 |
+| Hook as cloud session | 8 s: `npm ci`, Chrome found, voice install started in background |
+| Second start | 0 s, no duplicate install |
+| Narrate while voice installs | Clear "still installing" message |
+| Background voice install | Finished, CPU torch, 1.5 GB |
+| `npm test`, `tsc`, `eslint src`, `brand:check --all`, `npm run build` | Pass |
+| Narrate `spring-tuneup-promo` (model downloaded fresh) | 16.2 s of narration in 38 s |
+| QC (`--allow-placeholders`) | PASS |
+| Render | 1080x1080, 18.2 s, 3.4 MB in 48 s; voice present (-27 dB) |
+| `remotion still` preview | OK |
+| Hook with `/opt/kokoro-venv` present | Sets `KOKORO_PYTHON`, no `.venv`; Portuguese narration works |

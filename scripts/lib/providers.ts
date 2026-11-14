@@ -97,6 +97,10 @@ export const synthesizeKokoro = async (brand: Brand, text: string, outMp3: strin
   const cfg = brand.voice.kokoro;
   if (!cfg) throw new Error(`Brand ${brand.id} has no voice.kokoro settings`);
   const python = kokoroPython();
+  // Cloud sessions build .venv in the background (scripts/session-start.sh) and mark it .ready when done
+  if (!process.env.KOKORO_PYTHON && existsSync(".venv-install.log") && !existsSync(path.join(".venv", ".ready"))) {
+    throw new Error("Kokoro is still installing in the background. Wait a few minutes and retry; progress is in .venv-install.log.");
+  }
   if (!existsSync(python)) {
     throw new Error(`Kokoro is not set up (${python} not found). See "Kokoro setup" in SETUP_LOG.md or the README.`);
   }

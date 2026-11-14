@@ -20,4 +20,5 @@ public/broll/
 
 # Local Python environment for Kokoro
 .venv/
+.venv-install.log
 __pycache__/

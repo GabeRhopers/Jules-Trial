@@ -7,6 +7,42 @@ operations/IT project manager.
 
 **To make a video, use `/new-video`.** It walks through brief, script, narration, B-roll, preview and render.
 
+## Cloud sessions (how this repo is used)
+The owner works from an **iPad**: there is no local computer. Every install, build, test and render runs in a
+Claude Code cloud session on this machine, and results come back as files, links and pull requests.
+
+- **Automatic at session start** (`scripts/session-start.sh`, via the SessionStart hook in `.claude/settings.json`;
+  it does nothing on a personal computer):
+  1. `npm ci` when `package-lock.json` changed since the last install.
+  2. Points Remotion at Playwright's Chrome Headless Shell (`REMOTION_BROWSER_EXECUTABLE`), because
+     Remotion's own browser download host (`remotion.media`) is usually blocked.
+  3. Kokoro voice: uses `/opt/kokoro-venv` if the environment setup script built it (fast); otherwise builds
+     `.venv` in the background (about 1.5 minutes with CPU-only PyTorch from `download.pytorch.org`, log in `.venv-install.log`). Narration waits with a clear
+     message until it is ready.
+- **Expected from the environment setup script** (GabeRhopers/claude-cloud `cloud/setup-script.sh`): ffmpeg,
+  Playwright Chromium (Chrome Headless Shell), Noto fonts. Python 3.12 and Node 22 come with the base image.
+- **Network:** the Kokoro model (about 330 MB, first narration only) downloads from `huggingface.co`,
+  `us.aws.cdn.hf.co` and `cas-server.xethub.hf.co`. ElevenLabs needs `api.elevenlabs.io`, Higgsfield
+  `mcp.higgsfield.ai`, Runway `mcp.runwayml.com`. If a host is blocked, tell the owner which one to add to the
+  environment's Custom network allowlist. API keys go in the environment's network secrets
+  (ElevenLabs: host `api.elevenlabs.io`, header `xi-api-key`, no prefix), never in chat or the repo.
+  Note: the ElevenLabs free plan is disabled behind proxies, and cloud sessions use one; client work needs Starter or above anyway.
+- **Check everything works:**
+  ```bash
+  npm test && npx tsc --noEmit && npx eslint src && npm run brand:check -- --all
+  npm run narrate -- spring-tuneup-promo        # Kokoro, free
+  npm run qc -- spring-tuneup-promo --allow-placeholders
+  npm run render:video -- spring-tuneup-promo  # out/demo-home-services/spring-tuneup-promo.mp4
+  npx remotion still spring-tuneup-promo out/preview.png --frame=60   # quick preview image
+  ```
+- **Previewing from the iPad:** Remotion Studio (`npm run dev`) needs a browser on the same machine, so instead
+  send stills (`npx remotion still`), a short draft render, or the MP4 itself. Share finished videos with the
+  SendUserFile tool or a private Artifact page with a download button; `out/` and `*.mp4` are git-ignored.
+- **Machine limits:** about 4 CPUs and 16 GB RAM. A 30 to 50 s render takes 1 to 4 minutes.
+- **Delivering work:** always work on a branch and open a pull request (never push to `master`). The owner reviews
+  on an iPad, so keep PR descriptions short and plain: what changed, how to try it from the iPad, and anything they
+  must do (a host to allow, a key to add, a setup script change).
+
 ## Cost rules (always follow)
 - **ElevenLabs costs credits.** Never run `scripts/narrate.ts` with the ElevenLabs provider unless the user approved that run in this conversation. Show the script's character and credit estimate first. Never pass `--yes` without that approval.
 - **Kokoro is free** (local). Use it for drafts and previews without asking.
