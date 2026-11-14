@@ -1,0 +1,4 @@
+# Free local voice (Kokoro). Needs Python 3.10, 3.11 or 3.12 (kokoro 0.9.4 does not support 3.13 yet).
+# Install inside this project only:  python3.12 -m venv .venv && .venv/bin/pip install -r requirements-kokoro.txt
+kokoro>=0.9.4,<1.0
+soundfile>=0.12

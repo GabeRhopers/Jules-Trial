@@ -1,0 +1,38 @@
+{
+  "id": "spring-tuneup-promo",
+  "brand": "demo-home-services",
+  "format": "PromoSquare1x1",
+  "title": "Spring AC tune-up, $29",
+  "audience": "Homeowners in the service area (Facebook / Instagram feed ad)",
+  "goal": "sale",
+  "music": "demo-pad.mp3",
+  "scenes": [
+    {
+      "id": "offer",
+      "text": "Beat the first heat wave. Our spring AC tune-up is just 29 dollars.",
+      "visual": {
+        "kind": "broll",
+        "src": "broll/spring-tuneup-promo/technician.mp4",
+        "prompt": "Technician checking an outdoor AC unit on a sunny morning, handheld, shallow depth of field, 5 s",
+        "headline": "Spring AC tune-up, $29",
+        "lowerThird": { "title": "Mike R. · Lead technician", "subtitle": "12 years with Demo HVAC" }
+      }
+    },
+    {
+      "id": "check",
+      "text": "We run a 21 point check in about 45 minutes, so small problems never turn into emergencies.",
+      "visual": {
+        "kind": "broll",
+        "src": "broll/spring-tuneup-promo/filter-closeup.mp4",
+        "prompt": "Close-up of hands replacing an AC air filter in a bright, clean home, slow push-in, 5 s",
+        "headline": "21-point check in 45 minutes",
+        "lowerThird": { "title": "21-point inspection", "subtitle": "Filters, coils, refrigerant, electrical" }
+      }
+    },
+    {
+      "id": "cta",
+      "text": "Book this week and get priority service all summer. Tap to pick your time.",
+      "visual": { "kind": "cta", "headline": "Book a $29 tune-up", "button": "Tap to pick your time", "subline": "(555) 010-0199 · Priority service all summer" }
+    }
+  ]
+}
