@@ -1,0 +1,115 @@
+# Video production workspace
+
+Brand-consistent marketing videos with animated text, narration and captions, built with Remotion
+(React). Narration: Kokoro (free, local) or ElevenLabs (paid). Optional AI B-roll: Runway (free test credits, MCP) or Higgsfield (paid, MCP).
+Main users: a marketing specialist (B2B tech and industrial clients, B2C home services) and an
+operations/IT project manager.
+
+**To make a video, use `/new-video`.** It walks through brief, script, narration, B-roll, preview and render.
+
+## Cloud sessions (how this repo is used)
+The owner works from an **iPad**: there is no local computer. Every install, build, test and render runs in a
+Claude Code cloud session on this machine, and results come back as files, links and pull requests.
+
+- **Automatic at session start** (`scripts/session-start.sh`, via the SessionStart hook in `.claude/settings.json`;
+  it does nothing on a personal computer):
+  1. `npm ci` when `package-lock.json` changed since the last install.
+  2. Points Remotion at Playwright's Chrome Headless Shell (`REMOTION_BROWSER_EXECUTABLE`), because
+     Remotion's own browser download host (`remotion.media`) is usually blocked.
+  3. Kokoro voice: uses `/opt/kokoro-venv` if the environment setup script built it (fast); otherwise builds
+     `.venv` in the background (about 1.5 minutes with CPU-only PyTorch from `download.pytorch.org`, log in `.venv-install.log`). Narration waits with a clear
+     message until it is ready.
+- **Expected from the environment setup script** (GabeRhopers/claude-cloud `cloud/setup-script.sh`): ffmpeg,
+  Playwright Chromium (Chrome Headless Shell), Noto fonts. Python 3.12 and Node 22 come with the base image.
+- **Network:** the Kokoro model (about 330 MB, first narration only) downloads from `huggingface.co`,
+  `us.aws.cdn.hf.co` and `cas-server.xethub.hf.co`. ElevenLabs needs `api.elevenlabs.io`, Higgsfield
+  `mcp.higgsfield.ai`, Runway `mcp.runwayml.com`. If a host is blocked, tell the owner which one to add to the
+  environment's Custom network allowlist. API keys go in the environment's network secrets
+  (ElevenLabs: host `api.elevenlabs.io`, header `xi-api-key`, no prefix), never in chat or the repo.
+  Note: the ElevenLabs free plan is disabled behind proxies, and cloud sessions use one; client work needs Starter or above anyway.
+- **Check everything works:**
+  ```bash
+  npm test && npx tsc --noEmit && npx eslint src && npm run brand:check -- --all
+  npm run narrate -- spring-tuneup-promo        # Kokoro, free
+  npm run qc -- spring-tuneup-promo --allow-placeholders
+  npm run render:video -- spring-tuneup-promo  # out/demo-home-services/spring-tuneup-promo.mp4
+  npx remotion still spring-tuneup-promo out/preview.png --frame=60   # quick preview image
+  ```
+- **Previewing from the iPad:** Remotion Studio (`npm run dev`) needs a browser on the same machine, so instead
+  send stills (`npx remotion still`), a short draft render, or the MP4 itself. Share finished videos with the
+  SendUserFile tool or a private Artifact page with a download button; `out/` and `*.mp4` are git-ignored.
+- **Machine limits:** about 4 CPUs and 16 GB RAM. A 30 to 50 s render takes 1 to 4 minutes.
+- **Delivering work:** always work on a branch and open a pull request (never push to `master`). The owner reviews
+  on an iPad, so keep PR descriptions short and plain: what changed, how to try it from the iPad, and anything they
+  must do (a host to allow, a key to add, a setup script change).
+
+## Cost rules (always follow)
+- **ElevenLabs costs credits.** Never run `scripts/narrate.ts` with the ElevenLabs provider unless the user approved that run in this conversation. Show the script's character and credit estimate first. Never pass `--yes` without that approval.
+- **Kokoro is free** (local). Use it for drafts and previews without asking.
+- **ElevenLabs free plan** (10,000 credits per month, no commercial license): drafts, pitches and personal videos only, never published client work. It must run on the user's own computer: ElevenLabs disables free-tier accounts behind proxies, and cloud sessions use one. `narrate.ts` reads the balance first and refuses runs that exceed it.
+- **Runway and Higgsfield cost credits on every generation.** Before generating: show the shot list (prompt, model, duration, aspect ratio, estimated credits, credits left) and wait for explicit approval. Never retry or regenerate without asking again.
+- **Runway free plan:** 125 credits once, never refilled; clips are likely watermarked (no-watermark is a paid feature). Use it to test prompts, not for client delivery. Prefer the cheapest model that fits, use the shortest duration, one shot at a time, and stop when the balance can't cover the next shot.
+- Save AI footage to `public/broll/<video-id>/` and log every prompt, model, duration and credits used in `videos/<video-id>/broll.md`.
+- Never ask for API keys in chat. Keys live in `.env` (git-ignored); see `.env.example`.
+
+## Folder structure
+```
+brands/<brand-id>/           brand.json, logo.svg, fonts/ (one folder per client)
+videos/<video-id>/           config.json (scenes: narration + visuals), script.md, broll.md
+public/audio/<video-id>/     generated narration + manifest.json (git-ignored, reproducible)
+public/broll/<video-id>/     footage and AI clips (git-ignored)
+public/music/                music beds + README.md with each track's license
+out/<brand-id>/              rendered MP4 + SRT (git-ignored)
+src/compositions/            SocialReel9x16, Explainer16x9, PromoSquare1x1, VideoShell (shared frame), scenes/
+src/components/              AnimatedTitle, KineticCaptions, LowerThird, StatCounter, NumberBadge, LogoReveal,
+                             CtaEndCard, BRollSlot, MusicBed (ducking), ProgressBar, BrandBackground, QcProbe
+src/lib/                     types, timeline (narration-driven timing), registry (auto-discovery), fonts, motion, safe zones
+scripts/                     narrate, qc, render, make-srt, new-video, new-brand, validate-brand, placeholder-narration
+.claude/skills/new-video/    the /new-video workflow and script rules
+```
+Every `videos/*/config.json` and `brands/*/brand.json` is discovered automatically. The composition id is the video id.
+
+## How a video is built
+1. `npm run video:new -- <id> --brand=<brand> --format=<format>` creates the folder; fill in `config.json`.
+2. `npm run narrate -- <id>` makes per-scene MP3s + word timestamps (cached by text and voice settings).
+3. Scene length = its narration length + 0.25 s; the last scene holds 1.5 s; transitions 0.4 s (`src/lib/timeline.ts`). **Never hardcode scene durations.** Editing narration text without regenerating makes rendering stop with "Narration is out of date".
+4. `npm run dev` opens Remotion Studio. `brandId` prop previews any video in any brand; `showSafeZones` shows platform UI areas.
+5. `node scripts/qc.ts <id>` then `npm run render:video -- <id>`.
+
+## Brand rules
+- Components never contain brand-specific code. Everything comes from `brand.json` via `useBrand()`: colors, fonts, logo, `style` (cornerRadius, headlineCase, motion bold/calm, background glow/grid, transition), `captionStyle` (highlight box/color), voice, pronunciations, default CTA.
+- New brand: `npm run brand:new -- <id> --name="Client"`, edit `brand.json`, replace the logo, then `npm run brand:check -- <id>` (fields, fonts, logo, contrast).
+- `style.background`: `glow`, `grid` or `hearts` (glow plus floating hearts, for personal or celebration videos).
+- Fonts: a Google Font listed in `src/lib/font-map.ts` (add one line for a new one), or licensed WOFF2 files in `brands/<id>/fonts/` (only if the font license allows video embedding).
+- Logos: SVG with text converted to outlines, or with the font embedded.
+- Add product names, standards and technical terms to `pronunciations` (the voice says `say`, captions show `term`).
+
+## Quality checklist (before any delivery)
+- [ ] `node scripts/qc.ts <id>` passes: text inside safe zones, no overflow, captions never overlap other text, captions in sync with narration, caption size readable on a phone, contrast OK, no empty B-roll slots.
+- [ ] Hook lands in the first 3 seconds; one clear CTA at the end.
+- [ ] Every number and claim confirmed by the client (demo placeholders removed).
+- [ ] Pronunciations checked by listening (brand names, standards, numbers).
+- [ ] Music is licensed and logged in `public/music/README.md`; it ducks under the voice.
+- [ ] Watched once in full with sound, and once muted (captions alone must carry the message).
+
+## Render settings
+- `npm run render:video -- <id>`: H.264, CRF 16, yuv420p, BT.709 color, PNG frames, AAC audio, 30 fps, plus an SRT file. Output: `out/<brand>/<id>.mp4` and `.srt`.
+- Sizes: SocialReel9x16 1080x1920, Explainer16x9 1920x1080, PromoSquare1x1 1080x1080.
+- Use `--brand=<id>` to render a video in another brand.
+
+## Commands
+| Task | Command |
+|---|---|
+| New video folder | `npm run video:new -- <id> --brand=<brand> --format=<format>` |
+| Narration | `npm run narrate -- <id> [--provider=kokoro\|elevenlabs] [--force]` |
+| Silent test narration | `npm run narrate:placeholder -- <id>` |
+| Preview | `npm run dev` |
+| Quality check | `npm run qc -- <id> [--allow-placeholders] [--brand=<id>]` |
+| Render MP4 + SRT | `npm run render:video -- <id> [--brand=<id>]` |
+| New brand / check brand | `npm run brand:new -- <id> --name="..."` / `npm run brand:check -- <id>` |
+| Unit tests | `npm test` |
+
+## Known limits
+- `npx remotion compositions` (list all) fails if any video has no narration yet; rendering a single video by id works.
+- ElevenLabs endpoint/models/credit rates, Kokoro voice names the Higgsfield MCP URL and Runway's free plan and MCP URL were verified against official docs on 2026-10-29 / 2026-11-03 (see SETUP_LOG.md). Anything still marked "NOT VERIFIED" must be checked before relying on it.
+- Remotion license: free for teams of up to 3; see `LICENSE_NOTES.md` before each new client.

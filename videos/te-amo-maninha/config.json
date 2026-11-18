@@ -1,0 +1,31 @@
+{
+  "id": "te-amo-maninha",
+  "brand": "para-maninha",
+  "format": "SocialReel9x16",
+  "title": "Te amo, maninha",
+  "audience": "Minha irmã",
+  "goal": "awareness",
+  "music": null,
+  "scenes": [
+    {
+      "id": "hook",
+      "text": "Oi, maninha! Fiz esse vídeo só pra te dizer uma coisa muito importante.",
+      "visual": { "kind": "hook", "kicker": "Pra você, maninha", "headline": "Um recado especial" }
+    },
+    {
+      "id": "parceira",
+      "text": "Você é minha parceira de vida. A pessoa que me faz rir até nos dias mais difíceis.",
+      "visual": { "kind": "statement", "kicker": "Você é", "headline": "Minha parceira de vida", "body": "e a risada dos meus dias difíceis" }
+    },
+    {
+      "id": "obrigado",
+      "text": "Valeu por cada conselho, cada abraço e cada risada que a gente já dividiu.",
+      "visual": { "kind": "statement", "kicker": "Valeu por tudo", "headline": "Cada conselho, cada abraço", "body": "e cada risada que a gente dividiu" }
+    },
+    {
+      "id": "te-amo",
+      "text": "Então nunca esquece: eu te amo muito, e vou estar sempre do seu lado.",
+      "visual": { "kind": "cta" }
+    }
+  ]
+}
