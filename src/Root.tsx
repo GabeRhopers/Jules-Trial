@@ -2,6 +2,7 @@ import { Composition, Folder, type CalculateMetadataFunction } from "remotion";
 import { calculateExplainerMetadata, EXPLAINER_LAYOUT, Explainer16x9 } from "./compositions/Explainer16x9";
 import { calculatePromoMetadata, PROMO_LAYOUT, PromoSquare1x1 } from "./compositions/PromoSquare1x1";
 import { calculateReelMetadata, REEL_LAYOUT, SocialReel9x16 } from "./compositions/SocialReel9x16";
+import { SAVE_ME_DURATION, SaveMeFromMe } from "./compositions/music/SaveMeFromMe";
 import type { ShellLayout } from "./compositions/VideoShell";
 import type { ResolvedProps } from "./lib/load-video";
 import { videos } from "./lib/registry";
@@ -41,5 +42,8 @@ export const RemotionRoot: React.FC = () => (
         </Folder>
       );
     })}
+    <Folder name="MusicVideos">
+      <Composition id="save-me-from-me" component={SaveMeFromMe} width={1920} height={1080} fps={30} durationInFrames={SAVE_ME_DURATION} />
+    </Folder>
   </>
 );
